@@ -2,3 +2,12 @@
 *.pot
 *.pyc
 local_settings.py
+*.db
+static
+assets
+admin
+virtualenv 
+venv
+.DS_Store
+*.sqlite3
+uploaded_files
