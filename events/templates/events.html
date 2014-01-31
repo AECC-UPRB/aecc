@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block tittle %}AECC | Events{% endblock %}
+{% block subheaderpic %}
+	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<h1 id = "page-header">
+						Events
+					</h1>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<div class = "row back-color">
+		<div class =  "twelve columns">
+			<h1>January</h1>
+			{% for e_information in events_information %}
+				{% if e_information.month|upper == "JANUARY" %}
+					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
+					<p>Location: {{e_information.location}}</p>	
+					<p>Date: {{e_information.event_date}}</p>
+					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
+				{% else %}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<hr>
+		<div class = "twelve columns">
+			<h1>February</h1>
+			{% for e_information in events_information %}
+				{% if e_information.month|upper == "FEBRUARY" %}
+					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
+					<p>Location: {{e_information.location}}</p>	
+					<p>Date: {{e_information.event_date}}</p>
+					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
+				{% else %}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<hr>
+		<div class = "twelve columns">
+			<h1>March</h1>
+			{% for e_information in events_information %}
+				{% if e_information.month|upper == "MARCH" %}
+					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
+					<p>Location: {{e_information.location}}</p>	
+					<p>Date: {{e_information.event_date}}</p>
+					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
+				{% else %}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<br>
+		<div class = "twelve columns">
+			<h1>April</h1>
+			{% for e_information in events_information %}
+				{% if e_information.month|upper == "APRIL" %}
+					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
+					<p>Location: {{e_information.location}}</p>	
+					<p>Date: {{e_information.event_date}}</p>
+					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
+				{% else %}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<br>
+		<div class = "twelve columns">
+			<h1>May</h1>
+			{% for e_information in events_information %}
+				{% if e_information.month|upper == "MAY" %}
+					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
+					<p>Location: {{e_information.location}}</p>	
+					<p>Date & Hour: {{e_information.event_date}}</p>
+					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
+				{% else %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

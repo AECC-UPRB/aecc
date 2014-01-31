@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block tittle %}AECC | {{event.tittle}}{% endblock %}
+{% block subheaderpic %}
+	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "single_event_picture">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<h1 id = "page-header">
+						{{event.tittle}}
+					</h1>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+<br/>
+{% block content %}
+	<div class = "row back-color">
+		<div class = "twelve columns">
+			<h2>{{event.tittle}}</h2>
+			<p>Location: {{event.location}}</p>
+			<p>Date & Hour: {{event.event_date}}</p>
+			<img src = "/static/assets/{{event.promo_picture}}" width = "100%">		
+			<h3>What will be covered?</h3>
+			<p>{{event.event_description}}</p>	
+		</div>
+	</div>
+{% endblock %}

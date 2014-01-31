@@ -1,0 +1,11 @@
+	<head>
+	</head>
+	<body>
+		<form action = "create/" method = "post" enctype = "multipart/form-data"> {% csrf_token %}
+			<ul>
+			<!-- le estamos pidiendo al form que se muestre de una manera especifica. -->
+				{{form.as_ul}}
+			</ul>
+			<button type = "submit" name = "submit" value = "Create Event">Submit</button>
+		</form>
+	</body>
