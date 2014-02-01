@@ -14,6 +14,7 @@
 	</div>
 {% endblock %}
 {% block content %}
+	{% for events_for_month in events%}
 		{% if events_for_month.month|upper == month_specified|upper %}
 			<div class = "row back-color">
 				<div class = "twelve columns">
@@ -24,4 +25,5 @@
 				</div>
 			</div>
 		{% endif %}
+	{% endfor %}
 {% endblock %}

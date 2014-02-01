@@ -16,9 +16,10 @@
 {% block content %}
 	<div class = "row back-color">
 		<div class =  "twelve columns">
-			<h1>January</h1>
+			{% for months_for_display in months %}
+			<h1>{{months_for_display|lower|capfirst}}</h1>
 			{% for e_information in events_information %}
-				{% if e_information.month|upper == "JANUARY" %}
+				{% if e_information.month|upper == months_for_display %}
 					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
 					<p>Location: {{e_information.location}}</p>	
 					<p>Date: {{e_information.event_date}}</p>
@@ -26,57 +27,6 @@
 				{% else %}
 				{% endif %}
 			{% endfor %}
-		</div>
-		<hr>
-		<div class = "twelve columns">
-			<h1>February</h1>
-			{% for e_information in events_information %}
-				{% if e_information.month|upper == "FEBRUARY" %}
-					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
-					<p>Location: {{e_information.location}}</p>	
-					<p>Date: {{e_information.event_date}}</p>
-					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
-				{% else %}
-				{% endif %}
-			{% endfor %}
-		</div>
-		<hr>
-		<div class = "twelve columns">
-			<h1>March</h1>
-			{% for e_information in events_information %}
-				{% if e_information.month|upper == "MARCH" %}
-					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
-					<p>Location: {{e_information.location}}</p>	
-					<p>Date: {{e_information.event_date}}</p>
-					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
-				{% else %}
-				{% endif %}
-			{% endfor %}
-		</div>
-		<br>
-		<div class = "twelve columns">
-			<h1>April</h1>
-			{% for e_information in events_information %}
-				{% if e_information.month|upper == "APRIL" %}
-					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
-					<p>Location: {{e_information.location}}</p>	
-					<p>Date: {{e_information.event_date}}</p>
-					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
-				{% else %}
-				{% endif %}
-			{% endfor %}
-		</div>
-		<br>
-		<div class = "twelve columns">
-			<h1>May</h1>
-			{% for e_information in events_information %}
-				{% if e_information.month|upper == "MAY" %}
-					<h2><a href="get/{{e_information.id}}">{{e_information.tittle}}</a></h2>
-					<p>Location: {{e_information.location}}</p>	
-					<p>Date & Hour: {{e_information.event_date}}</p>
-					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
-				{% else %}
-				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

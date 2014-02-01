@@ -5,8 +5,11 @@ from events.models import Events
 
 
 def events_view(request):
+    months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+                'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
     data = {
-        'events_information': Events.objects.all()
+        'events_information': Events.objects.all(),
+        'months': months
     }
     return render_to_response('events.html', data)
 
@@ -16,16 +19,22 @@ def event(request, event_id=1):
     }
     return render_to_response('event.html', data)
 
-def event_by_month(request, event_month):
-    events_for_month = Events.objects.all()
+def events_by_month(request, event_month):
+    months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+                'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
+    counter = 0
     hit = False
-    for events in events_for_month:
-        if events.month.upper() == event_month.upper():
+    for counter in range(0, 11):
+        if months[counter] == event_month.upper():
             hit = True
-            data = {
-                'events_for_month': events,
-                'month_specified': event_month
-            }
-            return render_to_response('events-by-month.html', data)
+        else:
+            counter = counter + 1
+
     if hit is False:
         raise Http404
+    else:
+        data = {
+            'events': Events.objects.all(),
+            'month_specified': event_month
+        }
+        return render_to_response('events-by-month.html', data)
