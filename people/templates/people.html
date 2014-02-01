@@ -15,7 +15,7 @@
 {% endblock %}
 {% block content %}
 <br>
-	{% for directive in peopleInStorage%}
+	{% for directive in people_information%}
 			<div class = "row">
   				<section class="twelve columns back-color">
    		 			<article class="valign row">
@@ -23,11 +23,12 @@
 				      	<img src="/static/assets/{{directive.picture}}"  width="145" />
 				      </div>
 				      <div class = "push_two">
-				        <h4>{{directive.name}} {{directive.lastname}}</h4>
+				        <h4>{{directive.first_name}} {{directive.last_name}}</h4>
 				        <p>Face tattoos are not.</p>
 				      </div>
 				    </article>
 				</section>
 			</div>
+			<hr>
 	{% endfor %}
 {% endblock %}
