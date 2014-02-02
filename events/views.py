@@ -22,19 +22,12 @@ def event(request, event_id=1):
 def events_by_month(request, event_month):
     months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
                 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
-    counter = 0
-    hit = False
-    for counter in range(0, 11):
-        if months[counter] == event_month.upper():
-            hit = True
-        else:
-            counter = counter + 1
-
-    if hit is False:
-        raise Http404
-    else:
+    hit = event_month.upper() in months
+    if hit == 1:
         data = {
             'events': Events.objects.all(),
             'month_specified': event_month
         }
         return render_to_response('events-by-month.html', data)
+    else:
+        raise Http404
