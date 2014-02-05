@@ -1,7 +1,7 @@
 from time import time
 
 from django.db import models
-
+from autoslug import AutoSlugField
 
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
@@ -40,6 +40,7 @@ class Events(models.Model):
     event_date = models.DateTimeField('published date')
     location = models.CharField(max_length=100)
     promo_picture = models.FileField(upload_to=get_upload_file_name, blank=True)
+    slug = AutoSlugField(populate_from='tittle', slugify=lambda value: value.replace(' ', '-'), unique=True)
 
     def __unicode__(self):
         return self.tittle

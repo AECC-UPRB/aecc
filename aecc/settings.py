@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'events',
     'people',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,3 +91,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     ('assets', os.path.join(BASE_DIR, 'static')),
 )
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = "smtp.googlemail.com"
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = "example@example.com"
+
+EMAIL_HOST_PASSWORD = "example"

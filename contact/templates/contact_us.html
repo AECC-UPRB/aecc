@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block tittle %}AECC | Contact Us{% endblock %}
+{% block subheaderpic %}
+	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "contact_picture">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<h1 id = "page-header">
+						Get in touch
+					</h1>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+<br/>
+{% block content %}
+<div class = "row">
+<div class = "centered ten columns">
+	<form action = "/contact/" method = "post">{% csrf_token %}
+		<fieldset>
+			<legend>Send us an email</legend>
+			<ul>
+				<li class = "field">
+					<label class = "inline" for="id_from_email">Your email:</label> 
+					<input id="id_from_email" name="from_email" type="email" 
+					placeholder = "example@example.com"/>
+				</li>
+				<li class = "field">
+					<label class = "inline" for="id_subject">Subject:</label> 
+					<input id="id_subject" maxlength="30" name="subject" type="text" placeholder = "Why is the email about?"/>
+				</li>
+				<li class = "field">
+					<label class = "inline" for="id_message">Message:</label>
+					<textarea id="id_message" maxlength="400" name="message" type="text" placeholder = "What's in your mind?"></textarea>
+				</li>
+				<div class="medium success btn pull_right">
+					<a href="#"><button type = "submit" value = "Send Mail">Send Mail</button></a>
+				</div>
+			</ul>
+		</fieldset>
+	</form>
+</div>
+</div>
+{% endblock %}

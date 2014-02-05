@@ -11,4 +11,5 @@ urlpatterns = patterns(
     url(r'^about/$', 'aecc.views.about_view'),
     url(r'^events/', include('events.urls')),
     url(r'^people/', include('people.urls')),
+    url(r'^contact/', include('contact.urls'))
 )

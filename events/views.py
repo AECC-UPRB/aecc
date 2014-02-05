@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 
 from events.models import Events
 
@@ -13,11 +13,17 @@ def events_view(request):
     }
     return render_to_response('events.html', data)
 
-def event(request, event_id=1):
-    data = {
-        'event': get_object_or_404(Events, id=event_id)
-    }
-    return render_to_response('event.html', data)
+def event(request, slug):
+    hit = False
+    for event in Events.objects.all():
+        if event.slug == slug:
+            hit = True
+            data = {
+                'event': Events.objects.get(id=event.id)
+            }
+            return render_to_response('event.html', data)
+    if hit is False:
+        raise Http404
 
 def events_by_month(request, event_month):
     months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
@@ -28,6 +34,6 @@ def events_by_month(request, event_month):
             'events': Events.objects.all(),
             'month_specified': event_month
         }
-        return render_to_response('events-by-month.html', data)
+        return render_to_response('events_by_month.html', data)
     else:
         raise Http404
