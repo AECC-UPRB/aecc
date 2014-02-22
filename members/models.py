@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class User(models.Model):
+class Member(models.Model):
     MALE = 'M'
     FEMALE = 'F'
     GENDER_CHOICES = (

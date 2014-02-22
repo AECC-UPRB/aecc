@@ -15,31 +15,40 @@
 {% endblock %}
 <br/>
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="success-message">
+            <ul>
+                <li class="success alert">{{message}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+{% endif%}
 <div class = "row">
-<div class = "centered ten columns">
-	<form action = "/contact/" method = "post">{% csrf_token %}
-		<fieldset>
-			<legend>Send us an email</legend>
-			<ul>
-				<li class = "field">
-					<label class = "inline" for="id_from_email">Your email:</label> 
-					<input id="id_from_email" name="from_email" type="email" 
-					placeholder = "example@example.com"/>
-				</li>
-				<li class = "field">
-					<label class = "inline" for="id_subject">Subject:</label> 
-					<input id="id_subject" maxlength="30" name="subject" type="text" placeholder = "Why is the email about?"/>
-				</li>
-				<li class = "field">
-					<label class = "inline" for="id_message">Message:</label>
-					<textarea id="id_message" maxlength="400" name="message" type="text" placeholder = "What's in your mind?"></textarea>
-				</li>
-				<div class="medium success btn pull_right">
-					<a href="#"><button type = "submit" value = "Send Mail">Send Mail</button></a>
-				</div>
-			</ul>
-		</fieldset>
-	</form>
-</div>
+	<div class = "centered ten columns">
+		<form action = "/contact/" method = "post">{% csrf_token %}
+			<fieldset>
+				<legend>Send us an email</legend>
+				<ul>
+					<li class = "field">
+						<label class = "inline" for="id_from_email">Your email:</label> 
+						<input  class = "input" id="id_from_email" name="from_email" type="email" 
+						placeholder = "example@example.com"/>
+					</li>
+					<li class = "field">
+						<label class = "inline" for="id_subject">Subject:</label> 
+						<input class = "input" id="id_subject" maxlength="30" name="subject" type="text" placeholder = "Why is the email about?"/>
+					</li>
+					<li class = "field">
+						<label class = "inline" for="id_message">Message:</label>
+						<textarea class = "input textarea"  id="id_message" maxlength="400" name="message" type="text" placeholder = "What's in your mind?"></textarea>
+					</li>						
+					<div class="medium success btn pull_right">
+						<a href="#"><button type = "submit" value = "Send Mail">Send Mail</button></a>
+					</div>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
 </div>
 {% endblock %}

@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from django.contrib import messages
 
-from .forms import ContactForm
+from forms import ContactForm
+from forms import CaptchaForm
 
 
 def contact_us_view(request):
@@ -15,9 +17,11 @@ def contact_us_view(request):
 
             recipients = ['emma.luciano11@gmail.com']
             send_mail(subject, message, from_email, recipients)
-            return HttpResponseRedirect('/home/')
+            messages.success(request, "Your email has been sent sucessfully!")
+            return HttpResponseRedirect('/contact/')
     else:
         data = {
-            'form': ContactForm()
+            'form': ContactForm(),
+            'captcha': CaptchaForm()
         }
     return render(request, 'contact_us.html', data)

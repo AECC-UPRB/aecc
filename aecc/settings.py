@@ -39,6 +39,9 @@ INSTALLED_APPS = (
     'events',
     'people',
     'contact',
+    #'users',
+    'members',
+    'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,3 +104,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "example@example.com"
 
 EMAIL_HOST_PASSWORD = "example"
+
+RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
+
+RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
+
+RECAPTCHA_USE_SSL = True
