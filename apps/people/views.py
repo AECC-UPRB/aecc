@@ -7,4 +7,4 @@ def people_view(request):
     data = {
         'people_information': People.objects.all()
     }
-    return render_to_response('people.html', data)
+    return render_to_response('people/people.html', data)

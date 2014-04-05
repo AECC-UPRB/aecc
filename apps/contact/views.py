@@ -24,4 +24,4 @@ def contact_us_view(request):
             'form': ContactForm(),
             'captcha': CaptchaForm()
         }
-    return render(request, 'contact_us.html', data)
+    return render(request, 'contact/contact_us.html', data)

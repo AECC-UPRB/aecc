@@ -39,7 +39,6 @@ INSTALLED_APPS = (
 
     # Apps
 
-    'apps.home',
     'apps.events',
     'apps.people',
     'apps.contact',

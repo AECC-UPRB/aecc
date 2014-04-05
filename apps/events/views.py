@@ -11,7 +11,7 @@ def events_view(request):
         'events_information': Events.objects.all(),
         'months': months
     }
-    return render_to_response('events.html', data)
+    return render_to_response('events/events.html', data)
 
 
 def event(request, slug):
@@ -31,6 +31,6 @@ def events_by_month(request, event_month):
             'events': Events.objects.filter(month=event_month),
             'month_specified': event_month
         }
-        return render_to_response('events_by_month.html', data)
+        return render_to_response('events/events_by_month.html', data)
     else:
         raise Http404

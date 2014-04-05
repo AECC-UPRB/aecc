@@ -12,4 +12,4 @@ def signup_view(request):
     data = {
         'form': form
     }
-    return render(request, 'signup.html', data)
+    return render(request, 'users/signup.html', data)

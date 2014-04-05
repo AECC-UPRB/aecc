@@ -17,4 +17,4 @@ def signup_view(request):
     data = {
         'form': form
     }
-    return render(request, 'signup.html', data)
+    return render(request, 'members/signup.html', data)
