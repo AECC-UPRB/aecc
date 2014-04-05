@@ -36,12 +36,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Apps
     'events',
     'people',
     'contact',
     #'users',
     'members',
-    'captcha',
+
+    # Third party
+    #'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,7 +93,7 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
     ('assets', os.path.join(BASE_DIR, 'static')),
@@ -105,8 +109,8 @@ EMAIL_HOST_USER = "example@example.com"
 
 EMAIL_HOST_PASSWORD = "example"
 
-RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
+# RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
 
-RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
+# RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
 
-RECAPTCHA_USE_SSL = True
+# RECAPTCHA_USE_SSL = True
