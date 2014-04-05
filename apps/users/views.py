@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from users.forms import SignupForm
+from .forms import SignupForm
 
 
 def signup_view(request):

@@ -1,6 +1,6 @@
 from django import forms
 
-from models import Member
+from .models import Member
 
 
 class SignupForm(forms.ModelForm):

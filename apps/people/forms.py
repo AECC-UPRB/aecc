@@ -1,6 +1,6 @@
 from django import forms
 
-from people.models import People
+from .models import People
 
 
 class PeopleForm(forms.ModelForm):

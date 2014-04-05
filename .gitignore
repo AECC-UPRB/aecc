@@ -3,8 +3,6 @@
 *.pyc
 local_settings.py
 *.db
-static
-assets
 admin
 virtualenv 
 venv

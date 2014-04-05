@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 
-from people.models import People
+from .models import People
 
 
 def people_view(request):

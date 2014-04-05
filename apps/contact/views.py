@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.contrib import messages
 
-from forms import ContactForm
-from forms import CaptchaForm
+from .forms import ContactForm
+from .forms import CaptchaForm
 
 
 def contact_us_view(request):

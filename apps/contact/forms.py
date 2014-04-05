@@ -1,8 +1,10 @@
 from django import forms
 from captcha.fields import ReCaptchaField
 
+
 class CaptchaForm(forms.Form):
     captcha = ReCaptchaField()
+
 
 class ContactForm(forms.Form):
     from_email = forms.EmailField()

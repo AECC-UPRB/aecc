@@ -38,14 +38,16 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Apps
-    'events',
-    'people',
-    'contact',
-    #'users',
-    'members',
+
+    'apps.events',
+    'apps.people',
+    'apps.contact',
+    #'apps.users',
+    'apps.members',
 
     # Third party
-    #'captcha',
+
+    'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,8 +111,8 @@ EMAIL_HOST_USER = "example@example.com"
 
 EMAIL_HOST_PASSWORD = "example"
 
-# RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
+RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
 
-# RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
+RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
 
-# RECAPTCHA_USE_SSL = True
+RECAPTCHA_USE_SSL = True
