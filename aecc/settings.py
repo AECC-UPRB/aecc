@@ -38,16 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Apps
-
     'apps.events',
     'apps.people',
     'apps.contact',
     #'apps.users',
     'apps.members',
-
-    # Third party
-
-    'captcha',
+    'apps.blogs',
 )
 
 MIDDLEWARE_CLASSES = (

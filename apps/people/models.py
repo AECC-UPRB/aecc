@@ -34,4 +34,4 @@ class People(models.Model):
     picture = models.FileField(upload_to=get_upload_file_name)
 
     def __unicode__(self):
-        return u'%s %s' % (self.name, self.lastname)
+        return u'%s %s' % (self.first_name, self.last_name)

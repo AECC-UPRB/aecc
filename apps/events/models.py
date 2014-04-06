@@ -1,7 +1,7 @@
 from time import time
 
 from django.db import models
-from django.template.defaultfilters import slugify
+from autoslug import AutoSlugField
 
 
 def get_upload_file_name(instance, filename):
@@ -35,17 +35,15 @@ class Events(models.Model):
         (NOVEMBER, 'November'),
         (DECEMBER, 'December'),
     )
-    tittle = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     description = models.TextField()
     month = models.CharField(max_length=10, choices=MONTH_CHOICES)
     event_date = models.DateTimeField('published date')
     location = models.CharField(max_length=100)
     promo_picture = models.FileField(upload_to=get_upload_file_name, blank=True)
-    slug = models.SlugField(editable=False, unique=True)
+    title_slug = AutoSlugField(populate_from='title', unique=True)
+    month_slug = AutoSlugField(populate_from='month', unique=True)
+
 
     def __unicode__(self):
-        return self.tittle
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.tittle).lower()
-        super(Events, self).save(*args, **kwargs)
+        return self.title
