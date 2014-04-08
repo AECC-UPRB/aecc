@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block tittle %} AECC | Sign Up {% endblock %} {% block subheaderpic %}
+<div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="sign_up_picture">
+    <div class="row" id="subheader-tittle">
+        <div class="block">
+            <article class="translucent_border_people">
+                <h1 id="page-header">
+                    Join Us
+                </h1>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block content %}
+<div class="row">
+    <div class="centered eight columns">
+        <form action="" method="post">{% csrf_token %}
+            <fieldset>
+                <legend>Join us</legend>
+                <ul>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.first_name.errors}}
+                        </p>
+                        <label for="id_first_name">First name:</label>
+                        <input class="input" id="id_first_name" maxlength="20" name="first_name" type="text" placeholder="Enter your first name..." />
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.last_name.errors}}
+                        </p>
+                        <label for="id_last_name">Last name:</label>
+                        <input class="input" id="id_last_name" maxlength="40" name="last_name" type="text" placeholder="Enter your lastname..." />
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.gender.errors}}
+                        </p>
+                        <label for="id_gender">Gender:</label>
+                        <p></p>
+                        <div class="picker">
+                            <select id="id_gender" name="gender">
+                                <option value="" selected="selected">---------</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.error.errors}}
+                        </p>
+                        <label for="id_email">Email:</label>
+                        <input class="input" id="id_email" maxlength="75" name="email" type="email" placeholder="Enter your email..." />
+                    </li>
+                    <div class="medium success btn pull_right">
+                        <a href="#">
+                            <button type="submit" value="Send Mail">Sign up</button>
+                        </a>
+                    </div>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
