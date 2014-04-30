@@ -4,29 +4,10 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 
-<<<<<<< HEAD
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 
-class User(models.Model):
-    PRESIDENT = 'PR'
-    VICEPRESIDENT = 'VP'
-    TREASURER = 'TR'
-    SECRETARY = 'SE'
-    VOCAL = 'VO'
-    MEMBER = 'ME'
-    POSITION_OPTIONS = (
-        (PRESIDENT, 'President'),
-        (VICEPRESIDENT, 'Vice-President'),
-        (TREASURER, 'Treasurer'),
-        (SECRETARY, 'Secretary'),
-        (VOCAL, 'Vocal'),
-        (MEMBER, 'Member'),
-    )
-    MALE = 'M'
-    FEMALE = 'F'
-=======
 class MyUserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, gender, password=None):
         if not email:
@@ -57,29 +38,40 @@ class MyUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
->>>>>>> e58e33420508ae641ecd4ea573d48289457b65ab
+    PRESIDENT = 'PR'
+    VICEPRESIDENT = 'VP'
+    TREASURER = 'TR'
+    SECRETARY = 'SE'
+    VOCAL = 'VO'
+    MEMBER = 'ME'
+    POSITION_OPTIONS = (
+        (PRESIDENT, 'President'),
+        (VICEPRESIDENT, 'Vice-President'),
+        (TREASURER, 'Treasurer'),
+        (SECRETARY, 'Secretary'),
+        (VOCAL, 'Vocal'),
+        (MEMBER, 'Member'),
+    )
+    MALE = 'M'
+    FEMALE = 'F'
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female')
     )
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=40)
-<<<<<<< HEAD
     student_number = models.CharField(max_length=9, unique=True)
     email = models.EmailField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES,
                               default='M')
-=======
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
->>>>>>> e58e33420508ae641ecd4ea573d48289457b65ab
-    active_member = models.BooleanField(default=False)
     amount_payed = models.FloatField(default=0)
     position = models.CharField(max_length=2, choices=POSITION_OPTIONS,
                                 default='ME')
     picture = models.FileField(upload_to=get_upload_file_name)
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()

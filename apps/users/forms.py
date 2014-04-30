@@ -1,7 +1,4 @@
 from django import forms
-from django.contrib import admin
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
@@ -9,7 +6,8 @@ from .models import User
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation',
+                                widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -45,9 +43,5 @@ class UserChangeForm(forms.ModelForm):
 class SignupForm(forms.ModelForm):
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ['first_name', 'last_name', 'student_number', 'gender',
                   'email']
-=======
-        fields = ['email','first_name', 'last_name', 'gender']
->>>>>>> e58e33420508ae641ecd4ea573d48289457b65ab

@@ -42,10 +42,6 @@ INSTALLED_APPS = (
     'apps.events',
     'apps.contact',
     'apps.users',
-<<<<<<< HEAD
-=======
-    'apps.members',
->>>>>>> e58e33420508ae641ecd4ea573d48289457b65ab
     'apps.blogs',
 
     # Third party
