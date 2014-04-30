@@ -16,10 +16,6 @@ urlpatterns = patterns(
     url(r'^events/', include('apps.events.urls', namespace='events')),
     url(r'^contact/', include('apps.contact.urls', namespace='contact')),
     url(r'^blogs/', include('apps.blogs.urls', namespace='blogs')),
-<<<<<<< HEAD
-    url(r'^members/', include('apps.users.urls', namespace='blogs'))
-=======
-
     url(r'^accounts/', include('allauth.urls')),
->>>>>>> e58e33420508ae641ecd4ea573d48289457b65ab
+    url(r'^members/', include('apps.users.urls', namespace='blogs'))
 )
