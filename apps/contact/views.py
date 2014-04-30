@@ -4,7 +4,6 @@ from django.core.mail import send_mail
 from django.contrib import messages
 
 from .forms import ContactForm
-from .forms import CaptchaForm
 
 
 def contact_us_view(request):
@@ -22,6 +21,5 @@ def contact_us_view(request):
     else:
         data = {
             'form': ContactForm(),
-            'captcha': CaptchaForm()
         }
     return render(request, 'contact/contact_us.html', data)

@@ -13,7 +13,7 @@ class Article(models.Model):
         (DEVTEAM, 'Devteam'),
     )
 
-    user = models.ForeignKey('people.People')
+    user = models.ForeignKey('users.User')
     title = models.CharField(unique=True, max_length=25)
     description = models.TextField(max_length=500)
     date = models.DateField()

@@ -39,10 +39,8 @@ INSTALLED_APPS = (
 
     # Apps
     'apps.events',
-    'apps.people',
     'apps.contact',
-    #'apps.users',
-    'apps.members',
+    'apps.users',
     'apps.blogs',
 )
 

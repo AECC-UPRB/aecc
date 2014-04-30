@@ -14,8 +14,7 @@ urlpatterns = patterns(
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^events/', include('apps.events.urls', namespace='events')),
-    url(r'^people/', include('apps.people.urls', namespace='people')),
     url(r'^contact/', include('apps.contact.urls', namespace='contact')),
-    url(r'^signup/', include('apps.members.urls', namespace='members')),
     url(r'^blogs/', include('apps.blogs.urls', namespace='blogs')),
+    url(r'^members/', include('apps.users.urls', namespace='blogs'))
 )

@@ -1,60 +1,98 @@
 {% extends "base.html" %} {% block tittle %} AECC | Sign Up {% endblock %} {% block subheaderpic %}
 <div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="sign_up_picture">
-    <div class="row" id="subheader-tittle">
-        <div class="block">
-            <article class="translucent_border_people">
-                <h1 id="page-header">
-                    Join Us
-                </h1>
-            </article>
+    <div class="row">
+        <div class="row" id="subheader-tittle">
+            <div class="block">
+                <article class="translucent_border_people">
+                    <h1 id="page-header">
+                        Join Us
+                    </h1>
+                </article>
+            </div>
         </div>
     </div>
 </div>
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %} 
 <div class="row">
     <div class="centered eight columns">
-        <form action="/signup/" method="post">{% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    <ul>
+                        <li class="success alert">{{message}}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        {% endif%}
+        <form action="/members/signup/" method="post">{% csrf_token %}
             <fieldset>
                 <legend>Join us</legend>
                 <ul>
                     <li class="field">
-                    	<p id = "error">
-                    		{{form.first_name.errors}}
-                    	</p>
+                        {% if form.first_name.errors %}
+                        <p id="error">
+                            <ul>
+                                <li class="danger alert">{{form.first_name.errors}}</li>
+                            </ul>
+                        </p>
+                        {% endif %}
                         <label for="id_first_name">First name:</label>
                         <input class="input" id="id_first_name" maxlength="20" name="first_name" type="text" placeholder="Enter your first name..." />
                     </li>
                     <li class="field">
-                        <p id = "error">
-                    		{{form.last_name.errors}}
-                    	</p>
+                        {% if form.last_name.errors %}
+                        <p id="error">
+                            <ul>
+                                <li class="danger alert">{{form.last_name.errors}}</li>
+                            </ul>
+                        </p>
+                        {% endif %}
                         <label for="id_last_name">Last name:</label>
                         <input class="input" id="id_last_name" maxlength="40" name="last_name" type="text" placeholder="Enter your lastname..." />
                     </li>
                     <li class="field">
-                    	<p id = "error">
-                    		{{form.gender.errors}}
-                    	</p>
+                        {% if form.student_number.errors %}
+                        <p id="error">
+                            <ul>
+                                <li class="danger alert">{{form.student_number.errors}}</li>
+                            </ul>
+                        </p>
+                        {% endif %}
+                        <label for="id_first_name">Student number:</label>
+                        <input class="input" id="id_student_number" maxlength="9" name="student_number" type="text" placeholder="Enter your student number..." />
+                    </li>
+                    <li class="field">
+                        {% if form.email.errors %}
+                        <p id="error">
+                            <ul>
+                                <li class="danger alert">{{form.email.errors}}</li>
+                            </ul>
+                        </p>
+                        {% endif %}
+                        <label for="id_email">Email:</label>
+                        <input class="input" id="id_email" maxlength="75" name="email" type="email" placeholder="Enter your email..." />
+                    </li>
+                    <li class="field">
+                        {% if form.gender.errors %}
+                        <p id="error">
+                            <ul>
+                                <li class="danger alert">{{form.gender.errors}}</li>
+                            </ul>
+                        </p>
+                        {% endif %}
                         <label for="id_gender">Gender:</label>
                         <p></p>
                         <div class="picker">
                             <select id="id_gender" name="gender">
-                                <option value="" selected="selected">---------</option>
-                                <option value="M">Male</option>
+                                <option value="M" selected="selected">Male</option>
                                 <option value="F">Female</option>
                             </select>
                         </div>
                     </li>
-                    <li class="field">
-                    	<p id = "error">
-                        	{{form.error.errors}}
-                    	</p>
-                        <label for="id_email">Email:</label>
-                        <input class="input" id="id_email" maxlength="75" name="email" type="email" placeholder="Enter your email..." />
-                    </li>
                     <div class="medium success btn pull_right">
-                        <a href="#">
-                            <button type="submit" value="Send Mail">Sign up</button>
+                        <a>
+                            <input type="submit" value="Register"/>
                         </a>
                     </div>
                 </ul>
