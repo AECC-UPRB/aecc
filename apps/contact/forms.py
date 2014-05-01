@@ -12,7 +12,7 @@ class ContactForm(forms.Form):
     from_email = forms.EmailField()
     subject = forms.CharField(max_length=30)
     message = forms.CharField(
-        widget=forms.TextArea(),
+        widget=forms.Textarea(),
         max_length=400)
 
     def send(self):
