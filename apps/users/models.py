@@ -9,7 +9,8 @@ def get_upload_file_name(instance, filename):
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, gender, password=None):
+    def create_user(self, email, first_name, last_name,
+                    student_number, gender, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -17,6 +18,7 @@ class MyUserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name=first_name,
             last_name=last_name,
+            student_number=student_number,
             gender=gender,
         )
 
@@ -24,12 +26,14 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, gender, password):
+    def create_superuser(self, email, first_name, last_name,
+                         student_number, gender, password):
         user = self.create_user(
             email,
             password=password,
             first_name=first_name,
             last_name=last_name,
+            student_number=student_number,
             gender=gender,
         )
         user.is_admin = True
@@ -87,6 +91,9 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+    def get_student_number(self):
+        return self.student_number
 
     def has_perm(self, perm, obj=None):
         return True
