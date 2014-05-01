@@ -1,8 +1,17 @@
 from django.conf.urls import patterns, url
 
-from . import views
+from .views import IndexView, ThanksView
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.contact_us_view, name='contact_us'),
+    url(
+        r'^$',
+        IndexView.as_view(),
+        name='index'
+    ),
+    url(
+        r'^thanks/$',
+        ThanksView.as_view(),
+        name='thanks'
+    ),
 )

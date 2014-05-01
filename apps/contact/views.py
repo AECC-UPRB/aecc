@@ -1,25 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.core.mail import send_mail
-from django.contrib import messages
+from django.views.generic import FormView, TemplateView
+from django.shortcuts import redirect
 
 from .forms import ContactForm
 
 
-def contact_us_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            from_email = form.cleaned_data['from_email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
+class IndexView(FormView):
+    form_class = ContactForm
+    template_name = 'contact/index.html'
+    success_url = '/contact/thanks/'
 
-            recipients = ['emma.luciano11@gmail.com']
-            send_mail(subject, message, from_email, recipients)
-            messages.success(request, "Your email has been sent sucessfully!")
-            return HttpResponseRedirect('/contact/')
-    else:
-        data = {
-            'form': ContactForm(),
-        }
-    return render(request, 'contact/contact_us.html', data)
+    def form_valid(self, form):
+        form.send()
+        return redirect(self.get_success_url())
+
+
+class ThanksView(TemplateView):
+    template_name = 'contact/thanks.html'

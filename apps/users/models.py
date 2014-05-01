@@ -61,9 +61,6 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=40)
     student_number = models.CharField(max_length=9, unique=True)
-    email = models.EmailField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES,
-                              default='M')
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     amount_payed = models.FloatField(default=0)
@@ -77,7 +74,7 @@ class User(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'student_number']
 
     def __unicode__(self):
         return self.email

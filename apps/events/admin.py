@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Events
+from .models import Event
 
 
-admin.site.register(Events)
-
-
-class EventsAdmin(admin.ModelAdmin):
+class EventAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
+
+
+admin.site.register(Event, EventAdmin)

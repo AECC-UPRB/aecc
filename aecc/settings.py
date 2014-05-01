@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'apps.events',
     'apps.contact',
     'apps.users',
-    'apps.blogs',
+    'apps.blog',
 
     # Third party
     'allauth',

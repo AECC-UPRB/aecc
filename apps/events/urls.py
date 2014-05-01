@@ -1,11 +1,23 @@
 from django.conf.urls import patterns, url
 
-from . import views
+from .views import IndexView, EventView, EventByMonth
 
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.events_view, name='index'),
-    url(r'^view/(?P<title_slug>[-_\w]+)/$', views.event, name='event'),
-    url(r'^(?P<event_month>.+)/$', views.events_by_month, name='event_month'),
+    url(
+        r'^$',
+        IndexView.as_view(),
+        name='index'
+    ),
+    url(
+        r'^(?P<title_slug>[-_\w]+)/$',
+        EventView.as_view(),
+        name='event'
+    ),
+    url(
+        r'^(?P<event_month>.+)/$',
+        EventByMonth.as_view(),
+        name='event_month'
+    ),
 )

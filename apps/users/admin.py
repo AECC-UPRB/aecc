@@ -23,8 +23,7 @@ class MyUserAdmin(UserAdmin):
             'classes': ('wide',),
             'fields': ('email', 'first_name',
                        'last_name', 'gender',
-                       'password1', 'password2')}
-        ),
+                       'password1', 'password2')}),
     )
     search_fields = ('email',)
     ordering = ('email',)

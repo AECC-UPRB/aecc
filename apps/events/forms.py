@@ -1,11 +1,10 @@
 from django import forms
 
-from .models import Events
+from .models import Event
 
 
 class EventForm(forms.ModelForm):
     class Meta:
-        model = Events
-        fields = ('title',
-                  'event_description',
-                  'month', 'event_date', 'location', 'promo_picture')
+        model = Event
+        fields = ('title', 'description', 'month',
+                  'event_date', 'location', 'promo_picture')

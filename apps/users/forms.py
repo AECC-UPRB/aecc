@@ -43,5 +43,5 @@ class UserChangeForm(forms.ModelForm):
 class SignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'student_number', 'gender',
-                  'email']
+        fields = ('first_name', 'last_name', 'student_number', 'gender',
+                  'email')
