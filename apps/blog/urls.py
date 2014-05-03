@@ -11,12 +11,12 @@ urlpatterns = patterns(
         name='index'
     ),
     url(
-        r'^(?P<branch_slug>[-_\w]+)/$',
+        r'^(?P<branch_slug>[-\w]+)/$',
         BranchArticlesView.as_view(),
         name="branch"
     ),
     url(
-        r'^(?P<branch_slug>[-_\w]+)/(?P<article_slug>[-_\w]+)/$',
+        r'^(?P<branch_slug>[-\w]+)/(?P<article_slug>[-\w]+)/$',
         ArticleView.as_view(),
         name="article"
     ),

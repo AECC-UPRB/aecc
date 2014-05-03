@@ -72,7 +72,7 @@ class User(AbstractBaseUser):
                                 default='ME')
     picture = models.FileField(upload_to=get_upload_file_name)
 
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()

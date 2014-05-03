@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.views.generic import ListView, DetailView
 
 from .models import Article
@@ -11,19 +11,22 @@ class IndexView(ListView):
     template_name = 'blog/index.html'
 
 
-class BranchArticlesView(DetailView):
+class BranchArticlesView(ListView):
     model = Article
-    slug_field = 'branch_slug'
     template_name = 'blog/branch_articles.html'
-    context_object_name = 'branch'
+    context_object_name = 'branch_articles'
+    paginate_by = 5
 
     def get_queryset(self):
-        return Article.objects.filter(branch_slug=self.kwargs['branch_slug'])
+        return get_list_or_404(
+            Article,
+            branch_slug=self.kwargs['branch_slug'])
 
 
 class ArticleView(DetailView):
     model = Article
     slug_field = 'branch_slug'
+    slug_field_kwarg = 'branch_slug'
     template_name = 'blog/article.html'
     context_object_name = 'article'
 
@@ -32,6 +35,6 @@ class ArticleView(DetailView):
             kwargs['view'] = self
         kwargs['article'] = get_object_or_404(
             Article,
-            branch_slug=kwargs['branch_slug'],
+            branch_slug=kwargs['slug'],
             article_slug=kwargs['article_slug'])
         return kwargs

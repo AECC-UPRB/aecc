@@ -4,6 +4,8 @@ from autoslug import AutoSlugField
 
 
 class Article(models.Model):
+    class Meta:
+        ordering = ['-created_at']
     BRANCH_CHOICES = (
         ('directive', 'Directive'),
         ('starting_up', 'Starting_up'),
@@ -15,6 +17,7 @@ class Article(models.Model):
     branch = models.CharField(choices=BRANCH_CHOICES, max_length=12)
     content = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now=False)
+    is_published = models.BooleanField(default=False)
     article_slug = AutoSlugField(populate_from='title')
     branch_slug = AutoSlugField(populate_from='branch')
 

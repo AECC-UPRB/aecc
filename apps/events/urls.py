@@ -11,12 +11,12 @@ urlpatterns = patterns(
         name='index'
     ),
     url(
-        r'^(?P<event_month>[\b(january|feburary|march|april|may|june|july|august|september|october|november|december)\w]+)/$',
+        r'^(?P<month>[-\w]+)/$',
         EventByMonth.as_view(),
-        name='event_month'
+        name='month'
     ),
     url(
-        r'^(?P<title_slug>[\w-]+)/$',
+        r'^view/(?P<title_slug>[-\w]+)/$',
         EventView.as_view(),
         name='event'
     ),

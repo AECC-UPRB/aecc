@@ -9,19 +9,22 @@ def get_upload_file_name(instance, filename):
 
 
 class Event(models.Model):
+    class Meta:
+        ordering = ['-event_date']
+
     MONTH_CHOICES = (
-        ('January', 'January'),
-        ('February', 'February'),
-        ('March', 'March'),
-        ('April', 'April'),
-        ('May', 'May'),
-        ('June', 'June'),
-        ('July', 'July'),
-        ('August', 'August'),
-        ('September', 'September'),
-        ('October', 'October'),
-        ('November', 'November'),
-        ('December', 'December'),
+        ('january', 'january'),
+        ('february', 'february'),
+        ('march', 'march'),
+        ('april', 'april'),
+        ('may', 'may'),
+        ('june', 'june'),
+        ('july', 'july'),
+        ('august', 'august'),
+        ('september', 'september'),
+        ('october', 'october'),
+        ('november', 'november'),
+        ('december', 'december'),
     )
     title = models.CharField(max_length=100)
     description = models.TextField()
