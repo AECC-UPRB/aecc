@@ -2,22 +2,14 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import get_list_or_404
 
 from .models import Event
+from .mixins import MonthMixin
 
 
-class IndexView(ListView):
+class IndexView(MonthMixin, ListView):
     model = Event
     paginate_by = 5
-    queryset = Event.objects.all().order_by('-event_date')
     template_name = 'events/index.html'
     context_object_name = 'events_information'
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
-                  'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER',
-                  'DECEMBER']
-        context['months'] = months
-        return context
 
 
 class EventView(DetailView):
@@ -30,9 +22,9 @@ class EventView(DetailView):
 
 class EventByMonth(ListView):
     model = Event
-    template_name = 'events/events_by_month.html'
-    context_object_name = 'events'
     paginate_by = 5
+    context_object_name = 'events'
+    template_name = 'events/events_by_month.html'
 
     def get_queryset(self):
         return get_list_or_404(
