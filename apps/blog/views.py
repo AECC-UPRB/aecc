@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_list_or_404
 from django.views.generic import ListView, DetailView
 
 from .models import Article
@@ -25,16 +25,7 @@ class BranchArticlesView(ListView):
 
 class ArticleView(DetailView):
     model = Article
-    slug_field = 'branch_slug'
-    slug_field_kwarg = 'branch_slug'
+    slug_field = 'article_slug'
+    slug_field_kwarg = 'article_slug'
     template_name = 'blog/article.html'
     context_object_name = 'article'
-
-    def get_context_data(self, **kwargs):
-        if 'view' not in kwargs:
-            kwargs['view'] = self
-        kwargs['article'] = get_object_or_404(
-            Article,
-            branch_slug=kwargs['slug'],
-            article_slug=kwargs['article_slug'])
-        return kwargs

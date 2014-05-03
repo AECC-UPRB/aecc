@@ -16,7 +16,7 @@ urlpatterns = patterns(
         name="branch"
     ),
     url(
-        r'^(?P<branch_slug>[-\w]+)/(?P<article_slug>[-\w]+)/$',
+        r'^(?P<branch_slug>[-\w]+)/(?P<slug>[-\w]+)/$',
         ArticleView.as_view(),
         name="article"
     ),
