@@ -1,10 +1,13 @@
 from django.conf.urls import patterns, url
 
-from . import views
+from .views import DirectiveView
 
 
 urlpatterns = patterns(
     '',
-    url(r'^signup/$', views.signup_view, name='index'),
-    url(r'^directive/$', views.directive_view, name='directive'),
+    url(
+        r'^directive/$',
+        DirectiveView.as_view(),
+        name='directive'
+    ),
 )

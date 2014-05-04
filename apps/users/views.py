@@ -1,28 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.contrib import messages
+from django.views.generic import TemplateView
 
-from .forms import SignupForm
 from .models import User
 
 
-def signup_view(request):
-    form = SignupForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(
-            request,
-            "Your data has been stored. " +
-            "Remeber to contact any directive member to pay your membership")
-        return HttpResponseRedirect('/members/signup/')
-    data = {
-        'form': form
-    }
-    return render(request, 'users/signup.html', data)
+class DirectiveView(TemplateView):
+    template_name = 'users/directive.html'
 
-
-def directive_view(request):
-    data = {
-        'people_information': User.objects.all()
-    }
-    return render(request, 'users/directive.html', data)
+    def get_context_data(self, **kwargs):
+        context = super(DirectiveView, self).get_context_data(**kwargs)
+        context['directive'] = User.objects.all().exclude(position='ME')
+        return context
