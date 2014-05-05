@@ -16,7 +16,7 @@ urlpatterns = patterns(
         name='month'
     ),
     url(
-        r'^view/(?P<title_slug>[-\w]+)/$',
+        r'^(?P<month>[-\w]+)/(?P<title_slug>[-\w]+)/$',
         EventView.as_view(),
         name='event'
     ),

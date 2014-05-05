@@ -7,7 +7,6 @@ from .models import Article
 class IndexView(ListView):
     model = Article
     paginate_by = 5
-    queryset = Article.objects.all().order_by('-created_at')
     template_name = 'blog/index.html'
 
 
