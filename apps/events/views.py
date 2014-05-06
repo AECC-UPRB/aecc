@@ -30,3 +30,8 @@ class EventByMonth(ListView):
         return get_list_or_404(
             Event,
             month_slug=self.kwargs['month'])
+
+    def get_context_data(self, **kwargs):
+        context = super(EventByMonth, self).get_context_data(**kwargs)
+        context['month'] = self.kwargs['month']
+        return context

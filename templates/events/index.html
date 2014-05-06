@@ -21,8 +21,8 @@
 			{% for months_for_display in months %}
 			<h1>{{months_for_display|lower|capfirst}}</h1>
 			{% for e_information in events_information %}
-				{% if e_information.month|upper == months_for_display %}
-					<h2><a href="/events/view/{{e_information.title_slug}}">{{e_information.title}}</a></h2>
+				{% if e_information.month|upper == months_for_display|upper %}
+					<h2><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title}}</a></h2>
 					<p>Location: {{e_information.location}}</p>	
 					<p>Date: {{e_information.event_date}}</p>
 					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
