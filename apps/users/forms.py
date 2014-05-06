@@ -47,3 +47,11 @@ class SignupForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'student_number', 'gender',
                   'email')
+
+    def signup(self, request, user):
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.student_number = self.cleaned_data['student_number']
+        user.gender = self.cleaned_data['gender']
+        user.email = self.cleaned_data['email']
+        user.save()
