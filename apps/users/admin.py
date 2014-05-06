@@ -1,11 +1,14 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+
+from import_export.admin import ImportExportModelAdmin
 
 from .models import User
 from .forms import UserChangeForm, UserCreationForm
+from .resources import UserResource
 
 
-class MyUserAdmin(UserAdmin):
+class MyUserAdmin(ImportExportModelAdmin):
+    resource_class = UserResource
     form = UserChangeForm
     add_form = UserCreationForm
 
@@ -17,8 +20,7 @@ class MyUserAdmin(UserAdmin):
         ('Personal info', {'fields': ('first_name', 'last_name',
                                       'student_number', 'gender',
                                       'amount_payed')}),
-        ('Permissions', {'fields': ('is_admin', 'is_active',
-                                    'active_member')}),
+        ('Permissions', {'fields': ('is_admin', 'is_active', )}),
     )
     add_fieldsets = (
         (None, {

@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'django_extensions',
     'debug_toolbar',
+    'import_export',
 )
 
 MIDDLEWARE_CLASSES = (
