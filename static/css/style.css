@@ -1,7 +1,3 @@
-/*
-We highly recommend you use SASS and write your custom styles in sass/_custom.scss.
-However, this blank file is available if you prefer
-*/
 #navbar{
 	margin-bottom: 0px;
 	background: rgba(0,0,0,0.25);
@@ -20,10 +16,18 @@ However, this blank file is available if you prefer
 	background-size: cover; /* para que llene todo el background*/
 }
 #page-header{
+	text-align: center;
+}
+#page-header h1{
 	color: #d04526;
-	background: rgba(255,255,255,.15); /* translucent background*/
 	text-align: center;
 	margin-top: 185px;
+	font-weight: bolder;
+}
+#page-header p{
+	color: white;
+	text-align: center;
+	font-weight: bolder;
 }
 .block{
 	height: 300px;
@@ -47,6 +51,10 @@ However, this blank file is available if you prefer
 	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
+#article_banner{
+	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
 .translucent_border_people{
 	margin: 150px auto;
 }
@@ -63,9 +71,9 @@ However, this blank file is available if you prefer
 }
 #page-header-subtittle{
 	color: #d04526;
-	background: rgba(255,255,255,.15); /* translucent background*/
 	text-align: center;
 	margin-top: 50px;
+	font-weight: bolder;
 }
 #block_home{
 	height: 500px;
@@ -74,7 +82,6 @@ However, this blank file is available if you prefer
   padding: 30px;
   margin-bottom: 30px;
   margin-top: 30px;
-  background: rgba(0,0,0,0.03);
 }
 #contact_picture{
 	background: url(../img/unsplash_by_Sebastian_Muller.jpeg) no-repeat;

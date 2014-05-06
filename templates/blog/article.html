@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{article.title}}{% endblock title %}
+{% block subheaderpic %}
+	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "article_banner">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<span id="page-header">	
+						<h1>{{article.title}}</h1>
+						<p>By: {{article.created_by.first_name}} {{article.created_by.last_name}} <br/>
+						Publish date: {{article.created_at.date}}</p>
+						<center><li class="success label">{{article.created_by.branch}}</li></center>
+					</span>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+<br/>
+{% block content %}
+	<div class = "row back-color">
+		<div class = "centered eight columns">
+			<p>{{article.content}}</p>	
+		</div>
+	</div>
+{% endblock %}
