@@ -1,7 +1,9 @@
 from time import time
 
 from django.db import models
+
 from autoslug import AutoSlugField
+from taggit.managers import TaggableManager
 
 
 def get_upload_file_name(instance, filename):
@@ -34,6 +36,7 @@ class Event(models.Model):
     promo_picture = models.FileField(upload_to=get_upload_file_name, blank=True)
     title_slug = AutoSlugField(populate_from='title', unique=True)
     month_slug = AutoSlugField(populate_from='month', unique=True)
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.title

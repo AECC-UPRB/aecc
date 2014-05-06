@@ -1,6 +1,7 @@
 from django.db import models
 
 from autoslug import AutoSlugField
+from taggit.managers import TaggableManager
 
 
 class Article(models.Model):
@@ -20,6 +21,8 @@ class Article(models.Model):
     is_published = models.BooleanField(default=False)
     article_slug = AutoSlugField(populate_from='title')
     branch_slug = AutoSlugField(populate_from='branch')
+
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.title

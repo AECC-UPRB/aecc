@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'import_export',
+    'taggit',
 )
 
 MIDDLEWARE_CLASSES = (
