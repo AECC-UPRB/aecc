@@ -8,15 +8,15 @@
                 </a>
             </h1>
             <ul class="eight columns pull_right">
-                <li><a href="{% url 'about' %}">About</a>
+                <li><a class="{% if request.path == '/about/' %}navactive{% endif %}" href="{% url 'about' %}">About</a>
                 </li>
                 <li>
-                    <a href="{% url 'blog:index' %}">Blog</a>
+                    <a class="{% if request.path == '/blog/' %}navactive{% endif %}" href="{% url 'blog:index' %}">Blog</a>
                 </li>
                 <li>
-                    <a href="{% url 'users:directive' %}">Directive</a>
+                    <a class="{% if request.path == '/members/directive/' %}navactive{% endif %}" href="{% url 'users:directive' %}">Directive</a>
                 </li>
-                <li><a href="{% url 'events:index' %}">Events</a>
+                <li><a class="{% if request.path == '/events/' %}navactive{% endif %}" href="{% url 'events:index' %}">Events</a>
                     <div class="dropdown">
                         <ul>
                             <li><a href="{% url 'events:month' 'january' %}">January</a>
@@ -32,7 +32,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="{% url 'contact:index' %}">Contact Us</a>
+                <li><a class="{% if request.path == '/contact/' %}navactive{% endif %}" href="{% url 'contact:index' %}">Contact Us</a>
                     <li>
                         <div class="medium success btn"><a href="{% url 'account_signup' %}">Sign Up</a>
                         </div>

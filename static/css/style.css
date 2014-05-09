@@ -2,6 +2,13 @@
 	margin-bottom: 0px;
 	background: rgba(0,0,0,0.25);
 }
+
+.gumby-no-touch .navbar ul li:hover > a,
+.gumby-touch .navbar ul li.active > a,
+.navactive{
+	background: rgba(154,162,167, 0.6)!important;
+}
+
 .footer{
 	background: url(../img/unsplash_by_Sebastian_Muller.jpeg);
 	background-size: cover;
