@@ -59,9 +59,8 @@
 	margin: 150px auto;
 }
 .footerIcons{
-	font-size: 65px;
-	padding-left: 35px;
-	padding-right: 35px;
+	font-size: 35px;
+	padding-right: 25px;
 	padding-top: 35px;
 	text-align: center;
 }
@@ -119,9 +118,21 @@ li{
 	border:1px solid;
 	border-color:#888888;
 	border-radius: 3px;
-	margin-right: 9px
+	margin-right: 9px;
 }
 .success-message{
 	float: right;
 	margin-top: 5%;
+}
+.footer{
+	background: #1D2124;
+	width: 100%;
+	padding-top: 2.5%;	
+}
+.icons{
+	padding-top: 2%;
+}
+.aecc-info{
+	padding-top: 7%;
+	color: white;
 }

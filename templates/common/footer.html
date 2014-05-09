@@ -1,9 +1,21 @@
-<div class="footer parallax"></div>
-<div class="row">
-    <div class="centered eight columns">
-        <a href="https://www.facebook.com/groups/18948213712/"><i class = "footerIcons icon-facebook"></i></a>
-        <a href="#"><i class = "footerIcons icon-twitter"></i></a>
-        <a href="https://github.com/orgs/AECC-UPRB/"><i class = "footerIcons icon-github"></i></a>
-        <a href="#"><i class = "footerIcons icon-dropbox"></i></a>
-    </div>
+{% load staticfiles %}
+<div class="footer">
+	<div class="row">
+		<div class="eight columns">
+			<div class="three columns">	
+				<div><img src="{% static 'img/aecc.jpg' %}" width="150px" height="150px"></div>
+			</div>
+			<div class="six columns aecc-info">
+					<h6>
+						Computer Science Students Asociation
+					</h6>
+					<h6>aecc@aecc.com</h6>
+			</div>
+		</div>
+		<footer class="push_one three columns icons">
+		        <a href="https://www.facebook.com/groups/18948213712/"><i class = "footerIcons icon-facebook"></i></a>
+		        <a href="#"><i class = "footerIcons icon-twitter"></i></a>
+		        <a href="https://github.com/orgs/AECC-UPRB/"><i class = "footerIcons icon-github"></i></a>
+		</footer>
+	</div>
 </div>
