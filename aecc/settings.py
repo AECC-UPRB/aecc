@@ -41,6 +41,7 @@ class Common(Configuration):
         'debug_toolbar',
         'import_export',
         'taggit',
+        'autofixture',
     )
 
     MIDDLEWARE_CLASSES = (
@@ -116,12 +117,6 @@ class Common(Configuration):
     ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.SignupForm'
     ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_USERNAME_REQUIRED = False
-
-    RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh'
-
-    RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs'
-
-    RECAPTCHA_USE_SSL = True
 
 
 class Development(Common):

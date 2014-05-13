@@ -143,3 +143,12 @@ li{
 	padding-top: 7%;
 	color: white;
 }
+.center-text {
+	text-align: center;
+}
+.medium-text {
+	font-size: 1.2rem;
+}
+.readmore {
+	background-color: #d04526;
+}

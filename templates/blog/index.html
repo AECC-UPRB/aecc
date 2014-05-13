@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}AECC | Blog{% endblock %}
+{% block content %}
+    <br><br><br>
+    <div class="row">
+        <div class="twelve columns">
+            <h1 class="center-text">Stories</h1>
+        </div>
+    </div>
+    <div class="row">
+      <div class="centered ten columns">
+        <hr>        
+        {% for a in object_list %}
+            <h2>{{ a.title|lower|capfirst }}</h2>
+            <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>
+            <p class="medium-text">{{ a.content|truncatewords:50 }}</p>
+            <div class="medium readmore btn">
+                <a href="{% url 'blog:article' a.branch_slug a.article_slug %}">Read more</a>
+            </div>       
+            <br><br>
+        {% endfor %}
+      </div>
+    </div>
+    <br>
+{% endblock %}
