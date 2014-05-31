@@ -28,13 +28,11 @@
 #page-header h1{
 	color: #d04526;
 	text-align: center;
-	margin-top: 185px;
-	font-weight: bolder;
+	margin-top: 18%;
 }
 #page-header p{
 	color: white;
 	text-align: center;
-	font-weight: bolder;
 }
 .block{
 	height: 300px;
@@ -74,12 +72,13 @@
 .home_picture{
 	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
+	width: 100%;
+	height: 100%;
 }
 #page-header-subtittle{
 	color: #d04526;
 	text-align: center;
-	margin-top: 50px;
-	font-weight: bolder;
+	margin-top: 1%;
 }
 #block_home{
 	height: 500px;
@@ -151,4 +150,25 @@ li{
 }
 .readmore {
 	background-color: #d04526;
+}
+/* xs */
+@media (min-width: 0px) and (max-width: 767px) {
+    #page-header h1{
+    	font-size: 35px;
+    }
+    #page-header-subtittle{
+    	font-size: 25px;
+    }
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* lg */
+@media (min-width: 1200px) {
 }

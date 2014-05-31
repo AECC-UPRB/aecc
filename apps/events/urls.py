@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 from .views import IndexView, EventView, EventByMonth
-
+from .feeds import EventCalendarFeed
 
 urlpatterns = patterns(
     '',
@@ -20,4 +20,5 @@ urlpatterns = patterns(
         EventView.as_view(),
         name='event'
     ),
+    url(r'^ical/$', EventCalendarFeed(), name='event_calendar_feed'),
 )

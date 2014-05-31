@@ -1,22 +1,17 @@
 {% extends "base.html" %}
 {% block title %}AECC{% endblock %}
 {% block subheaderpic %}
-	<div class = "home_picture">
+	<div class = "parallax home_picture" gumby-parallax="0.5" gumby-offset = "60">
 		<div class = "row" id = "subheader-tittle">
-			<div id = "block_home">
-				<article class = "translucent_border">
-					<span id="page-header">
-						<h1>
-							University of Puerto Rico <br>in Bayamon
-						</h1>
-						<br>
-						<h2 id = "page-header-subtittle">Computer Science Student Asociation</h2>
-					</span>
-				</article>
+			<div>
+				<span id="page-header">
+					<h1>
+						University of Puerto Rico in Bayamon
+					</h1>
+					<br>
+					<h2 id = "page-header-subtittle">Computer Science Student Asociation</h2>
+				</span>
 			</div>
 		</div>
 	</div>
-{% endblock %}
-{% block footer %}
-	{% include "common/footer.html" %}
 {% endblock %}
