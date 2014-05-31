@@ -12,3 +12,4 @@ venv
 *.sqlite3
 uploaded_files
 static/img
+settings
