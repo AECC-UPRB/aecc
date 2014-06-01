@@ -17,19 +17,33 @@
 {% endblock %}
 {% block content %}
 	<div class = "row back-color">
-		<div class =  "twelve columns">
 			{% for months_for_display in months %}
-			<h1>{{months_for_display|lower|capfirst}}</h1>
-			{% for e_information in events_information %}
-				{% if e_information.month|upper == months_for_display|upper %}
-					<h2><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title}}</a></h2>
-					<p>Location: {{e_information.location}}</p>	
-					<p>Date: {{e_information.event_date}}</p>
-					<img src = "/static/assets/{{e_information.promo_picture}}" width = "100%">		
-				{% else %}
-				{% endif %}
+			<div class="twelve columns" id="month-display">	
+				<h1>{{months_for_display|lower|capfirst}}</h1>
+					{% for e_information in events_information %}
+						{% if e_information.month|upper == months_for_display|upper %}
+							<div class="five columns event-tile">
+								<img src="../{{e_information.promo_picture}}" id="promo-pic">
+								<h2><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title}}</a></h2>
+								<p>Location: {{e_information.location}}</p>	
+								<p>Date: {{e_information.event_date}}</p>
+							</div>
+						{% else %}
+						{% endif %}
+					{% endfor %}
+			</div>
 			{% endfor %}
-			{% endfor %}
-		</div>
 	</div>
 {% endblock %}
+
+		{% for data in event %}
+		<div class = "five columns push_one">
+			<h2>{{event.title}}</h2>
+			<p>Location: {{event.location}}</p>
+			<p>Date & Hour: {{event.event_date}}</p>
+			<div class="medium success btn"><a href="/events/ical">iCal</a></div>
+			<img src = "/static/assets/{{event.promo_picture}}" width = "100%">		
+			<h3>What will be covered?</h3>
+			<p>{{event.event_description}}</p>	
+		</div>
+		{% endfor %}

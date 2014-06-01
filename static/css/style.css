@@ -151,6 +151,25 @@ li{
 .readmore {
 	background-color: #d04526;
 }
+.event-tile{
+	margin-left: 7%;
+	margin-bottom: 5%;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	-webkit-border-radius:2px;
+}
+.event-tile h2{
+	padding-top:0px; 
+}
+.event-tile p{
+	margin-bottom: 0px;
+}
+#month-display{
+	margin-left: 0px;
+}
+#promo-pic{
+	height: 250px;
+}
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
     #page-header h1{

@@ -17,15 +17,14 @@
 {% endblock %}
 {% block content %}
 	{% for events_for_month in events %}
-			<div class = "row back-color">
-				<div class = "twelve columns">
-					<h2><a href="/events/{{events_for_month.month_slug}}/{{events_for_month.title_slug}}">{{events_for_month.title}}</a></h2>
-					<p>Location: {{events_for_month.location}}</p>
-					<p>Date: {{events_for_month.event_date.date}}</p>
-					<p>Hour: {{events_for_month.event_date.hour}}</p>
-					<img src = "/static/assets/{{events_for_month.promo_picture}}" width = "100%">
-				</div>
+		<div class = "row">
+			<div class = "twelve columns">
+				<h2><a href="/events/{{events_for_month.month_slug}}/{{events_for_month.title_slug}}">{{events_for_month.title}}</a></h2>
+				<p>Location: {{events_for_month.location}}</p>
+				<p>Date: {{events_for_month.event_date.date}}</p>
+				<p>Hour: {{events_for_month.event_date.hour}}</p>
+				<img src="/static/assets/{{events_for_month.promo_picture}}" width = "100%">
 			</div>
-
+		</div>
 	{% endfor %}
 {% endblock %}
