@@ -34,7 +34,8 @@
                 </li>
                 <li><a class="{% if request.path == '/contact/' %}navactive{% endif %}" href="{% url 'contact:index' %}">Contact Us</a>
                     <li>
-                        <div class="medium success btn"><a href="{% url 'account_signup' %}">Sign Up</a>
+                        <div class="medium success btn">
+                            <a href="{% url 'account_signup' %}">Sign Up</a>
                         </div>
                     </li>
             </ul>

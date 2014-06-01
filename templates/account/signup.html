@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block tittle %} AECC | Sign Up {% endblock %} {% block subheaderpic %}
+{% extends "base.html" %} 
+{% block title %} AECC | Sign Up {% endblock %}
+{% block subheaderpic %}
 <div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="sign_up_picture">
     <div class="row" id="subheader-tittle">
         <div class="block">
@@ -21,15 +23,22 @@
                         <p id = "error">
                             {{form.first_name.errors}}
                         </p>
-                        <label for="id_first_name">First name:</label>
+                        <label for="id_first_name">Firstname:</label>
                         <input class="input" id="id_first_name" maxlength="20" name="first_name" type="text" placeholder="Enter your first name..." />
                     </li>
                     <li class="field">
                         <p id = "error">
                             {{form.last_name.errors}}
                         </p>
-                        <label for="id_last_name">Last name:</label>
+                        <label for="id_last_name">Lastname:</label>
                         <input class="input" id="id_last_name" maxlength="40" name="last_name" type="text" placeholder="Enter your lastname..." />
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.student_number.errors}}
+                        </p>
+                        <label for="id_student_number">Student Number:</label>
+                        <input class="input" id="id_student_number" maxlength="9" name="student_number" type="text" placeholder="Enter your student number..." />
                     </li>
                     <li class="field">
                         <p id = "error">
@@ -39,7 +48,6 @@
                         <p></p>
                         <div class="picker">
                             <select id="id_gender" name="gender">
-                                <option value="" selected="selected">---------</option>
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
@@ -47,10 +55,24 @@
                     </li>
                     <li class="field">
                         <p id = "error">
-                            {{form.error.errors}}
+                            {{form.email.errors}}
                         </p>
                         <label for="id_email">Email:</label>
                         <input class="input" id="id_email" maxlength="75" name="email" type="email" placeholder="Enter your email..." />
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.password1.errors}}
+                        </p>
+                        <label for="id_password1">Password:</label>
+                        <input class="input" id="id_password1" maxlength="40" name="password1" type="password"/>
+                    </li>
+                    <li class="field">
+                        <p id = "error">
+                            {{form.password2.errors}}
+                        </p>
+                        <label for="id_password2">Password (again):</label>
+                        <input class="input" id="id_password2" maxlength="40" name="password2" type="password" />
                     </li>
                     <div class="medium success btn pull_right">
                         <a href="#">
