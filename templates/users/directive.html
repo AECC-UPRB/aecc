@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load gravatar %}
 {% block title %}AECC | People{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
@@ -15,20 +16,19 @@
 {% endblock %}
 {% block content %}
 <br>
-	{% for directive in people_information %}
-			<div class = "row">
-  				<section class="twelve columns back-color">
-   		 			<article class="valign row">
-				      <div width="145">
-				      	<img src="/static/assets/{{directive.picture}}"  width="145" />
-				      </div>
-				      <div class = "push_two">
-				        <h4>{{directive.first_name}} {{directive.last_name}}</h4>
-				        <p>Face tattoos are not.</p>
-				      </div>
-				    </article>
-				</section>
-			</div>
-			<hr>
+<div class = "row">
+	<div class="twelve columns">	
+	<div class="push_one">
+	{% for people_information in directive %}
+		<div class="three columns people-tile">
+	      	<img src="{{people_information|gravatar_url:people_information.email}}s=240"  width="145" />
+	        <h5>{{people_information.first_name}} {{people_information.last_name}}</h5>
+	        <p>{{people_information.email}}</p>
+		</div>
+		<div class="one columns"></div>
 	{% endfor %}
+	</div>
+	</div>
+</div>
+<br>
 {% endblock %}

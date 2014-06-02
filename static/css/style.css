@@ -170,6 +170,23 @@ li{
 #promo-pic{
 	height: 250px;
 }
+.people-tile{
+	margin-left: 0px;
+	margin-bottom: 5%;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	-webkit-border-radius:2px;
+}
+.people-tile img{
+	margin-top: 10%;
+	margin-left: 14%;
+}
+.people-tile p{
+	text-align: center;
+}
+.people-tile h5{
+	text-align: center;
+}
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
     #page-header h1{
