@@ -118,6 +118,9 @@ class Common(Configuration):
     ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_USERNAME_REQUIRED = False
 
+    DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
+    DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "ckeditor/"
+
 
 class Development(Common):
     DEBUG = True
