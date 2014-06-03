@@ -41,7 +41,6 @@ class Common(Configuration):
         'debug_toolbar',
         'import_export',
         'taggit',
-        'autofixture',
         'tinymce',
     )
 
