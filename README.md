@@ -21,7 +21,7 @@ Este proyecto no sería posible sin la colaboración de otros developers que han
 Debes tener instalado **Python 2.7** en tu máquina. También es recomendado que crees un [virtualenv](http://www.virtualenv.org/) para el proyecto pero no es un requisito.
 
 ```bash
-$ git clone https://github.com/jpadilla/notaso.git
+$ git clone https://github.com/eluciano11/aecc.git
 $ cp .env.example .env
 $ pip install -r requirements.txt
 $ python manage.py syncdb --migrate
