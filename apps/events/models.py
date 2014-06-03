@@ -1,13 +1,15 @@
 from time import time
 
 from django.db import models
+from django.core.urlresolvers import reverse_lazy
 
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 
 
 def get_upload_file_name(instance, filename):
-    return "static/uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+    return "static/uploaded_files/%s_%s" % \
+        (str(time()).replace('.', '_'), filename)
 
 
 class Event(models.Model):
@@ -40,3 +42,7 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse_lazy('events:event',
+                            args=[self.month, self.title_slug])

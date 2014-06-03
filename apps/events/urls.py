@@ -5,6 +5,7 @@ from .feeds import EventCalendarFeed
 
 urlpatterns = patterns(
     '',
+    url(r'^ical/$', EventCalendarFeed(), name='event_calendar_feed'),
     url(
         r'^$',
         IndexView.as_view(),
@@ -16,9 +17,8 @@ urlpatterns = patterns(
         name='month'
     ),
     url(
-        r'^(?P<month>[-\w]+)/(?P<title_slug>[-\w]+)/$',
+        r'^(?P<month>[\w]+)/(?P<title_slug>[-\w]+)/$',
         EventView.as_view(),
         name='event'
     ),
-    url(r'^ical/$', EventCalendarFeed(), name='event_calendar_feed'),
 )

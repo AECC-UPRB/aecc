@@ -3,9 +3,9 @@ from .models import Event
 
 
 class EventCalendarFeed(ICalFeed):
-    product_id = '-//aecc-uprb.org//Example//EN'
+    product_id = '-//aecc-uprb.org//aecc-uprb//EN'
     timezone = 'UTC'
-    title = 'UPRB-AECC'
+    title = 'UPRB-AECC.org'
     description = 'Calendario de reuniones UPRB-AECC'
 
     def items(self):
@@ -19,3 +19,9 @@ class EventCalendarFeed(ICalFeed):
 
     def item_start_datetime(self, item):
         return item.event_date
+
+    def timezone(self):
+        return
+
+    def item_guid(self, item):
+        return '{0}@events.{1}'.format(item.id, 'aecc-uprb.org')
