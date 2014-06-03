@@ -42,6 +42,7 @@ class Common(Configuration):
         'import_export',
         'taggit',
         'autofixture',
+        'tinymce',
     )
 
     MIDDLEWARE_CLASSES = (
@@ -77,6 +78,7 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+    STATIC_ROOT = '/static/'
     STATIC_URL = '/static/'
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -118,8 +120,16 @@ class Common(Configuration):
     ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_USERNAME_REQUIRED = False
 
-    DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
-    DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "ckeditor/"
+    TINYMCE_JS_ROOT = os.path.join(STATIC_URL, "js/tiny_mce")
+    TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/tiny_mce/tiny_mce_src.js")
+    TINYMCE_DEFAULT_CONFIG = {
+        'plugins': "table,spellchecker,paste,searchreplace",
+        'theme': "advanced",
+        'cleanup_on_startup': True,
+        'custom_undo_redo_levels': 10,
+    }
+    TINYMCE_SPELLCHECKER = True
+    TINYMCE_COMPRESSOR = True
 
 
 class Development(Common):

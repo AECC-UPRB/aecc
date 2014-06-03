@@ -20,7 +20,7 @@
 {% block content %}
 	<div class = "row back-color">
 		<div class = "centered eight columns">
-			<p>{{article.content}}</p>	
+			<p>{{article.content|safe}}</p>	
 		</div>
 	</div>
 {% endblock %}

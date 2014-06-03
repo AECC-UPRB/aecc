@@ -18,4 +18,5 @@ urlpatterns = patterns(
     url(r'^contact/', include('apps.contact.urls', namespace='contact')),
     url(r'^blog/', include('apps.blog.urls', namespace='blog')),
     url(r'^members/', include('apps.users.urls', namespace='users')),
+    url(r'^tinymce/', include('tinymce.urls')),
 )

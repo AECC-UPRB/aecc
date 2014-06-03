@@ -2,6 +2,7 @@ from django.db import models
 
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
+from tinymce.models import HTMLField
 
 
 class Article(models.Model):
@@ -16,7 +17,7 @@ class Article(models.Model):
     created_by = models.ForeignKey('users.User')
     title = models.CharField(unique=True, max_length=25)
     branch = models.CharField(choices=BRANCH_CHOICES, max_length=12)
-    content = models.TextField(max_length=500)
+    content = HTMLField()  # models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now=False)
     is_published = models.BooleanField(default=False)
     article_slug = AutoSlugField(populate_from='title')
