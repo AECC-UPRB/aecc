@@ -26,7 +26,7 @@
 {% endif%}
 <div class = "row">
 	<div class = "centered ten columns">
-		<form action = "/contact/" method = "post">{% csrf_token %}
+		<form action = "" method = "post">{% csrf_token %}
 			<fieldset>
 				<legend>Send us an email</legend>
 				<ul>
@@ -37,7 +37,7 @@
 					</li>
 					<li class = "field">
 						<label class = "inline" for="id_subject">Subject:</label> 
-						<input class = "input" id="id_subject" maxlength="30" name="subject" type="text" placeholder = "Why is the email about?"/>
+						<input class = "input" id="id_subject" maxlength="30" name="subject" type="text" placeholder = "What is the email about?"/>
 					</li>
 					<li class = "field">
 						<label class = "inline" for="id_message">Message:</label>

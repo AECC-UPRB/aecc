@@ -15,7 +15,7 @@
 {% endblock %} {% block content %}
 <div class="row">
     <div class="centered eight columns">
-        <form action="" method="post">{% csrf_token %}
+        <form action="{% url 'account_signup' %}" method="post">{% csrf_token %}
             <fieldset>
                 <legend>Join us</legend>
                 <ul>

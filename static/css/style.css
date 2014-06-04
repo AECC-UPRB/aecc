@@ -10,7 +10,7 @@
 }
 
 .footer{
-	background: url(../img/unsplash_by_Sebastian_Muller.jpeg);
+	background: url(../img/unsplash_by_Sebastian_Muller.jpg);
 	background-size: cover;
 	height: 200px;
 }
@@ -89,7 +89,7 @@
   margin-top: 30px;
 }
 #contact_picture{
-	background: url(../img/unsplash_by_Sebastian_Muller.jpeg) no-repeat;
+	background: url(../img/unsplash_by_Sebastian_Muller.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #test{
@@ -138,7 +138,7 @@ li{
 .icons{
 	padding-top: 2%;
 }
-.aecc-info{
+.aecc-info > h6{
 	padding-top: 7%;
 	color: white;
 }
