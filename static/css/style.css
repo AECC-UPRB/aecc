@@ -1,6 +1,18 @@
 #navbar{
 	margin-bottom: 0px;
+	-webkit-transition: all .25s linear;
+	   -moz-transition: all .25s linear;
+	    -ms-transition: all .25s linear;
+	     -o-transition: all .25s linear;
+	        transition: all .25s linear;
+}
+
+.navbar-transparent{
 	background: rgba(0,0,0,0.25);
+}
+
+.navbar-not-transparent{
+	background: rgba(0,0,0,0.75)!important;
 }
 
 .gumby-no-touch .navbar ul li:hover > a,
@@ -157,14 +169,28 @@ li{
 	margin-bottom: 5%;
 	border: 1px solid #e6e6e6;
 	border-radius: 2px;
-	-webkit-border-radius:2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius:2px;
 }
-.event-tile h2{
-	padding-top:0px; 
+
+.event-tile-information{
+	padding: 10px;
+	height: 225px;
+	overflow-y: hidden;
 }
-.event-tile p{
-	margin-bottom: 0px;
+
+.event-tile > .event-tile-information p{
+	margin-top: 2px;
 }
+
+.event-tile > .event-tile-image-box{
+	border-bottom: 1px solid #ccc;
+}
+
+.event-tile > .event-tile-information > .event-description{
+	height: 110px;
+}
+
 #month-display{
 	margin-left: 0px;
 }
@@ -219,6 +245,10 @@ li{
 	background: #d04526;
 	border: 1px solid #d04526;
 	color: white;
+}
+
+.text-muted {
+	color: #999;
 }
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {

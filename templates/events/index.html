@@ -23,10 +23,14 @@
 					{% for e_information in events_information %}
 						{% if e_information.month|upper == months_for_display|upper %}
 							<div class="five columns event-tile">
-								<img src="../{{e_information.promo_picture}}" id="promo-pic">
-								<h2><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title}}</a></h2>
-								<p>Location: {{e_information.location}}</p>	
-								<p>Date: {{e_information.event_date}}</p>
+								<div class="event-tile-image-box">
+									<img src="../{{e_information.promo_picture}}" id="promo-pic">
+								</div>
+								<div class="event-tile-information">
+									<h4><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title| truncatechars:'30'}}</a></h4>
+									<p class="text-muted">{{e_information.location}} | {{e_information.event_date}}</p>
+									<p class="event-description">{{ e_information.description|truncatechars:'140' }}</p>
+								</div>
 							</div>
 						{% else %}
 						{% endif %}
