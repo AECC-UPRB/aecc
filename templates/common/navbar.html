@@ -33,11 +33,26 @@
                 </div>
             </li>
             <li><a class="{% if request.path == '/contact/' %}navactive{% endif %}" href="{% url 'contact:index' %}">Contact Us</a>
-                <li>
-                    <div class="medium success btn">
-                        <a href="{% url 'account_signup' %}">Sign Up</a>
-                    </div>
-                </li>
+                
+                    {% if user.is_authenticated %}
+                        <li><a href="#">{{ user }}</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li><a href="{% url 'account_logout' %}">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    {% else %}
+                    <li>
+                        <div class="medium primary btn">
+                            <a href="{% url 'account_login' %}">Login</a>
+                        </div>
+                        <div class="medium success btn">
+                            <a href="{% url 'account_signup' %}">Sign Up</a>
+                        </div>
+                    </li>
+                    {% endif %}
         </ul>
     </div>
 </nav>
