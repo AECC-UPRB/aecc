@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_list_or_404
 
 from .models import Event
 from .mixins import MonthMixin
@@ -27,9 +26,7 @@ class EventByMonth(ListView):
     template_name = 'events/events_by_month.html'
 
     def get_queryset(self):
-        return get_list_or_404(
-            Event,
-            month_slug=self.kwargs['month'])
+        return Event.objects.filter(month=self.kwargs['month'])
 
     def get_context_data(self, **kwargs):
         context = super(EventByMonth, self).get_context_data(**kwargs)
