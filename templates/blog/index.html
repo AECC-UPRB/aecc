@@ -1,15 +1,71 @@
 {% extends "base.html" %}
 {% block title %}AECC | Blog{% endblock %}
+{% block subheaderpic %}
+    <div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
+        <div class = "row" id = "subheader-tittle">
+            <div class = "block">
+                <article>
+                    <span id="page-header">
+                        <h1>
+                            Stories
+                        </h1>
+                    </span>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 {% block content %}
-    <br><br><br>
+    <br/>
     <div class="row">
-        <div class="twelve columns">
-            <h1 class="center-text">Stories</h1>
+        <div class="ten columns push_one">
+            <div class="twelve columns">
+                <div class="four columns wrapper">
+                    <a href="/blog/directive">
+                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <p id="slide">
+                            <span>Progress Reports</span><br/>
+                            tarara tada! <br/>
+                            Another try!! <br/>
+                            dhuirwhjfudj <br/>
+                            ehfidj<br>
+                            deokdcko<br/>
+                        </p>
+                    </a>
+                </div>
+                <div class="four columns wrapper">
+                    <a href="/blog/devteam">
+                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <p id="slide">
+                            <span>HackNights</span><br/>
+                            tarara tada! <br/>
+                            Another try!! <br/>
+                            dhuirwhjfudj <br/>
+                            ehfidj<br>
+                            deokdcko<br/>
+                        </p>
+                    </a>
+                </div>
+                <div class="four columns wrapper">
+                    <a href="/blog/starting_up">
+                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <p id="slide">
+                            <span>Workshops</span><br/>
+                            tarara tada! <br/>
+                            Another try!! <br/>
+                            dhuirwhjfudj <br/>
+                            ehfidj<br>
+                            deokdcko<br/>
+                        </p>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
       <div class="centered ten columns">
-        <hr>        
+        <hr/>
+        <h1>Recent Stories</h1>        
         {% for a in object_list %}
             <h2>{{ a.title|lower|capfirst }}</h2>
             <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>

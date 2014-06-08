@@ -5,10 +5,12 @@
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
 		<div class = "row" id = "subheader-tittle">
 			<div class = "block">
-				<article class = "translucent_border_people">
-					<h1 id = "page-header">
-						Association directors
-					</h1>
+				<article>
+					<span id="page-header">
+						<h1>
+							Association directors
+						</h1>
+					</span>
 				</article>
 			</div>
 		</div>
@@ -20,7 +22,7 @@
 	<div class="twelve columns">	
 	<div class="push_one">
 	{% for people_information in directive %}
-		<div class="three columns people-tile">
+		<div class="three columns people-tile">	
 	      	<img src="{{people_information|gravatar_url:people_information.email}}s=240"  width="145" />
 	        <h5>{{people_information.first_name}} {{people_information.last_name}}</h5>
 	        <p>{{people_information.email}}</p>

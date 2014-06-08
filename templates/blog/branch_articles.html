@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}AECC | {{branch_articles.branch}}{% endblock %}
+{% block subheaderpic %}
+    <div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
+        <div class = "row" id = "subheader-tittle">
+            <div class = "block">
+                <article>
+                    <span id="page-header">
+                        <h1>
+                            Test {{branch_articles.branch}}
+                        </h1>
+                    </span>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <br/>
+    <div class="row">
+      <div class="centered ten columns">
+        <h1>Stories</h1>        
+        {% for a in branch_articles %}
+            <h2>{{ a.title|lower|capfirst }}</h2>
+            <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>
+            <p class="medium-text">{{ a.content|safe|truncatewords:50 }}</p>
+            <div class="medium readmore btn">
+                <a href="{% url 'blog:article' a.branch_slug a.article_slug %}">Read more</a>
+            </div>       
+            <br><br>
+        {% endfor %}
+      </div>
+    </div>
+    <br>
+{% endblock %}
