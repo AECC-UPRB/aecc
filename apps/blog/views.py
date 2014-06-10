@@ -8,6 +8,7 @@ class IndexView(ListView):
     model = Article
     paginate_by = 5
     template_name = 'blog/index.html'
+    queryset = Article.objects.all()[:5]
 
 
 class BranchArticlesView(ListView):
