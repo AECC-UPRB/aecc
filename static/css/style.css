@@ -171,30 +171,16 @@ li{
 	-webkit-border-radius: 2px;
 	-moz-border-radius:2px;
 }
-
-.event-tile-information{
-	padding: 10px;
-	height: 225px;
-	overflow-y: hidden;
+.event-information{
+	margin-left: 1.5%;
+	margin-right: 1.5%;
 }
-
-.event-tile > .event-tile-information p{
-	margin-top: 2px;
-}
-
-.event-tile > .event-tile-image-box{
-	border-bottom: 1px solid #ccc;
-}
-
-.event-tile > .event-tile-information > .event-description{
-	height: 110px;
-}
-
 #month-display{
 	margin-left: 0px;
 }
 #promo-pic{
 	height: 250px;
+	width:100%;
 }
 .people-tile{
 	margin-left: 0px;
@@ -250,6 +236,10 @@ li{
 }
 #banner{
 	margin-right: 0px;
+}
+#single_event_promo{
+	width: 100%;
+	height: 375px;
 }
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {

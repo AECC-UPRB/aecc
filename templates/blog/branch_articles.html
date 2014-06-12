@@ -24,7 +24,7 @@
             <h2>{{ a.title|lower|capfirst }}</h2>
             <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>
             <p class="medium-text">{{ a.content|safe|truncatewords:50 }}</p>
-            <div class="medium readmore btn">
+            <div class="medium readmore btn pull_right">
                 <a href="{% url 'blog:article' a.branch_slug a.article_slug %}">Read more</a>
             </div>       
             <br><br>
