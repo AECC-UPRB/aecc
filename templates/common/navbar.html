@@ -40,6 +40,7 @@
                     <li><a href="#">{{ user }}</a>
                         <div class="dropdown">
                             <ul>
+                                <li><a href="{% url 'users:settings' user.pk %}">Settings</a></li>
                                 <li><a href="{% url 'account_logout' %}">Logout</a>
                                 </li>
                             </ul>

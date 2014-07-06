@@ -63,16 +63,3 @@ class SettingsForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'phone_number', 'email',
                   'courses', 'programming_languages', 'facebook', 'twitter',
                   'github', 'linkedin')
-
-    def save_form(self, user):
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.phone_number = self.cleaned_data['phone_number']
-        user.email = self.cleaned_data['email']
-        user.courses = self.cleaned_data['courses']
-        user.programming_languages = self.cleaned_data['programming_languages']
-        user.facebook = self.cleaned_data['facebook']
-        user.twitter = self.cleaned_data['twitter']
-        user.github = self.cleaned_data['github']
-        user.linkedin = self.cleaned_data['linkedin']
-        user.save()

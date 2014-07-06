@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse_lazy
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 
+from .constants import MONTH_CHOICES
+
 
 def get_upload_file_name(instance, filename):
     return "static/uploaded_files/%s_%s" % \
@@ -16,20 +18,6 @@ class Event(models.Model):
     class Meta:
         ordering = ['-event_date']
 
-    MONTH_CHOICES = (
-        ('january', 'january'),
-        ('february', 'february'),
-        ('march', 'march'),
-        ('april', 'april'),
-        ('may', 'may'),
-        ('june', 'june'),
-        ('july', 'july'),
-        ('august', 'august'),
-        ('september', 'september'),
-        ('october', 'october'),
-        ('november', 'november'),
-        ('december', 'december'),
-    )
     title = models.CharField(max_length=100)
     description = models.TextField()
     month = models.CharField(max_length=10, choices=MONTH_CHOICES)

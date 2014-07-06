@@ -12,7 +12,7 @@ urlpatterns = patterns(
         name='directive'
     ),
     url(
-        r'^profile/settings/$',
+        r'^(?P<pk>[0-9]+)/settings/$',
         SettingsView.as_view(),
         name='settings'
     ),

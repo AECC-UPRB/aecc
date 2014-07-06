@@ -12,7 +12,7 @@ class Common(Configuration):
 
     DEBUG = False
 
-    TEMPLATE_DEBUG = True
+    TEMPLATE_DEBUG = False
 
     ALLOWED_HOSTS = []
 
