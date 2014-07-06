@@ -43,6 +43,7 @@ class Common(Configuration):
         'taggit',
         'tinymce',
         'disqus',
+        'multiselectfield',
     )
 
     MIDDLEWARE_CLASSES = (

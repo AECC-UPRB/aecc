@@ -22,11 +22,13 @@
 	<div class="twelve columns">	
 	<div class="push_one">
 	{% for people_information in directive %}
-		<div class="three columns people-tile">	
-	      	<img src="{{people_information|gravatar_url:people_information.email}}s=240"  width="145" />
-	        <h5>{{people_information.first_name}} {{people_information.last_name}}</h5>
-	        <p>{{people_information.email}}</p>
-		</div>
+		<div class="three columns people-tile">
+	      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
+			<div>	
+		        <h5>{{people_information.first_name}} {{people_information.last_name}}</h5>
+		        <p><small>{{people_information.email}}</small></p>
+			</div>
+	    </div>
 		<div class="one columns"></div>
 	{% endfor %}
 	</div>

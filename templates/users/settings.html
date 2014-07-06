@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}AECC | Profile Settings{% endblock title %}
+{% block subheaderpic %}
+	
+{% endblock subheaderpic %}
+{% block content %}
+<div class="row">
+	<div class="centered ten columns">
+		{% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+		<form action="" method="post" role="form">{% csrf_token %}
+			<fieldset>
+				<legend>Edit Profile</legend>
+				<ul>
+					<li class="field">
+						<div class="six columns">
+							<p id="error">
+								{{form.first_name.error}}
+							</p>
+							<label for="id_first_name">First Name:</label>
+							<input class="input" id="id_first_name" maxlength="20" name="first_name"type="text" value="{{form.first_name.value}}"placeholder="Edit your name...">
+						</div>
+						<div class="six columns">
+							<p id="error">
+								{{form.last_name.error}}
+							</p>
+							<label for="id_last_name">Last Name:</label>
+							<input class="input" id="id_last_name" maxlength="20" name="last_name"type="text" value="{{form.last_name.value}}" placeholder="Edit your last name...">
+						</div>
+					</li>
+					<li class="field">
+						<div class="six columns">
+							<p id="error">
+								{{form.email.error}}
+							</p>
+							<label for="id_email">E-mail:</label>
+							<input class="input" id="id_email" name="email"type="email" value="{{form.email.value}}" placeholder="Edit your email...">
+						</div>
+						<div class="six columns">
+							<p id="error">
+								{{form.phone_number.error}}
+							</p>
+							<label for="id_phone_number">Phone number:</label>
+							<input class="input" id="id_phone_number" maxlength="10" name="phone_number"type="text" value="{{form.phone_number.value}}" placeholder="Edit your phone number...">
+						</div>
+					</li>
+					<li class="field">
+						<p id="error">
+							{{form.programming_languages.error}}
+						</p>
+						<label class="inline" for="id_programming_languages">
+							Programming languages:
+						</label>
+						<input class="input" id="id_programming_languages" maxlength="400" name="programming_languages" type="text" value="{{form.programming_languages.value}}" placeholder="Tell us which programming languages you know...">
+					</li>
+					<li class="field">
+						<p id="error">
+							{{form.facebook.error}}
+						</p>
+						<label for="id_facebook">Facebook:</label>
+						<input class="input" id="id_facebook" maxlength="200" name="facebook" value="{{form.facebook.value}}" placeholder="Enter the link to your Facebook profile..." type="text">
+					</li>
+					<li class="field">
+						<p id="error">
+							{{form.twitter.error}}
+						</p>
+						<label for="id_twitter">Twitter:</label>
+						<input class="input" id="id_twitter" maxlength="200" name="twitter" value="{{form.twitter.value}}" placeholder="Enter the link to your Twitter account..." type="text">
+					</li>
+					<li class="field">
+						<p id="error">
+							{{form.github.error}}
+						</p>
+						<label for="id_github">GitHub:</label>
+						<input class="input" id="id_github" maxlength="200" name="github" value="{{form.github.value}}" placeholder="Enter the link to your GitHub account..."type="text">
+					</li>
+					<li class="field">
+						<p id="error">
+							{{form.linkedin.error}}
+						</p>
+						<label for="id_linkedin">LinkedIn:</label>
+						<input class="input" id="id_linkedin" maxlength="200" name="linkedin" value="{{form.linkedin.value}}" placeholder="Enter the link to your LinkedIn account..."type="text">
+					</li>
+					<li>
+						<p id="error">
+							{{form.courses.error}}
+						</p>
+						<fieldset>
+							<legend>Courses you can help others with</legend>
+							{{form.courses}}
+						</fieldset>
+					</li>
+					<div class="medium success btn pull_right">
+                        <a href="#">
+                            <button type="submit" value="Save Changes">Save Changes</button>
+                        </a>
+                    </div>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+</div>
+{% endblock content %}
