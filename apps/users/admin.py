@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from import_export.admin import ImportExportModelAdmin
 
@@ -7,7 +8,7 @@ from .forms import UserChangeForm, UserCreationForm
 from .resources import UserResource
 
 
-class MyUserAdmin(ImportExportModelAdmin):
+class MyUserAdmin(ImportExportModelAdmin, UserAdmin):
     resource_class = UserResource
     form = UserChangeForm
     add_form = UserCreationForm
