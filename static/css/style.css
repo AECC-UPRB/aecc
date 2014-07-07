@@ -46,6 +46,18 @@
 	color: white;
 	text-align: center;
 }
+.profile-block{
+	height: 375px;
+}
+#profile-page-header{
+	text-align: center;	
+}
+#profile-page-header h1{
+	color: #d04526;
+	text-align: center;
+	text-shadow:0px 0px 4px white;	
+	margin-bottom: 4%;
+}
 .block{
 	height: 300px;
 }
@@ -61,7 +73,7 @@
 	background-size: cover; /* para que llene todo el background*/
 }
 #event_picture{
-	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
+	background: url(../img/never_stop_learning.png) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #single_event_picture{
@@ -240,6 +252,16 @@ li{
 #single_event_promo{
 	width: 100%;
 	height: 375px;
+}
+#profile_backgroup{
+	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#space{
+	margin-top: 10%;
+}
+#profile-content{
+	padding-top: 4%;
 }
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
