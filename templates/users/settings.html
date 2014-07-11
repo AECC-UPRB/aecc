@@ -67,14 +67,18 @@
 							<input class="input" id="id_phone_number" maxlength="10" name="phone_number"type="text" value="{{form.phone_number.value}}" placeholder="Edit your phone number...">
 						</div>
 					</li>
-					<li class="field">
-						<p id="errors">
-							{{form.programming_languages.errors}}
-						</p>
-						<label class="inline" for="id_programming_languages">
-							Programming languages:
-						</label>
-						<input class="input" id="id_programming_languages" maxlength="400" name="programming_languages" type="text" value="{{form.programming_languages.value}}" placeholder="Tell us which programming languages you know...">
+					<li>
+						<fieldset>
+							<legend>Programming Languages and Frameworks</legend>
+							<div class="push_one">
+								{% for progframe in form.programming_languages %}
+									<div class="no-margin-left">
+										<div class="four columns">
+											{{progframe}}
+										</div>
+									</div>
+								{% endfor %}
+						</fieldset>
 					</li>
 					<li class="field">
 						<p id="errors">
@@ -110,7 +114,11 @@
 						</p>
 						<fieldset>
 							<legend>Courses you can help others with</legend>
-							{{form.courses}}
+								{% for course in form.courses %}
+									<div class="five columns">
+										{{course}}
+									</div>
+								{% endfor %}
 						</fieldset>
 					</li>
 					<div class="medium success btn pull_right">

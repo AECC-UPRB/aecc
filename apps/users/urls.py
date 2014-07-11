@@ -12,7 +12,7 @@ urlpatterns = patterns(
         name='community'
     ),
     url(
-        r'^(?P<pk>[0-9]+)/settings/$',
+        r'^(?P<slug>[-\w]+)/settings/$',
         SettingsView.as_view(),
         name='settings'
     ),

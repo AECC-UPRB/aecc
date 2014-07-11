@@ -4,11 +4,18 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 from multiselectfield import MultiSelectField
+from autoslug import AutoSlugField
 
 from .constants import POSITION_OPTIONS, GENDER_CHOICES, COURSES_CHOICES
+from .constants import PROG_LANGUAGES_AND_FRAMEWORKS
+
 
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+
+
+def populate_user_slug(instance):
+    return instance.get_full_name()
 
 
 class MyUserManager(BaseUserManager):
@@ -56,13 +63,15 @@ class User(AbstractBaseUser):
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
     courses = MultiSelectField(choices=COURSES_CHOICES, blank=True)
-    programming_languages = models.CharField(max_length=400, blank=True)
+    programming_languages = MultiSelectField(choices=PROG_LANGUAGES_AND_FRAMEWORKS, 
+                                             blank=True)
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
     objects = MyUserManager()
 
@@ -74,7 +83,8 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        fullname = '%s %s' % (self.first_name, self.last_name)
+        return fullname
 
     def get_short_name(self):
         return self.first_name

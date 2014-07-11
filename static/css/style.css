@@ -198,6 +198,9 @@ li{
 	height: 250px;
 	width:100%;
 }
+.no-left-margin{
+	margin-left: 0px;
+}
 .people-tile{
 	margin-left: 0px;
 	margin-bottom: 5%;

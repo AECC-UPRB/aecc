@@ -36,8 +36,8 @@ DATA_STRUCTURES = 'SICI-4036'
 WEB_APPLICATIONS = 'COTI-4210'
 DATABASE = 'SICI-4030'
 COURSES_CHOICES = (
-    (ALGORITHMS_AND_PROGRAM_DEVELOPMENT_I, 'Algorithms and Program Development I'),
-    (ALGORITHMS_AND_PROGRAM_DEVELOPMENT_II, 'Algorithms and Program Development II'),
+    (ALGORITHMS_AND_PROGRAM_DEVELOPMENT_I, 'Programming Fundamentals I'),
+    (ALGORITHMS_AND_PROGRAM_DEVELOPMENT_II, 'Programming Fundamentals II'),
     (DATA_STRUCTURES, 'Data Structures'),
     (WEB_APPLICATIONS, 'Web Applications'),
     (DATABASE, 'Database'),
@@ -49,8 +49,44 @@ COURSES_CHOICES = (
     (STATISTICS_USING_COMPUTERS, 'Statistics Using Computers'),
     (BASIC_SPANISH_I, 'Basic Spanish I'),
     (BASIC_SPANISH_II, 'Basic Spanish II'),
-    (TECHNICAL_REPORT_WRITING_SPANISH, 'Technical Report Writing In Spanish'),
+    (TECHNICAL_REPORT_WRITING_SPANISH, 'Tech. Report Writing In Spanish'),
     (BASIC_ENGLISH_I, 'Basic English I'),
     (BASIC_ENGLISH_II, 'Basic English II'),
-    (TECHNICAL_REPORT_WRITING_ENGLISH, 'Technical Report Writing In English'),
+    (TECHNICAL_REPORT_WRITING_ENGLISH, 'Tech. Report Writing In English'),
+)
+C_PLUS_PLUS = 'cplusplus'
+OBJECTIVE_C = 'objc'
+PYTHON = 'python'
+JAVA = 'java'
+C = 'c'
+GRAILS = 'grails'
+RUBY_ON_RAILS = 'ruby-on-rails'
+SCALA = 'scala'
+PERL = 'perl'
+RUBY = 'ruby'
+PLAYFRAMEWORK = 'playframework'
+C_SHARP = 'csharp'
+PHP = 'php'
+HTML = 'html'
+CSS = 'css'
+JAVASCRIPT = 'javascript'
+NODEJS = 'nodejs'
+PROG_LANGUAGES_AND_FRAMEWORKS = (
+    (C_PLUS_PLUS, 'C++'),
+    (OBJECTIVE_C, 'Objective-C'),
+    (PYTHON, 'Python'),
+    (JAVA, 'Java'),
+    (C, 'C'),
+    (SCALA, 'Scala'),
+    (PERL, 'Perl'),
+    (RUBY, 'Ruby'),
+    (C_SHARP, 'C#'),
+    (PHP, 'php'),
+    (HTML, 'HTML'),
+    (CSS, 'CSS'),
+    (JAVASCRIPT, 'JavaScript'),
+    (GRAILS, 'Grails'),
+    (RUBY_ON_RAILS, 'Ruby on Rails'),
+    (PLAYFRAMEWORK, 'Play Framework'),
+    (NODEJS, 'Node.js'),
 )

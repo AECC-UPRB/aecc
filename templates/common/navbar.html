@@ -42,7 +42,7 @@
                             <ul>
                                 <li> 
                                     {% if user.amount_payed >= 15 %}
-                                        <a href="{% url 'users:settings' user.pk %}">Settings</a>
+                                        <a href="{% url 'users:settings' user.slug %}">Settings</a>
                                     {% endif %} 
                                 </li>
                                 <li><a href="{% url 'account_logout' %}">Logout</a>
