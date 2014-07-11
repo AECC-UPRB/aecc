@@ -12,7 +12,7 @@ from .forms import SettingsForm
 
 
 class DirectiveView(TemplateView):
-    template_name = 'users/directive.html'
+    template_name = 'users/community.html'
 
     def get_context_data(self, **kwargs):
         context = super(DirectiveView, self).get_context_data(**kwargs)

@@ -93,6 +93,10 @@
 	padding-top: 35px;
 	text-align: center;
 }
+.footer-social{
+	font-size: 35px;
+	padding-top: 35px;
+}
 .home_picture{
 	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
@@ -197,6 +201,7 @@ li{
 .people-tile{
 	margin-left: 0px;
 	margin-bottom: 5%;
+	padding-bottom: 3%;
 	border: 1px solid #e6e6e6;
 	border-radius: 2px;
 	-webkit-border-radius:4px;
@@ -208,15 +213,11 @@ li{
 .people-tile p{
 	text-align: center;
 }
-.people-tile h5{
-	text-align: center;
-}
 .wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 100%; 
-    border: 1px solid black;
+    height: 100%;
 }
 #slide {
     position: absolute;
@@ -226,6 +227,9 @@ li{
     transition: 1s;
     margin-bottom: 0px;
     padding:5px;
+}
+#slide a {
+	color:white;
 }
 .wrapper:hover #slide {
     transition: 1s;
@@ -262,6 +266,9 @@ li{
 }
 #profile-content{
 	padding-top: 4%;
+}
+.person-information{
+	color:#444444;
 }
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {

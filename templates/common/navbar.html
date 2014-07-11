@@ -15,7 +15,7 @@
                     <a class="{% if request.path == '/blog/' %}navactive{% endif %}" href="{% url 'blog:index' %}">Blog</a>
                 </li>
                 <li>
-                    <a class="{% if request.path == '/members/directive/' %}navactive{% endif %}" href="{% url 'users:directive' %}">Directive</a>
+                    <a class="{% if request.path == '/members/community/' %}navactive{% endif %}" href="{% url 'users:community' %}">Community</a>
                 </li>
                 <li><a class="{% if request.path == '/events/' %}navactive{% endif %}" href="{% url 'events:index' %}">Events</a>
                     <div class="dropdown">
@@ -40,7 +40,11 @@
                     <li><a href="#">{{ user }}</a>
                         <div class="dropdown">
                             <ul>
-                                <li><a href="{% url 'users:settings' user.pk %}">Settings</a></li>
+                                <li> 
+                                    {% if user.amount_payed >= 15 %}
+                                        <a href="{% url 'users:settings' user.pk %}">Settings</a>
+                                    {% endif %} 
+                                </li>
                                 <li><a href="{% url 'account_logout' %}">Logout</a>
                                 </li>
                             </ul>

@@ -7,9 +7,9 @@ from .views import SettingsView
 urlpatterns = patterns(
     '',
     url(
-        r'^directive/$',
+        r'^community/$',
         DirectiveView.as_view(),
-        name='directive'
+        name='community'
     ),
     url(
         r'^(?P<pk>[0-9]+)/settings/$',
