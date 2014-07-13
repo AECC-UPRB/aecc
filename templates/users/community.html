@@ -30,7 +30,7 @@
       		<p id="slide">
         		<span class="ten columns">
         			<span class="push_three">
-	        			<a href="#">
+	        			<a href="{% url 'users:profile' user.slug %}">
 		        			<i class="footer-social icon-user"></i>
 		        		</a>
         			</span>
@@ -46,7 +46,7 @@
 	        		{% if people_information.twitter %}
 	        			<a href="{{people_information.twitter}}">
 	        				<i class="footer-social icon-twitter"></i>
-	        			</a>
+	         			</a>
 	        		{% endif %}
         		</span>
         		<span class="push_two three columns">

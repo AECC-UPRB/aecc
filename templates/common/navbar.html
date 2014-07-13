@@ -37,7 +37,7 @@
                     <a class="{% if request.path == '/contact/' %}navactive{% endif %}" href="{% url 'contact:index' %}">Contact Us</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li><a href="#">{{ user }}</a>
+                    <li><a href="{% if user.amount_payed >= 15 %} {% url 'users:profile' user.slug %} {% endif %}">{{ user }}</a>
                         <div class="dropdown">
                             <ul>
                                 <li> 

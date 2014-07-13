@@ -49,6 +49,9 @@
 .profile-block{
 	height: 375px;
 }
+.profile-info-display{
+	height: 562px;	
+}
 #profile-page-header{
 	text-align: center;	
 }
@@ -57,6 +60,14 @@
 	text-align: center;
 	text-shadow:0px 0px 4px white;	
 	margin-bottom: 4%;
+}
+#user-profile{
+	text-align: center;	
+}
+#user-profile h1{
+	color: #d04526;
+	text-align: center;
+	text-shadow:0px 0px 4px white;
 }
 .block{
 	height: 300px;
@@ -270,8 +281,21 @@ li{
 #profile-content{
 	padding-top: 4%;
 }
+#user-profile-content{
+	padding-top: 2%;
+}
 .person-information{
 	color:#444444;
+}
+.programming_languages_icons{
+	color: #d04526;
+	font-size: 25px;
+	text-shadow:0px 0px 1px white;
+}
+.courses_display{
+	color: #d04526;
+	font-style: italic;
+	text-shadow:0px 0px 1px white;
 }
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {

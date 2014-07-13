@@ -1,9 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import UpdateView, TemplateView
+from django.views.generic import UpdateView, TemplateView, DetailView
 from django.http import Http404
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
-from django.contrib import messages
 
 from braces.views import LoginRequiredMixin
 
@@ -27,10 +25,19 @@ class SettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Perfil actualizado.'
 
     def get_success_url(self):
-        return reverse('users:settings', kwargs={'pk':self.request.user.pk})
+        return reverse(
+            'users:settings',
+            kwargs={'slug': self.request.user.slug}
+        )
 
     def get_object(self, *args, **kwargs):
         obj = super(SettingsView, self).get_object(*args, **kwargs)
         if not obj == self.request.user:
             raise Http404
         return obj
+
+
+class ProfileView(DetailView):
+    model = User
+    template_name = 'users/profile.html'
+    context_object_name = 'person_profile'

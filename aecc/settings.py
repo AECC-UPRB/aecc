@@ -132,6 +132,12 @@ class Common(Configuration):
     TINYMCE_SPELLCHECKER = True
     TINYMCE_COMPRESSOR = True
 
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'example@example.com'
+    EMAIL_HOST_PASSWORD = 'password'
+
 
 class Development(Common):
     DEBUG = True

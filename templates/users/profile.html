@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load gravatar %}
+{% block title %}AECC | Profile{% endblock title %}
+{% block subheaderpic %}
+<div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="profile_backgroup">
+    <div class="row" id="subheader-tittle">
+        <div class="profile-info-display">
+            <article>
+                <span id="user-profile">
+                    <div id="space"></div>
+                    <div id="user-profile-content">
+                        <img class="image circle" 
+                        src="{{people_information|gravatar_url:person_profile.email}}s=145"
+                        width="145" />
+                        <h1 class="profile_header">
+                            {{person_profile.first_name|capfirst}} {{person_profile.last_name|capfirst}}
+                        </h1>
+                        <div>
+                            {% if person_profile.programming_languages.count > 0 %}
+                                {% for programming_language in person_profile.programming_languages %}
+                                    <i class="programming_languages_icons icon-{{programming_language}}" ></i>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!--<div>
+                            {% if person_profile.facebook %}
+                                <a href="{{person_profile.facebook}}">
+                                    <i class="programming_languages_icons icon-facebook"></i>
+                                </a>
+                            {% endif %}
+
+                            {% if person_profile.twitter %}
+                                <a href="{{person_profile.twitter}}">
+                                    <i class="programming_languages_icons icon-twitter"></i>
+                                </a>
+                            {% endif %}
+
+                            {% if person_profile.github %}
+                                <a href="{{person_profile.github}}">
+                                    <i class="programming_languages_icons icon-github"></i>
+                                </a>
+                            {% endif %}
+
+                            {% if person_profile.linkedin %}
+                                <a href="{{person_profile.linkedin}}">
+                                    <i class="programming_languages_icons icon-linkedin"></i>
+                                </a>
+                            {% endif %}
+                        </div> -->
+                        <div>
+                            <p class="courses_display">
+                                {% for courses in person_profile.courses %}
+                                    {{courses}}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                </span>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
