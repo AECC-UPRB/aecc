@@ -11,5 +11,4 @@ venv
 .DS_Store
 *.sqlite3
 uploaded_files
-static/img
 settings
