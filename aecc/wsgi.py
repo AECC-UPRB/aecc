@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 
 import os
 
+from dj_static import Cling
+
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'DEVELOPMENT').title()
 
@@ -17,4 +19,4 @@ os.environ.setdefault('DJANGO_CONFIGURATION', ENVIRONMENT)
 
 from configurations.wsgi import get_wsgi_application
 
-application = get_wsgi_application()
+application = Cling(get_wsgi_application())

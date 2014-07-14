@@ -14,7 +14,7 @@ class Common(Configuration):
 
     TEMPLATE_DEBUG = False
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', ]
 
     # Application definition
 
@@ -79,7 +79,7 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-    STATIC_ROOT = '/static/'
+    STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -132,11 +132,13 @@ class Common(Configuration):
     TINYMCE_SPELLCHECKER = True
     TINYMCE_COMPRESSOR = True
 
-    EMAIL_USE_TLS = True
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'example@example.com'
-    EMAIL_HOST_PASSWORD = 'password'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    DEFAULT_FROM_EMAIL = values.Value()
+    EMAIL_HOST = values.Value()
+    EMAIL_HOST_USER = values.Value()
+    EMAIL_HOST_PASSWORD = values.Value()
+    EMAIL_PORT = values.IntegerValue()
+    EMAIL_USE_TLS = values.BooleanValue(False)
 
 
 class Development(Common):
