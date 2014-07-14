@@ -29,3 +29,4 @@ six==1.6.1
 sqlparse==0.1.11
 tablib==0.10.0
 wsgiref==0.1.2
+psycopg2==2.5.2
