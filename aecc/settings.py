@@ -133,12 +133,12 @@ class Common(Configuration):
     TINYMCE_COMPRESSOR = True
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL = values.Value()
-    EMAIL_HOST = values.Value()
-    EMAIL_HOST_USER = values.Value()
-    EMAIL_HOST_PASSWORD = values.Value()
-    EMAIL_PORT = values.IntegerValue()
-    EMAIL_USE_TLS = values.BooleanValue(False)
+    # DEFAULT_FROM_EMAIL = values.Value()
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'example@example.com'
+    EMAIL_HOST_PASSWORD = 'example'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 
 
 class Development(Common):
