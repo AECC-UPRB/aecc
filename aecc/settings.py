@@ -159,4 +159,4 @@ class Development(Common):
 
 
 class Production(Common):
-    PROTOCOL = 'https'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
