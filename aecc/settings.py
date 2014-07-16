@@ -14,7 +14,7 @@ class Common(Configuration):
 
     TEMPLATE_DEBUG = False
 
-    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', ]
+    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', '*']
 
     # Application definition
 
