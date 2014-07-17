@@ -104,6 +104,22 @@ class Common(Configuration):
         os.path.join(BASE_DIR, 'templates'),
     )
 
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "level": "INFO",
+                "class": "logging.StreamHandler",
+            },
+        },
+        "loggers": {
+            "django": {
+                "handlers": ["console"],
+            }
+        }
+    }
+
     AUTH_USER_MODEL = "users.User"
 
     # auth and allauth settings
