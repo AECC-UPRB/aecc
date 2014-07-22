@@ -22,6 +22,7 @@ django-tinymce==1.5.2
 gunicorn==19.0.0
 icalendar==3.7
 oauthlib==0.6.1
+pystache==0.5.4
 python-openid==2.2.5
 python-placeholder==0.2
 pytz==2014.4
@@ -29,6 +30,8 @@ requests==2.3.0
 requests-oauthlib==0.4.0
 six==1.6.1
 sqlparse==0.1.11
+static==1.0.2
 static3==0.5.1
 tablib==0.10.0
 wsgiref==0.1.2
+psycopg2==2.5.2

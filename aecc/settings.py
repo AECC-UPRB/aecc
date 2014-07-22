@@ -14,7 +14,7 @@ class Common(Configuration):
 
     TEMPLATE_DEBUG = False
 
-    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', ]
+    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', '*']
 
     # Application definition
 
@@ -104,6 +104,22 @@ class Common(Configuration):
         os.path.join(BASE_DIR, 'templates'),
     )
 
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "level": "INFO",
+                "class": "logging.StreamHandler",
+            },
+        },
+        "loggers": {
+            "django": {
+                "handlers": ["console"],
+            }
+        }
+    }
+
     AUTH_USER_MODEL = "users.User"
 
     # auth and allauth settings
@@ -133,12 +149,12 @@ class Common(Configuration):
     TINYMCE_COMPRESSOR = True
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL = values.Value()
-    EMAIL_HOST = values.Value()
-    EMAIL_HOST_USER = values.Value()
-    EMAIL_HOST_PASSWORD = values.Value()
-    EMAIL_PORT = values.IntegerValue()
-    EMAIL_USE_TLS = values.BooleanValue(False)
+    # DEFAULT_FROM_EMAIL = values.Value()
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'example@example.com'
+    EMAIL_HOST_PASSWORD = 'example'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 
 
 class Development(Common):
@@ -159,4 +175,5 @@ class Development(Common):
 
 
 class Production(Common):
-    PROTOCOL = 'https'
+    MEDIA_URL = '/static/'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
