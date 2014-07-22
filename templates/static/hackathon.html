@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %} AECC | Hackathon{% endblock title %}
+{% block subheaderpic %}
+	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
+		<div class="row" id = "subheader-tittle">
+			<div class="hackathon-block">
+				<article class="hackathon-center">
+					<span id="hackathon-header">
+						<h1>hackBayamón</h1>
+						<h2>October 25, 2014</h2>
+						<h3>University of Puerto Rico - Bayamón Campus</h3>
+					</span>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock subheaderpic %}
+{% block content %}
+	<section>
+		<div class="row">
+			<div class="twelve columns">
+				<div class="three columns">
+					<nav id="sidebar" gumby-fixed="540">
+						<ul>
+							<li class="twelve columns skiplink medium">
+								<a href="#about" class="toggle about"  gumby-trigger=".sponsors, .test| .about" gumby-goto="[data-target='about']">
+									About
+								</a>
+							</li>
+							<li class="twelve columns skiplink medium">
+								<a href="#sponsors" class="toggle sponsors" gumby-trigger=".about, .test|.sponsors" gumby-goto="[data-target='sponsors']">
+									Sponsors
+								</a>
+							</li>
+							<li class="twelve columns skiplink medium">
+								<a href="#test" class="toggle test" gumby-update gumby-trigger=".sponsors, .about |.test" gumby-goto="[data-target='test']">
+									Test
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="push_one eight columns">
+					<div id="test" data-target="test">
+						<h2>TEST</h2>
+					</div>
+					<section>
+						<div id="push_off_navbar" data-target="about">
+							<h2>
+								About
+							</h2>
+						</div>
+					</section>
+					<section>
+						<div id="push_off_navbar" data-target="sponsors">
+							<h2>
+								Sponsors
+							</h2>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

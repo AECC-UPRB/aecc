@@ -1,3 +1,4 @@
+/* navbar */
 #navbar{
 	margin-bottom: 0px;
 	-webkit-transition: all .25s linear;
@@ -20,25 +21,73 @@
 	background: rgba(154,162,167, 0.6)!important;
 }
 
-.footer{
-	background: url(../img/unsplash_by_Sebastian_Muller.jpg);
-	background-size: cover;
-	height: 200px;
-}
 #nav1{
 	margin-bottom: 0px;
 	background: rgba(0,0,0,0);
 }
+/* footer */
+.footer{
+	background: #1D2124;
+	width: 100%;
+	padding-top: 2.5%;	
+}
+.footerIcons{
+	font-size: 35px;
+	padding-right: 25px;
+	padding-top: 35px;
+	text-align: center;
+}
+.footer-social{
+	font-size: 35px;
+	padding-top: 35px;
+}
+
+/* pictures */
 #about_picture{
 	background: url(../img/unsplash_by_Alejandro_Escamilla2.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
+#sign_up_picture{
+	background: url(../img/unsplash_join.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#people_picture{
+	background: url(../img/Death_to_stock.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#event_picture{
+	background: url(../img/never_stop_learning.png) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#single_event_picture{
+	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#article_banner{
+	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+.home_picture{
+	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+	width: 100%;
+	height: 100%;
+}
+#profile_backgroup{
+	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+#contact_picture{
+	background: url(../img/unsplash_by_Sebastian_Muller.jpeg) no-repeat;
+	background-size: cover; /* para que llene todo el background*/
+}
+
+
 #page-header{
 	text-align: center;
 }
 #page-header h1{
 	color: #d04526;
-	text-align: center;
 	margin-top: 18%;
 	text-shadow:0px 0px 4px white;
 }
@@ -46,6 +95,8 @@
 	color: white;
 	text-align: center;
 }
+
+/* profile */
 .profile-block{
 	height: 375px;
 }
@@ -69,91 +120,40 @@
 	text-align: center;
 	text-shadow:0px 0px 4px white;
 }
-.block{
-	height: 300px;
+#banner{
+	margin-right: 0px;
 }
-.translucent_border{	
-	margin: 150px auto;
+#space{
+	margin-top: 10%;
 }
-#sign_up_picture{
-	background: url(../img/unsplash_join.jpg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
+#profile-content{
+	padding-top: 4%;
 }
-#people_picture{
-	background: url(../img/Death_to_stock.jpg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
+#user-profile-content{
+	padding-top: 2%;
 }
-#event_picture{
-	background: url(../img/never_stop_learning.png) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-}
-#single_event_picture{
-	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-}
-#article_banner{
-	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-}
-.translucent_border_people{
-	margin: 150px auto;
-}
-.footerIcons{
-	font-size: 35px;
-	padding-right: 25px;
-	padding-top: 35px;
-	text-align: center;
-}
-.footer-social{
-	font-size: 35px;
-	padding-top: 35px;
-}
-.home_picture{
-	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-	width: 100%;
-	height: 100%;
-}
-#page-header-subtittle{
+.programming_languages_icons{
 	color: #d04526;
-	text-align: center;
-	margin-top: 1%;
+	font-size: 25px;
+	text-shadow:0px 0px 1px white;
 }
-#block_home{
-	height: 500px;
+.courses_display{
+	color: #d04526;
+	font-style: italic;
+	text-shadow:0px 0px 1px white;
 }
-.back-color{
-  padding: 30px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+.icons{
+	padding-top: 2%;
 }
-#contact_picture{
-	background: url(../img/unsplash_by_Sebastian_Muller.jpeg) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-}
-#test{
-	margin-left:0px;
-}
-#member_picture{
-	margin-top: 15px;
-	height: 75px;
-	border: 5px solid #58c026;
+
+/* events */
+#single_event_promo{
+	width: 100%;
+	height: 375px;
 }
 #promo_picture{
 	height:250px;
 	width: 100%;
-}
-li{
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-.people-style{
-	margin-bottom: 10px;
-	margin-right: 10px;
-	border:1px solid;
-	border-color:#888888;
-	border-radius: 3px;
-	text-align: center;
 }
 .promo-style{
 	background: white;
@@ -164,31 +164,6 @@ li{
 	border-color:#888888;
 	border-radius: 3px;
 	margin-right: 9px;
-}
-.success-message{
-	float: right;
-	margin-top: 5%;
-}
-.footer{
-	background: #1D2124;
-	width: 100%;
-	padding-top: 2.5%;	
-}
-.icons{
-	padding-top: 2%;
-}
-.aecc-info > h6{
-	padding-top: 7%;
-	color: white;
-}
-.center-text {
-	text-align: center;
-}
-.medium-text {
-	font-size: 1.2rem;
-}
-.readmore {
-	background-color: #d04526;
 }
 .event-tile{
 	margin-left: 7%;
@@ -212,6 +187,46 @@ li{
 .no-left-margin{
 	margin-left: 0px;
 }
+
+.block{
+	height: 300px;
+}
+.translucent_border{	
+	margin: 150px auto;
+}
+#page-header-subtittle{
+	color: #d04526;
+	text-align: center;
+	margin-top: 1%;
+}
+#block_home{
+	height: 500px;
+}
+.back-color{
+  padding: 30px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+li{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.aecc-info > h6{
+	padding-top: 7%;
+	color: white;
+}
+.center-text {
+	text-align: center;
+}
+.medium-text {
+	font-size: 1.2rem;
+}
+.readmore {
+	background-color: #d04526;
+}
+
+/* people */
 .people-tile{
 	margin-left: 0px;
 	margin-bottom: 5%;
@@ -227,11 +242,32 @@ li{
 .people-tile p{
 	text-align: center;
 }
+.person-information{
+	color:#444444;
+}
+.people-style{
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border:1px solid;
+	border-color:#888888;
+	border-radius: 3px;
+	text-align: center;
+}
+
+/* sideup */
 .wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
     height: 100%;
+}
+.wrapper:hover #slide {
+    transition: 1s;
+    bottom: 0;
+    background-color: #d04526; 
+}
+.wrapper p{
+	color:white;
 }
 #slide {
     position: absolute;
@@ -245,14 +281,6 @@ li{
 #slide a {
 	color:white;
 }
-.wrapper:hover #slide {
-    transition: 1s;
-    bottom: 0;
-    background-color: #d04526; 
-}
-.wrapper p{
-	color:white;
-}
 #slide span{
 	font-weight: bolder;
 }
@@ -264,39 +292,55 @@ li{
 .text-muted {
 	color: #999;
 }
-#banner{
-	margin-right: 0px;
+#sidebar{
+	padding-top: 5%;
 }
-#single_event_promo{
-	width: 100%;
-	height: 375px;
+#push_off_navbar{
+	padding-top: 17%;
 }
-#profile_backgroup{
-	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
-	background-size: cover; /* para que llene todo el background*/
-}
-#space{
-	margin-top: 10%;
-}
-#profile-content{
-	padding-top: 4%;
-}
-#user-profile-content{
-	padding-top: 2%;
-}
-.person-information{
-	color:#444444;
-}
-.programming_languages_icons{
+
+/* gumby modifications */
+.skiplink{
+	margin:0px;
+	text-align: left;
 	color: #d04526;
-	font-size: 25px;
-	text-shadow:0px 0px 1px white;
 }
-.courses_display{
+.skiplink a{
 	color: #d04526;
-	font-style: italic;
-	text-shadow:0px 0px 1px white;
 }
+.skiplink :active{
+	background: #d04526;
+	color: white;	
+}
+.active{
+	background: #d04526;
+	color: white !important;	
+}
+.active :hover{
+	background: #d04526;
+	color: white !important;	
+}
+
+/* hackathon */
+.hackathon-block{
+	height: 540px;
+}
+.hackathon-center{	
+	margin: 25% auto;
+}
+#hackathon-header{
+	text-align: center
+}
+#hackathon-header h1{
+	color: #d04526;
+	margin-top: 18%;
+	text-shadow:0px 0px 4px white;
+}
+#hackathon-header h2, h3{
+	color: #d04526 !important;
+	text-shadow:0px 0px 4px white;
+}
+
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
     #page-header h1{
