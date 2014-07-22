@@ -175,5 +175,5 @@ class Development(Common):
 
 
 class Production(Common):
-    MEDIA_URL = '/static/'
+    MEDIA_URL = '/media/'
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
