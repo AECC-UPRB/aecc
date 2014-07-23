@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from .views import IndexView, EventView, EventByMonth
+from .views import IndexView, EventView, EventByMonth, HackathonView
 from .feeds import EventCalendarFeed
 
 urlpatterns = patterns(
@@ -9,6 +9,11 @@ urlpatterns = patterns(
         r'^ical/$',
         EventCalendarFeed(),
         name='event_calendar_feed'
+    ),
+    url(
+        r'^hackathon/$',
+        HackathonView.as_view(),
+        name='hackathon'
     ),
     url(
         r'^$',

@@ -11,8 +11,6 @@ urlpatterns = patterns(
         template_name='static/index.html'), name='index'),
     url(r'^about/$', TemplateView.as_view(
         template_name='static/about.html'), name='about'),
-    url(r'^hackathon/$', TemplateView.as_view(
-        template_name='static/hackathon.html'), name='hackathon'),
 
 
     url(r'^admin/', include(admin.site.urls)),

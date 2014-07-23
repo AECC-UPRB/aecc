@@ -304,26 +304,20 @@ li{
 	margin:0px;
 	text-align: left;
 	color: #d04526;
+	background: transparent;
 }
 .skiplink a{
 	color: #d04526;
 }
-.skiplink :active{
+.skiplink :hover{
 	background: #d04526;
-	color: white;	
-}
-.active{
-	background: #d04526;
-	color: white !important;	
-}
-.active :hover{
-	background: #d04526;
-	color: white !important;	
+	color: white;
+	border-left: white
 }
 
 /* hackathon */
 .hackathon-block{
-	height: 540px;
+	height: 450px;
 }
 .hackathon-center{	
 	margin: 25% auto;

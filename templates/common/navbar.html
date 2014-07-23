@@ -18,7 +18,7 @@
                     <a class="{% if request.path == '/members/community/' %}navactive{% endif %}" href="{% url 'users:community' %}">Community</a>
                 </li>
                 <li>
-                    <a class="{% if request.path == '/hackathon/' %}navactive{% endif %}" href="{% url 'hackathon' %}">hackBayamón</a>
+                    <a class="{% if request.path == '/hackathon/' %}navactive{% endif %}" href="{% url 'events:hackathon' %}">hackBayamón</a>
                 </li>
                 <li><a class="{% if request.path == '/events/' %}navactive{% endif %}" href="{% url 'events:index' %}">Events</a>
                     <div class="dropdown">

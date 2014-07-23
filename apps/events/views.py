@@ -1,6 +1,6 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
-from .models import Event
+from .models import Event, Hackathon
 from .mixins import MonthMixin
 
 
@@ -17,6 +17,17 @@ class EventView(DetailView):
     slug_url_kwarg = 'title_slug'
     template_name = 'events/event.html'
     context_object_name = 'event'
+
+
+class HackathonView(TemplateView):
+    model = Hackathon
+    template_name = 'events/hackathon.html'
+    context_object_name = 'hackathon_sponsors'
+
+    def get_context_data(self, **kwargs):
+        context = super(HackathonView, self).get_context_data(**kwargs)
+        context['hackathon_sponsors'] = Hackathon.objects.all()
+        return context
 
 
 class EventByMonth(ListView):

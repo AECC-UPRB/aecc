@@ -34,3 +34,12 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('events:event',
                             args=[self.month, self.title_slug])
+
+
+class Hackathon(models.Model):
+    name = models.CharField(max_length=100)
+    picture = models.FileField(upload_to=get_upload_file_name, blank=True)
+    website = models.URLField()
+
+    def __unicode__(self):
+        return self.name
