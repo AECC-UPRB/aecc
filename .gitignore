@@ -12,3 +12,6 @@ venv
 *.sqlite3
 uploaded_files
 settings
+
+### pictures ###
+img
