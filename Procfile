@@ -1,1 +1,1 @@
-web: run-program gunicorn -b "0.0.0.0:$PORT" -w 1 aecc.wsgi
+web: gunicorn aecc.wsgi --log-file -
