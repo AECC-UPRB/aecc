@@ -75,11 +75,11 @@
 	height: 100%;
 }
 #profile_backgroup{
-	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
+	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #contact_picture{
-	background: url(../img/unsplash_by_Sebastian_Muller.jpeg) no-repeat;
+	background: url(../img/unsplash_by_Sebastian_Muller.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 
