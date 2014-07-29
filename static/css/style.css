@@ -45,7 +45,7 @@
 
 /* pictures */
 #about_picture{
-	background: url(../img/unsplash_by_Alejandro_Escamilla2_low.jpg) no-repeat;
+	background: url(../img/unsplash_by_Alejandro_Escamilla2.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #sign_up_picture{
@@ -61,21 +61,21 @@
 	background-size: cover; /* para que llene todo el background*/
 }
 #single_event_picture{
-	background: url(../img/unsplash_by_Alejando_Escamilla1_low.jpg) no-repeat;
+	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #article_banner{
-	background: url(../img/unsplash_by_Alejando_Escamilla1_low.jpg) no-repeat;
+	background: url(../img/unsplash_by_Alejando_Escamilla1.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 .home_picture{
-	background: url(../img/unsplash_by_Aleks_Dorohovich_low.jpg) no-repeat;
+	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 	width: 100%;
 	height: 100%;
 }
 #profile_backgroup{
-	background: url(../img/unsplash_by_Galymzhan_Abdugalimov_low.JPG) no-repeat;
+	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.JPG) no-repeat;
 	background-size: cover; /* para que llene todo el background*/
 }
 #contact_picture{
