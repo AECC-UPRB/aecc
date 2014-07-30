@@ -73,6 +73,7 @@
 	background-size: cover; /* para que llene todo el background*/
 	width: 100%;
 	height: 100%;
+	margin-bottom: 18%;
 }
 #profile_backgroup{
 	background: url(../img/unsplash_by_Galymzhan_Abdugalimov.jpg) no-repeat;

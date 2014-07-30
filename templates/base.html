@@ -44,21 +44,7 @@
     </script>
     <script src="{% static 'js/gumby.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/plugins.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            var t = $('#navbar').offset().top + 20;
-
-            $(document).scroll(function(){
-                if($(this).scrollTop() > t)
-                {   
-                    $('#navbar').addClass('navbar-not-transparent');
-                }else if($(this).scrollTop() < t){
-                    $('#navbar').removeClass('navbar-not-transparent');
-                }
-            });
-        });
-    </script>
+    <script src="{% static 'js/plugins.js' %}"></script>ßß
     {% block extra_js %}{% endblock %}
 </body>
 

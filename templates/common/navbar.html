@@ -2,13 +2,13 @@
 <nav id="navbar" class="navbar navbar-transparent" gumby-fixed="top">
     <div class="row" id="nav1">
         <div class="twelve columns">
-            <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
+            <a class="toggle" gumby-trigger="#options" href="#"><i class="icon-menu"></i></a>
             <h1 id="banner" class="three columns logo">
                 <a href="/">
                     <img src="{% static 'img/uprbaecc.png' %}" gumby-retina />
                 </a>
             </h1>
-            <ul class="nine columns pull_left">
+            <ul class="nine columns pull_left" id="options">
                 <li><a class="{% if request.path == '/about/' %}navactive{% endif %}" href="{% url 'about' %}">About</a>
                 </li>
                 <li>
