@@ -80,7 +80,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
-                       'gender', 'student_number']
+                       'gender', 'student_number', 'phone_number']
 
     def __unicode__(self):
         return self.email
