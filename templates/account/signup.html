@@ -42,6 +42,13 @@
                         </p>
                         <label for="id_student_number">Student Number:</label>
                         <input class="input" id="id_student_number" maxlength="9" name="student_number" type="text" placeholder="Enter your student number..." />
+                    </li> 
+                    <li class="field">
+                        <p id="error">
+                            {{form.phone_number.errors}}
+                        </p>
+                        <label for="id_phone_number">Phone Number:</label>
+                        <input class="input" type="text" maxlength="10" name="phone_number" placeholder="Enter your phone number...">
                     </li>
                     <li class="field">
                         <p id = "error">

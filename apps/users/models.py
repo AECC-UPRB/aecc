@@ -23,7 +23,7 @@ def populate_user_slug(instance):
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name,
-                    student_number, gender, password=None):
+                    student_number, gender, phone_number, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -33,6 +33,7 @@ class MyUserManager(BaseUserManager):
             last_name=last_name,
             student_number=student_number,
             gender=gender,
+            phone_number=phone_number,
         )
 
         user.set_password(password)
@@ -40,7 +41,7 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, first_name, last_name,
-                         student_number, gender, password):
+                         student_number, gender, password, phone_number):
         user = self.create_user(
             email,
             password=password,
@@ -48,6 +49,7 @@ class MyUserManager(BaseUserManager):
             last_name=last_name,
             student_number=student_number,
             gender=gender,
+            phone_number=phone_number,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -80,7 +82,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
-                       'gender', 'student_number']
+                       'gender', 'student_number', 'phone_number']
 
     def __unicode__(self):
         return self.email

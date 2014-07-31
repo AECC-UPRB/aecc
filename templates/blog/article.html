@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load disqus_tags %}
+
 {% block title %}{{article.title}}{% endblock title %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "article_banner">
@@ -22,5 +24,6 @@
 		<div class = "centered eight columns">
 			<p>{{article.content|safe}}</p>	
 		</div>
+		{% disqus_show_comments %}
 	</div>
 {% endblock %}

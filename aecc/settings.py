@@ -46,6 +46,9 @@ class Common(Configuration):
         'multiselectfield',
     )
 
+    DISQUS_API_KEY = '4vCJNFX7DVc1nHb9sI1bxYOEtLjhnmC1Nmw2qBqEwMWMtOTe7gVlxOib9X0GwtA6'
+    DISQUS_WEBSITE_SHORTNAME = 'aeccuprb'
+
     MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',

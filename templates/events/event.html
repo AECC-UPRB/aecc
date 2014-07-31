@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load disqus_tags %}
 {% block title %}AECC | {{event.title}}{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
@@ -24,7 +25,8 @@
 			<br>
 			<img src="/{{event.promo_picture}}" id="single_event_promo">		
 			<h3>What will be covered?</h3>
-			<p>{{event.event_description}}</p>	
+			<p>{{event.event_description}}</p>
+			{% disqus_show_comments %}
 		</div>
 	</div>
 {% endblock %}
