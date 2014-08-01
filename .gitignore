@@ -13,3 +13,5 @@ venv
 uploaded_files
 settings
 *.env
+staticfiles
+media

@@ -14,7 +14,7 @@ class Common(Configuration):
 
     TEMPLATE_DEBUG = False
 
-    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', ]
+    ALLOWED_HOSTS = ['aecc-uprb.herokuapp.com', '*']
 
     # Application definition
 
@@ -84,6 +84,9 @@ class Common(Configuration):
 
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
+
+    MEDIA_ROOT = 'media'
+    MEDIA_URL = '/media/'
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         "django.core.context_processors.request",
@@ -177,4 +180,5 @@ class Development(Common):
 
 
 class Production(Common):
+    DEBUG_TOOLBAR_PATCH_SETTINGS = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
