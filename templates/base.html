@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width-device-width, initial-scale = 1.0">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/gumby.css' %}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/gumby/2.6.0/css/gumby.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/icons-font-mfizz-1.2/font-mfizz.css' %}">
     {% block extra_css %}{% endblock %}
@@ -24,7 +23,7 @@
     {% block footer %}
    		{% include "common/footer.html" %}
     {% endblock %}
-    <script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gumby/2.6.0/js/libs/modernizr-2.6.2.min.js"></script>
 	<script>
     var oldieCheck = Boolean(document.getElementsByTagName('html')[0].className.match(/\soldie\s/g));
     if (!oldieCheck) {
@@ -33,18 +32,9 @@
         document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"><\/script>');
     }
     </script>
-    <script>
-    if (!window.jQuery) {
-        if (!oldieCheck) {
-            document.write('<script  src = "{% static "js/jquery-2.0.2.min.js" %}"><\/script>');
-        } else {
-            document.write('<script  src = "{% static "js/jquery-1.10.1.min.js/" %}"><\/script>');
-        }
-    }
-    </script>
-    <script src="{% static 'js/gumby.min.js' %}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gumby/2.6.0/js/libs/gumby.min.js"></script>
 	<script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
     {% block extra_js %}{% endblock %}
 </body>
 
