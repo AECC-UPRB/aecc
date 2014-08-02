@@ -274,10 +274,9 @@ li{
 
 /* sideup */
 .wrapper {
-    position: relative;
-    width: 100%;
+	margin-left: 5% !important;
 }
-.wrapper:hover #slide {
+/*.wrapper:hover #slide {
     transition: 1s;
     bottom: 0;
     background-color: #d04526; 
@@ -299,7 +298,7 @@ li{
 }
 #slide span{
 	font-weight: bolder;
-}
+}*/
 .label.default {
 	background: #d04526;
 	border: 1px solid #d04526;
@@ -308,12 +307,12 @@ li{
 .text-muted {
 	color: #999;
 }
-#sidebar{
+/*#sidebar{
 	padding-top: 5%;
 }
 #push_off_navbar{
 	padding-top: 17%;
-}
+}*/
 
 /* gumby modifications */
 .skiplink{
