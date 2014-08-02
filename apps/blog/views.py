@@ -10,6 +10,13 @@ class IndexView(ListView):
     template_name = 'blog/index.html'
     queryset = Article.objects.all()[:5]
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['directive_count'] = Article.objects.filter(branch_slug='directive').count()
+        context['hacknights_count'] = Article.objects.filter(branch_slug='hacknights').count()
+        context['internship_count'] = Article.objects.filter(branch_slug='internships').count
+        return context
+
 
 class BranchArticlesView(ListView):
     model = Article

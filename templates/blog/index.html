@@ -17,8 +17,45 @@
     </div>
 {% endblock %}
 {% block content %}
+    <br>
     <div class="row">
-      <div class="centered ten columns">
+        <div class="ten columns push_one">
+            <div class="twelve columns">
+                <div class="three columns push_one wrapper center-text">
+                    <a href="/blog/directive">
+                        <img class="section_banner image circle" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
+                        <span class="section">
+                            <h4>Directive</h4>
+                            <hr>
+                            <p>{{directive_count}}</p>
+                        </span>
+                    </a>
+                </div>
+                <div class="three columns push_one wrapper center-text">
+                    <a href="/blog/devteam">
+                        <img class="section_banner image circle" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
+                        <span class="section">
+                            <h4>HackNights</h4>
+                            <hr>
+                            <p>{{hacknights_count}}</p>
+                        </span>
+                    </a>
+                </div>
+                <div class="three columns push_one wrapper center-text">
+                    <a href="/blog/starting_up">
+                        <img class="section_banner image circle" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
+                        <span class="section">
+                            <h4>Internships</h4>
+                            <hr>
+                            <p>{{internship_count}}</p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="centered ten columns go_up">
         <h1>Recent Stories</h1>        
         {% for a in object_list %}
             <h2>{{ a.title|lower|capfirst }}</h2>
@@ -31,52 +68,6 @@
         {% endfor %}
         <hr>
       </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="ten columns push_one">
-            <div class="twelve columns">
-                <div class="four columns wrapper">
-                    <a href="/blog/directive">
-                        <img class="section_banner"src="{% static 'img/science.png' %}" width="100%"/>
-                        <p id="slide">
-                            <span class="center-text">Progress Reports</span><br/>
-                            tarara tada! <br/>
-                            Another try!! <br/>
-                            dhuirwhjfudj <br/>
-                            ehfidj<br>
-                            deokdcko<br/>
-                        </p>
-                    </a>
-                </div>
-                <div class="four columns wrapper">
-                    <a href="/blog/devteam">
-                        <img class="section_banner" src="{% static 'img/design-tools.jpg' %}" width="100%"/>
-                        <p id="slide">
-                            <span>HackNights</span><br/>
-                            tarara tada! <br/>
-                            Another try!! <br/>
-                            dhuirwhjfudj <br/>
-                            ehfidj<br>
-                            deokdcko<br/>
-                        </p>
-                    </a>
-                </div>
-                <div class="four columns wrapper">
-                    <a href="/blog/starting_up">
-                        <img class="section_banner" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
-                        <p id="slide">
-                            <span>Workshops</span><br/>
-                            tarara tada! <br/>
-                            Another try!! <br/>
-                            dhuirwhjfudj <br/>
-                            ehfidj<br>
-                            deokdcko<br/>
-                        </p>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
     <br>
 {% endblock %}

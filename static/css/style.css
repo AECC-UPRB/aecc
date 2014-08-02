@@ -275,9 +275,7 @@ li{
 /* sideup */
 .wrapper {
     position: relative;
-    overflow: hidden;
     width: 100%;
-    height: 100%;
 }
 .wrapper:hover #slide {
     transition: 1s;
@@ -355,7 +353,29 @@ li{
 
 /* blog */
 .section_banner{
-	height: 250px;
+	height: 200px;
+}
+
+.section{
+	z-index: 100;
+}
+.section h4, p{
+	color:white;
+	position:relative;
+	bottom: 170px;
+	text-align: center !important;
+}
+.section hr{
+	position:relative;
+	bottom: 175px;
+	border-color:white;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	width: 60%;
+	margin-left: 20%;
+}
+.go_up{
+	margin-top: -10%;
 }
 
 /* xs */
