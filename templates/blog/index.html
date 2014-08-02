@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}AECC | Blog{% endblock %}
 {% block subheaderpic %}
     <div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
@@ -16,13 +17,28 @@
     </div>
 {% endblock %}
 {% block content %}
-    <br/>
+    <div class="row">
+      <div class="centered ten columns">
+        <h1>Recent Stories</h1>        
+        {% for a in object_list %}
+            <h2>{{ a.title|lower|capfirst }}</h2>
+            <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>
+            <p class="medium-text">{{ a.content|safe|truncatewords:50 }}</p>
+            <div class="medium readmore btn pull_right">
+                <a href="{% url 'blog:article' a.branch_slug a.article_slug %}">Read more</a>
+            </div>       
+            <br><br>
+        {% endfor %}
+        <hr>
+      </div>
+    </div>
+    <br>
     <div class="row">
         <div class="ten columns push_one">
             <div class="twelve columns">
                 <div class="four columns wrapper">
                     <a href="/blog/directive">
-                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <img class="section_banner"src="{% static 'img/science.png' %}" width="100%"/>
                         <p id="slide">
                             <span class="center-text">Progress Reports</span><br/>
                             tarara tada! <br/>
@@ -35,7 +51,7 @@
                 </div>
                 <div class="four columns wrapper">
                     <a href="/blog/devteam">
-                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <img class="section_banner" src="{% static 'img/design-tools.jpg' %}" width="100%"/>
                         <p id="slide">
                             <span>HackNights</span><br/>
                             tarara tada! <br/>
@@ -48,7 +64,7 @@
                 </div>
                 <div class="four columns wrapper">
                     <a href="/blog/starting_up">
-                        <img src="http://lorempixel.com/output/cats-q-c-100-100-4.jpg" width="100%"/>
+                        <img class="section_banner" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
                         <p id="slide">
                             <span>Workshops</span><br/>
                             tarara tada! <br/>
@@ -61,21 +77,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-      <div class="centered ten columns">
-        <hr/>
-        <h1>Recent Stories</h1>        
-        {% for a in object_list %}
-            <h2>{{ a.title|lower|capfirst }}</h2>
-            <p>{{ a.created_by|lower|capfirst }} | {{ a.created_at }}</p>
-            <p class="medium-text">{{ a.content|safe|truncatewords:50 }}</p>
-            <div class="medium readmore btn pull_right">
-                <a href="{% url 'blog:article' a.branch_slug a.article_slug %}">Read more</a>
-            </div>       
-            <br><br>
-        {% endfor %}
-      </div>
     </div>
     <br>
 {% endblock %}
