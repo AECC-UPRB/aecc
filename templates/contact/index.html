@@ -28,7 +28,7 @@
 {% endif%}
 <div class = "row">
 	<div class = "centered ten columns">
-		<form action = "" method = "post">{% csrf_token %}
+		<form action="" method="post">{% csrf_token %}
 			<fieldset>
 				<legend>Send us an email</legend>
 				<ul>
@@ -46,7 +46,7 @@
 						<textarea class = "input textarea"  id="id_message" maxlength="400" name="message" type="text" placeholder = "What's in your mind?"></textarea>
 					</li>						
 					<div class="medium success btn pull_right">
-						<a href="#"><button type = "submit" value = "Send Mail">Send Mail</button></a>
+						<a><button type = "submit" value = "Send Mail">Send Mail</button></a>
 					</div>
 				</ul>
 			</fieldset>
