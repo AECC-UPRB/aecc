@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}AECC | {{branch_articles.branch}}{% endblock %}
+{% block title %}AECC | Stories{% endblock %}
 {% block subheaderpic %}
     <div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
         <div class = "row" id = "subheader-tittle">
@@ -7,7 +7,9 @@
                 <article>
                     <span id="page-header">
                         <h1>
-                            Test {{branch_articles.branch}}
+                            {% for branch in branch_name %}
+                                {{branch.branch|capfirst}}
+                            {% endfor %}
                         </h1>
                     </span>
                 </article>

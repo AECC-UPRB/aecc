@@ -14,7 +14,7 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['directive_count'] = Article.objects.filter(branch_slug='directive').count()
         context['hacknights_count'] = Article.objects.filter(branch_slug='hacknights').count()
-        context['internship_count'] = Article.objects.filter(branch_slug='internships').count
+        context['internship_count'] = Article.objects.filter(branch_slug='internships').count()
         return context
 
 
@@ -28,6 +28,11 @@ class BranchArticlesView(ListView):
         return get_list_or_404(
             Article,
             branch_slug=self.kwargs['branch_slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super(BranchArticlesView, self).get_context_data(**kwargs)
+        context['branch_name'] = Article.objects.filter(branch_slug=self.kwargs['branch_slug'])[:1]
+        return context
 
 
 class ArticleView(DetailView):

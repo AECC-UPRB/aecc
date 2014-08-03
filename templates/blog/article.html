@@ -7,22 +7,25 @@
 		<div class = "row" id = "subheader-tittle">
 			<div class = "block">
 				<article class = "translucent_border">
-					<span id="page-header">	
+					<div id="page-header">	
 						<h1>{{article.title}}</h1>
-						<p>By: {{article.created_by.first_name}} {{article.created_by.last_name}} <br/>
-						Publish date: {{article.created_at.date}}</p>
-						<center><li class="default label" id="label">{{article.branch}}</li></center>
-					</span>
+						<div>
+							<center><li class="default label" id="label">{{article.branch}}</li></center>
+						</div>
+					</div>
 				</article>
 			</div>
 		</div>
 	</div>
 {% endblock %}
-<br/>
 {% block content %}
-	<div class = "row back-color">
-		<div class = "centered eight columns">
-			<p>{{article.content|safe}}</p>	
+	<br/>
+	<div class="row">
+		<div class="centered eight columns">
+			<p>By: {{article.created_by.first_name|capfirst}} {{article.created_by.last_name|capfirst}} 
+				<br/>Publish date: {{article.created_at.date}}
+			</p>
+			{{article.content|safe}}	
 		</div>
 		{% disqus_show_comments %}
 	</div>
