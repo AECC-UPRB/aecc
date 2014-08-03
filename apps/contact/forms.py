@@ -14,5 +14,5 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data['subject']
         message = self.cleaned_data['message']
 
-        recipients = ['example@example.com']
+        recipients = [from_email, ]
         send_mail(subject, message, from_email, recipients)
