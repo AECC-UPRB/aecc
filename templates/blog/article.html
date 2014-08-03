@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load disqus_tags %}
+{% load gravatar %}
 
 {% block title %}{{article.title}}{% endblock title %}
 {% block subheaderpic %}
@@ -9,6 +10,9 @@
 				<article class = "translucent_border">
 					<div id="page-header">	
 						<h1>{{article.title}}</h1>
+						<p>
+							By: {{article.created_by.first_name|capfirst}} {{article.created_by.last_name|capfirst}} Publish date: {{article.created_at.date}}
+						</p>
 						<div>
 							<center><li class="default label" id="label">{{article.branch}}</li></center>
 						</div>
@@ -22,9 +26,6 @@
 	<br/>
 	<div class="row">
 		<div class="centered eight columns">
-			<p>By: {{article.created_by.first_name|capfirst}} {{article.created_by.last_name|capfirst}} 
-				<br/>Publish date: {{article.created_at.date}}
-			</p>
 			{{article.content|safe}}	
 		</div>
 		{% disqus_show_comments %}
