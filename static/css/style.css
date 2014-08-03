@@ -358,7 +358,7 @@ li{
 .section{
 	z-index: 100;
 }
-.section h4, p{
+.section > h4 , .section > p{
 	color:white;
 	position:relative;
 	bottom: 170px;
