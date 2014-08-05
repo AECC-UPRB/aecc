@@ -32,6 +32,7 @@ class Common(Configuration):
         'apps.contact',
         'apps.users',
         'apps.blog',
+        'apps.surveys',
 
         # Third party
         'allauth',
