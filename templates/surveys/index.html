@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	{{survey_data.count}}
+	{% for questions in survey_questions %}
+		{{questions.question}}
+		{% for choices in survey_choices %}
+			{{choices.choices}}
+		{% endfor %}
+	{% endfor %}
+{% endblock content %}
