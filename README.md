@@ -1,6 +1,6 @@
 # UPRB-AECC
 
-Sitio web para la Asociación Estudiantes de Ciencias de Computas de la UPRB
+Pagina web para la Asociación de Ciencias de Computos de la UPRB
 
 ## Reportar errores, sugerencias y otros comentarios
 
