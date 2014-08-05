@@ -2,14 +2,20 @@
 
 El manejamiento de este proyecto se basa en este [modelo](http://nvie.com/posts/a-successful-git-branching-model/), para cualquier feature, bug o mejoramiento que se le pueda hacer para cualquier parte del mismo.
 
-Para empezar a entender el modelo, vamos a explicarlo por ejemplo. 
-
 ##Branching
 
 El branching se utiliza para separar tu espacio de trabajo sea para un feature, bug o mejoramiento. Esto se hace para tener todo tu trabajo separado del trabajo de los demas contribuyentes al proyecto. Esto ayuda a cuando termines tu branch, se pueda evaluar para luego incluirlo en el branch de devbranch.
 
 Ejemplo:
 Si quiere trabajar en un feature, se haria lo siguiente. Crea un branch con un nombre corto y descriptivo para el feature. Todo development se hara en ese branch para ese feature **solamente**. Luego, cuando entienda que ya el feature tiene todo lo que necesita. Favor de someter un pull request. De esta manera se sabra que ya termino con ese feature y otros contribuidores, pueden verificar su trabajo para luego incluirlo en el proyecto.
+
+###Master branch
+
+Este branch, **solamente** se toca cuando se valla hacer un nuevo release y se hace un merge del ultimo snapshot del pasado release.
+
+##Dev Branch
+
+Este branch se utiliza para hacer merge de todos los branches que tengan que ver con features, bugs o mejoramientos. Luego de hacer el merge, se debe verificar que no existan ningun problema con el proyecto en el devbranch.
 
 ##Releases
 
@@ -20,4 +26,3 @@ Los releases son **snapshots** del proyecto en desarollo para llegar a produccio
 ##Hotfixes
 
 Los hotfixes son aquellos arreglos que se tengan que hacer de inmediato ya que el problema estara en produccion.
-
