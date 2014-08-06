@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from .views import SurveyView
+from .views import SurveyView, vote
 
 from django.contrib import admin
 admin.autodiscover()
@@ -7,4 +7,5 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^(?P<slug>[-\w]+)/$', SurveyView.as_view(), name='survey'),
+    url(r'^(?P<slug>[-\w]+)/vote$', vote, name='vote'),
 )

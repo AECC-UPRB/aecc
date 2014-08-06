@@ -1,8 +1,10 @@
 from django.db import models
 from autoslug import AutoSlugField
+from django.conf import settings
 
 
 class Survey(models.Model):
+    sent_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
     title = models.CharField(max_length=50)
     slug = AutoSlugField(populate_from='title')
 

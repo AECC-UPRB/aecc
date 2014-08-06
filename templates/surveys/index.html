@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-	{{survey_data.count}}
-	{% for questions in survey_questions %}
-		{{questions.question}}
-		{% for choices in survey_choices %}
-			{{choices.choices}}
-		{% endfor %}
-	{% endfor %}
+<br><br><br><br><br><br>
+	<div class="row">
+		<div class="twelve columns">
+			<form action="/surveys/{{survey.slug}}/vote" method="POST" role="form">
+			{% csrf_token %}
+				{% for questions in survey_questions %}
+					<label class="inline" for="">{{questions.question}}</label>
+					{% for choices in survey_choices %}
+						{% if choices.poll.id == questions.id %}
+							<label for="">
+								<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">{{choices.choices}}
+							</label>
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+				<input type="submit" value="Try Me">
+			</form>
+		</div>
+	</div>
 {% endblock content %}
