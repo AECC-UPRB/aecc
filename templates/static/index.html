@@ -14,3 +14,27 @@
 		</div>
 	</div>
 {% endblock %}
+{% block content %}
+	<div class="upcoming-events">
+		<div class="row">
+			<div class="twelve columns">
+				<h2>Upcoming Events</h2>
+				{% for event in upcoming_events %}
+					<div class="event-wrap">
+						<h3><a href="{% url 'events:event' event.month event.title_slug %}">{{event.title}}</a></h3>
+						<ul class="event-details">
+							<li><b>When?</b> {{event.event_date}} |</li>
+							<li> <b>Where?</b> {{event.location}} |</li>
+							<li> <b>Tags:</b> {% for tag in event.tags.all %}
+							  <a href="#" class="tag">#{{tag}}</a> 
+							{% endfor %}</li>							
+						</ul>
+						<center>	
+							<a href="{% url 'events:event' event.month event.title_slug %}"><img src="/media/{{event.promo_picture}}" class="event-image"></a>
+						</center>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}
