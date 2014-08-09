@@ -2,6 +2,7 @@ from time import time
 
 from django.db import models
 from django.core.urlresolvers import reverse_lazy
+from django.conf import settings
 
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
@@ -15,15 +16,19 @@ def get_upload_file_name(instance, filename):
 
 
 class Event(models.Model):
+
     class Meta:
         ordering = ['-event_date']
+
+    checked_in = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     title = models.CharField(max_length=100)
     description = models.TextField()
     month = models.CharField(max_length=10, choices=MONTH_CHOICES)
     event_date = models.DateTimeField()
     location = models.CharField(max_length=100)
-    promo_picture = models.FileField(upload_to=get_upload_file_name, blank=True)
+    promo_picture = models.FileField(
+        upload_to=get_upload_file_name, blank=True)
     title_slug = AutoSlugField(populate_from='title', unique=True)
     month_slug = AutoSlugField(populate_from='month', unique=True)
     tags = TaggableManager()

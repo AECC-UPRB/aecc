@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from .views import IndexView, EventView, EventByMonth, HackathonView
+from .views import IndexView, EventView, EventByMonth, HackathonView, participating
 from .feeds import EventCalendarFeed
 
 urlpatterns = patterns(
@@ -29,5 +29,10 @@ urlpatterns = patterns(
         r'^(?P<month>[\w]+)/(?P<title_slug>[-\w]+)/$',
         EventView.as_view(),
         name='event'
+    ),
+    url(
+        r'^(?P<month>[\w]+)/(?P<title_slug>[-\w]+)/check_in$',
+        participating,
+        name='check_in'
     ),
 )

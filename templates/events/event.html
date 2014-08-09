@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load disqus_tags %}
+{% load gravatar %}
 {% block title %}AECC | {{event.title}}{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
@@ -19,14 +20,38 @@
 {% block content %}
 	<div class = "row back-color">
 		<div class = "twelve columns">
-			<p>Location: {{event.location}}</p>
-			<p>Date & Hour: {{event.event_date}}</p>
-			<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
-			<br>
-			<img src="/media/{{event.promo_picture}}" id="single_event_promo">		
-			<h3>What will be covered?</h3>
-			<p>{{event.event_description}}</p>
-			{% disqus_show_comments %}
+			<section>
+				<!-- Event information -->
+				<p>Location: {{event.location}}</p>
+				<p>Date & Hour: {{event.event_date}}</p>
+				<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
+				<br>
+				<img src="/media/{{event.promo_picture}}" id="single_event_promo">
+				<h3>What will be covered?</h3>
+				<hr>
+				<p>{{event.event_description}}</p>
+			</section>
+
+			<section>
+				<div class="twelve columns">
+					<h3>Who joined us?</h3>
+					<hr>
+					<!-- How joined us? -->
+					{% if event.checked_in %}
+						{% for people_present in event.checked_in.all %}
+							<div class="three columns assisted">
+								<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
+							</div>		
+						{% endfor %}
+					{% endif %}
+				</div>
+			</section>
+			
+			<section>
+				{% disqus_show_comments %}
+			</section>
+			<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Try me!</a>
 		</div>
+
 	</div>
 {% endblock %}

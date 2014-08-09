@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView
+from django.shortcuts import redirect, get_object_or_404
 
 from .models import Event, Hackathon
 from .mixins import MonthMixin
@@ -43,3 +44,10 @@ class EventByMonth(ListView):
         context = super(EventByMonth, self).get_context_data(**kwargs)
         context['month'] = self.kwargs['month']
         return context
+
+
+def participating(request, **kwargs):
+    event = get_object_or_404(Event, title_slug=kwargs['month'])
+    event.checked_in.add(request.user.id)
+    event.save()
+    return redirect("/events/%s/%s" % (kwargs['title_slug'], kwargs['month'],))

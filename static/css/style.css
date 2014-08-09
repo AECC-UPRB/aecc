@@ -380,6 +380,9 @@ li{
 .go_up{
 	margin-top: -10%;
 }
+.assisted{
+	margin-left: 1% !important;
+}
 
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
