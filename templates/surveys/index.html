@@ -1,22 +1,43 @@
 {% extends "base.html" %}
-{% block content %}
-<br><br><br><br><br><br>
-	<div class="row">
-		<div class="twelve columns">
-			<form action="/surveys/{{survey.slug}}/vote" method="POST" role="form">
-			{% csrf_token %}
-				{% for questions in survey_questions %}
-					<label class="inline" for="">{{questions.question}}</label>
-					{% for choices in survey_choices %}
-						{% if choices.poll.id == questions.id %}
-							<label for="">
-								<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">{{choices.choices}}
-							</label>
-						{% endif %}
-					{% endfor %}
-				{% endfor %}
-				<input type="submit" value="Try Me">
-			</form>
+{% block subheaderpic %}
+		<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<span id="page-header">
+						<h1>
+							{{survey.title}}
+						</h1>
+					</span>
+				</article>
+			</div>
 		</div>
 	</div>
+{% endblock subheaderpic %}
+{% block content %}
+<br>
+	<div class="row">
+		<div class="twelve columns">
+			<div class=" centered eight columns">
+				<form action="/surveys/{{survey.slug}}/vote" method="POST" role="form">
+				{% csrf_token %}
+					{% for questions in survey_questions %}
+						<label class="inline" for="">{{questions.question}}</label>
+						{% for choices in survey_choices %}
+							{% if choices.poll.id == questions.id %}
+								<label for="choice{{questions.id}}">
+									<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">
+									{{choices.choices|capfirst}}
+								</label>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+					<div class="medium success btn pull_right">
+						<input type="submit" value="Try Me">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<br>
 {% endblock content %}

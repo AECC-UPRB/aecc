@@ -23,7 +23,7 @@ class Poll(models.Model):
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll)
-    choices = models.CharField(max_length=140)
+    choices = models.CharField(max_length=140, blank=False)
     votes = models.IntegerField(default=0)
 
     def __unicode__(self):
