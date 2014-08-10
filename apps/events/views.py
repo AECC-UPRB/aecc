@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.views.generic import ListView, DetailView, TemplateView
 from django.shortcuts import redirect, get_object_or_404
 
@@ -18,6 +20,13 @@ class EventView(DetailView):
     slug_url_kwarg = 'title_slug'
     template_name = 'events/event.html'
     context_object_name = 'event'
+
+    def get_context_data(self, **kwargs):
+        context = super(EventView, self).get_context_data(**kwargs)
+        event = Event.objects.get(title_slug=self.kwargs['title_slug'])
+        context["is_current_date"] = event.event_date == date.today()
+        print event.event_date == date.today()
+        return context
 
 
 class HackathonView(TemplateView):

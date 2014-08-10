@@ -20,38 +20,43 @@
 {% block content %}
 	<div class = "row back-color">
 		<div class = "twelve columns">
-			<section>
-				<!-- Event information -->
-				<p>Location: {{event.location}}</p>
-				<p>Date & Hour: {{event.event_date}}</p>
-				<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
-				<br>
-				<img src="/media/{{event.promo_picture}}" id="single_event_promo">
-				<h3>What will be covered?</h3>
-				<hr>
-				<p>{{event.event_description}}</p>
-			</section>
-
-			<section>
-				<div class="twelve columns">
-					<h3>Who joined us?</h3>
-					<hr>
-					<!-- How joined us? -->
-					{% if event.checked_in %}
-						{% for people_present in event.checked_in.all %}
-							<div class="three columns assisted">
-								<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
-							</div>		
-						{% endfor %}
+			<div class="centered ten columns">
+				<section>
+					<!-- Event information -->
+					<p>Location: {{event.location}}</p>
+					<p>Date & Hour: {{event.event_date}}</p>
+					<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
+					{% if is_current_date %}
+						<div class="medium success btn">
+							<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Check in</a>
+						</div>
 					{% endif %}
-				</div>
-			</section>
-			
-			<section>
-				{% disqus_show_comments %}
-			</section>
-			<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Try me!</a>
-		</div>
+					<br>
+					<img src="/media/{{event.promo_picture}}" id="single_event_promo">
+					<h3>What will be covered?</h3>
+					<hr>
+					<p>{{event.event_description}}</p>
+				</section>
 
+				<section>
+					<div class="twelve columns">
+						<h3>Who joined us?</h3>
+						<hr>
+						<!-- How joined us? -->
+						{% if event.checked_in %}
+							{% for people_present in event.checked_in.all %}
+								<div class="three columns assisted">
+									<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
+								</div>		
+							{% endfor %}
+						{% endif %}
+					</div>
+				</section>
+				
+				<section>
+					{% disqus_show_comments %}
+				</section>
+			</div>
+		</div>
 	</div>
 {% endblock %}
