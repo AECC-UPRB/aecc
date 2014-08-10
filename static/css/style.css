@@ -384,6 +384,14 @@ li{
 	margin-left: 1% !important;
 }
 
+.errorlist{
+	padding:15px;
+	border-radius: 4px;
+	background-color: #df8989;
+	border:1px solid #ca3838;
+	color:#7b2121;
+}
+
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
     #page-header h1{
