@@ -26,7 +26,7 @@
 					<p>Location: {{event.location}}</p>
 					<p>Date & Hour: {{event.event_date}}</p>
 					<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
-					{% if is_current_date %}
+					{% if is_current_date and not has_checked_in%}
 						<div class="medium success btn">
 							<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Check in</a>
 						</div>
@@ -34,15 +34,13 @@
 					<br>
 					<img src="/media/{{event.promo_picture}}" id="single_event_promo">
 					<h3>What will be covered?</h3>
-					<hr>
 					<p>{{event.event_description}}</p>
 				</section>
 
 				<section>
 					<div class="twelve columns">
 						<h3>Who joined us?</h3>
-						<hr>
-						<!-- How joined us? -->
+						<!-- Who joined us? -->
 						{% if event.checked_in %}
 							{% for people_present in event.checked_in.all %}
 								<div class="three columns assisted">
