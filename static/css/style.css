@@ -3,6 +3,9 @@
   margin-bottom: 30px;
   background-color: #eeeeee;
 }
+b {
+	font-weight: bold;
+}
 /* navbar */
 #navbar{
 	margin-bottom: 0px;
@@ -164,7 +167,6 @@
 /* events */
 #single_event_promo{
 	width: 100%;
-	height: 375px;
 }
 #promo_picture{
 	height:250px;
@@ -195,7 +197,7 @@
 #month-display{
 	margin-left: 0px;
 }
-#promo-pic{
+.promo-pic{
 	height: 250px;
 	width:100%;
 }
@@ -375,6 +377,24 @@ li{
 }
 .go_up{
 	margin-top: -10%;
+}
+.upcoming-events {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.event-wrap {
+	padding: 5px;
+}
+.event-details > li {
+	display: inline;
+}
+.event-image {
+	margin: 15px;
+	border-radius: 3px;
+	max-height: 400px;
+}
+.tag:hover {
+	text-decoration: underline;
 }
 
 /* xs */
