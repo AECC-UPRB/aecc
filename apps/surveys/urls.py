@@ -7,5 +7,6 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^(?P<slug>[-\w]+)/$', SurveyView.as_view(), name='survey'),
+    # TODO - remove url causes leak
     url(r'^(?P<slug>[-\w]+)/vote$', vote, name='vote'),
 )

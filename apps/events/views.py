@@ -55,7 +55,7 @@ class EventByMonth(ListView):
         context['month'] = self.kwargs['month']
         return context
 
-
+# TODO - create a form. This causes a leak
 def participating(request, **kwargs):
     event = get_object_or_404(Event, title_slug=kwargs['month'])
     event.checked_in.add(request.user.id)
