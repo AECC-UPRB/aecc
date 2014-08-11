@@ -3,7 +3,7 @@ from django.views.generic import ListView
 
 from .models import Survey, Poll, Choice
 
-
+# TODO - Change ListView to FormView and implement post method
 class SurveyView(ListView):
     model = Survey
     template_name = "surveys/index.html"
@@ -19,6 +19,7 @@ class SurveyView(ListView):
         return context
 
 
+# TODO Logic goes to "SurveyForm"
 def vote(request, slug):
     s = get_object_or_404(Survey, slug=slug)
     p = Poll.objects.filter(survey=s)
