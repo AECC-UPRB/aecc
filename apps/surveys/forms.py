@@ -11,15 +11,12 @@ class SurveyForm(forms.Form):
         if not user in s.sent_by.all():
             p = Poll.objects.filter(survey=s)
             for questions_votes in p:
-                try:
-                    c = get_object_or_404(
-                        Choice, pk=kwargs['post_data']['choice' + str(questions_votes.id)], poll=questions_votes.id)
-
-                except (KeyError, Choice.DoesNotExist):
-                    return False
-                else:
-                    c.votes += 1
-                    c.save()
-                    s.sent_by.add(user)
-                    s.save()
-                    return True
+                c = get_object_or_404(
+                    Choice,
+                    pk=
+                    kwargs['post_data']['choice' + str(questions_votes.id)],
+                    poll=questions_votes.id)
+                c.votes += 1
+                c.save()
+                s.sent_by.add(user)
+                s.save()

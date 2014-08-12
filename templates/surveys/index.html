@@ -19,28 +19,26 @@
 	<div class="row">
 		<div class="twelve columns">
 			<div class=" centered eight columns">
-				{% if error_message %}
-					{{error_message}}
+				{% if form.errors %}
+					{{form.errors}}
 				{% endif %}
-				{% if not request.user in survey.sent_by.all %}
-					<form action="{% url 'surveys:survey' survey.slug %}" method="POST" role="form">
-					{% csrf_token %}
-						{% for questions in survey_questions %}
-							<label class="inline" for="">{{questions.question}}</label>
-							{% for choices in survey_choices %}
-								{% if choices.poll.id == questions.id %}
-									<label for="choice{{questions.id}}">
-										<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">
-										{{choices.choice_text|capfirst}}
-									</label>
-								{% endif %}
-							{% endfor %}
+				<form action="{% url 'surveys:survey' survey.slug %}" method="POST" role="form">
+				{% csrf_token %}
+					{% for questions in survey_questions %}
+						<label class="inline" for="">{{questions.question}}</label>
+						{% for choices in survey_choices %}
+							{% if choices.poll.id == questions.id %}
+								<label for="choice{{questions.id}}">
+									<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">
+									{{choices.choice_text|capfirst}}
+								</label>
+							{% endif %}
 						{% endfor %}
-						<div class="medium success btn pull_right">
-							<input type="submit" value="Try Me">
-						</div>
-					</form>
-				{% endif %}
+					{% endfor %}
+					<div class="medium success btn pull_right">
+						<input type="submit" value="Try Me">
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
