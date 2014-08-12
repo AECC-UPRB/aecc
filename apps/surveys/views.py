@@ -1,13 +1,15 @@
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import ListView
+from django.shortcuts import Http404, redirect
+from django.views.generic import FormView
 
 from .models import Survey, Poll, Choice
+from .forms import SurveyForm
+
 
 # TODO - Change ListView to FormView and implement post method
-class SurveyView(ListView):
-    model = Survey
+class SurveyView(FormView):
     template_name = "surveys/index.html"
-    slug_field = 'slug'
+    form_class = SurveyForm
+    success_url = '/thanks/'
 
     def get_context_data(self, **kwargs):
         survey_object = Survey.objects.filter(slug=self.kwargs['slug'])
@@ -18,17 +20,19 @@ class SurveyView(ListView):
         context['survey_choices'] = Choice.objects.filter(poll=poll_object)
         return context
 
+    def post(self, request, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
-# TODO Logic goes to "SurveyForm"
-def vote(request, slug):
-    s = get_object_or_404(Survey, slug=slug)
-    p = Poll.objects.filter(survey=s)
-    for questions_votes in p:
-        choice = 'choice' + str(questions_votes.id)
-        c = get_object_or_404(
-            Choice, pk=request.POST[choice], poll=questions_votes.id)
-        c.votes += 1
-        c.save()
-    s.sent_by.add(request.user.id)
-    s.save()
-    return redirect('/blog')
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            self.kwargs['post_data'] = self.request.POST
+            valid = form.save_form(self.request.user.id, **self.kwargs)
+            if valid:
+                return redirect('index')
+            else:
+                raise Http404
