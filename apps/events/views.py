@@ -1,4 +1,7 @@
+from datetime import date
+
 from django.views.generic import ListView, DetailView, TemplateView
+from django.shortcuts import redirect, get_object_or_404
 
 from .models import Event, Hackathon
 from .mixins import MonthMixin
@@ -17,6 +20,14 @@ class EventView(DetailView):
     slug_url_kwarg = 'title_slug'
     template_name = 'events/event.html'
     context_object_name = 'event'
+
+    def get_context_data(self, **kwargs):
+        context = super(EventView, self).get_context_data(**kwargs)
+        event = Event.objects.get(title_slug=self.kwargs['title_slug'])
+        context['is_current_date'] = event.event_date == date.today()
+        context[
+            'has_checked_in'] = self.request.user in event.checked_in.all()
+        return context
 
 
 class HackathonView(TemplateView):
@@ -43,3 +54,10 @@ class EventByMonth(ListView):
         context = super(EventByMonth, self).get_context_data(**kwargs)
         context['month'] = self.kwargs['month']
         return context
+
+# TODO - create a form. This causes a leak
+def participating(request, **kwargs):
+    event = get_object_or_404(Event, title_slug=kwargs['month'])
+    event.checked_in.add(request.user.id)
+    event.save()
+    return redirect("/events/%s/%s" % (kwargs['title_slug'], kwargs['month'],))
