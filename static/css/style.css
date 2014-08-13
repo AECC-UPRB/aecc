@@ -396,6 +396,9 @@ li{
 .tag:hover {
 	text-decoration: underline;
 }
+.no_margin_left{
+	margin-left: 0;
+}
 
 /* xs */
 @media (min-width: 0px) and (max-width: 767px) {
