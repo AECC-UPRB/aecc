@@ -7,6 +7,9 @@ hr {
   margin-bottom: 30px;
   background-color: #eeeeee;
 }
+b {
+	font-weight: bold;
+}
 /* navbar */
 #navbar{
 	margin-bottom: 0px;
@@ -168,7 +171,10 @@ hr {
 /* events */
 #single_event_promo{
 	width: 100%;
+<<<<<<< HEAD
 	height: 450px;
+=======
+>>>>>>> origin/devbranch
 }
 #promo_picture{
 	height:250px;
@@ -199,7 +205,7 @@ hr {
 #month-display{
 	margin-left: 0px;
 }
-#promo-pic{
+.promo-pic{
 	height: 250px;
 	width:100%;
 }
@@ -384,6 +390,7 @@ li{
 .go_up{
 	margin-top: -10%;
 }
+<<<<<<< HEAD
 .assisted{
 	margin-left: 1% !important;
 }
@@ -394,6 +401,28 @@ li{
 	background-color: #df8989;
 	border:1px solid #ca3838;
 	color:#7b2121;
+=======
+.upcoming-events {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.event-wrap {
+	padding: 5px;
+}
+.event-details > li {
+	display: inline;
+}
+.event-image {
+	margin: 15px;
+	border-radius: 3px;
+	max-height: 400px;
+}
+.tag:hover {
+	text-decoration: underline;
+}
+.no_margin_left{
+	margin-left: 0;
+>>>>>>> origin/devbranch
 }
 
 /* xs */
