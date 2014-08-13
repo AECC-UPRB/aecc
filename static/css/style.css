@@ -1,3 +1,7 @@
+hr {
+	border-top-width: 0;
+	border-color: rgba(150, 150, 150, 0.3);
+}
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;

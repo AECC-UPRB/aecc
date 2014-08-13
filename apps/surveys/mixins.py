@@ -1,12 +1,13 @@
 from django.shortcuts import redirect
 
 from .models import Survey
+from .forms import SurveyForm
 
 
 class SurveySubmittedMixin(object):
+    form_class = SurveyForm
 
     def get(self, request, *args, **kwargs):
-        print self.kwargs['slug']
         if request.user in Survey.objects.get(
                 slug=self.kwargs['slug']).sent_by.all():
             return redirect('index')

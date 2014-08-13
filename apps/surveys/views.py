@@ -1,18 +1,19 @@
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView, TemplateView
+from django.contrib import messages
+from django.shortcuts import redirect
 
 from braces.views import LoginRequiredMixin
 
 from .models import Survey, Poll, Choice
-from .forms import SurveyForm
 from .mixins import SurveySubmittedMixin
 
 
 class SurveyView(LoginRequiredMixin, SurveySubmittedMixin, FormView):
     template_name = 'surveys/index.html'
-    form_class = SurveyForm
     success_url = reverse_lazy('surveys:thanks')
+    object = None
 
     def get_context_data(self, **kwargs):
         context = super(SurveyView, self).get_context_data(**kwargs)
@@ -31,12 +32,24 @@ class SurveyView(LoginRequiredMixin, SurveySubmittedMixin, FormView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        self.kwargs['post_data'] = self.request.POST
-        form.save_form(self.request.user.id, **self.kwargs)
+        self.object = Survey.objects.get(slug=self.kwargs['slug'])
+        if not self.request.user in self.object.sent_by.all():
+            questions = Poll.objects.filter(survey=self.object)
+            for q in questions:
+                try:
+                    c = q.choice_set.get(
+                        pk=self.request.POST["choice"+str(q.id)])
+                    c.votes += 1
+                    c.save()
+                    self.object.save()
+                except (KeyError, Choice.DoesNotExist):
+                    messages.error(
+                        self.request,
+                        'Please select a choice for each question.')
+                    return self.render_to_response(
+                        self.get_context_data(form=form))
+            self.object.sent_by.add(self.request.user)
         return HttpResponseRedirect(self.get_success_url())
-
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
 
 
 class ThanksView(TemplateView):

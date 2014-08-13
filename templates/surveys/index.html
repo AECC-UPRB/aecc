@@ -19,24 +19,28 @@
 	<div class="row">
 		<div class="twelve columns">
 			<div class=" centered eight columns">
-				{% if form.errors %}
-					{{form.errors}}
+				{% if messages %}
+				    {% for message in messages %}
+				    <li class="danger alert">{{message}}</li>
+				    {% endfor %}
 				{% endif %}
 				<form action="{% url 'surveys:survey' survey.slug %}" method="POST" role="form">
 				{% csrf_token %}
 					{% for questions in survey_questions %}
-						<label class="inline" for="">{{questions.question}}</label>
+						<h4 class="inline">{{questions.question}}</h4>
+						<hr>
 						{% for choices in survey_choices %}
 							{% if choices.poll.id == questions.id %}
-								<label for="choice{{questions.id}}">
-									<input class="input" name="choice{{questions.id}}" value="{{choices.id}}" type="radio">
-									{{choices.choice_text|capfirst}}
+								<label for="choice{{choices.id}}">
+									<input class="input" type="radio" name="choice{{questions.id}}" id="choice{{choices.id}}" value="{{choices.id}}">
+									<span></span>{{choices.choice_text|capfirst}}
 								</label>
 							{% endif %}
 						{% endfor %}
+						<br>
 					{% endfor %}
 					<div class="medium success btn pull_right">
-						<input type="submit" value="Try Me">
+						<input type="submit" value="Submit">
 					</div>
 				</form>
 			</div>
