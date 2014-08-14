@@ -68,8 +68,9 @@ class User(AbstractBaseUser):
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
     courses = MultiSelectField(choices=COURSES_CHOICES, blank=True)
-    programming_languages = MultiSelectField(choices=PROG_LANGUAGES_AND_FRAMEWORKS,
-                                             blank=True)
+    programming_languages = MultiSelectField(
+        choices=PROG_LANGUAGES_AND_FRAMEWORKS,
+        blank=True)
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)
@@ -78,11 +79,17 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
+    amount_registered = None
+
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
                        'gender', 'student_number', 'phone_number']
+
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
+        self.amount_registered = self.amount_payed
 
     def __unicode__(self):
         return self.email
@@ -115,23 +122,31 @@ def check_payed_amount(sender, **kwargs):
     c = kwargs['instance']
     date_info = datetime.now()
 
-    if c.amount_payed != 0 and c.amount_payed >= 15:
-        full_payment_receipt = ('Nombre: ' + c.first_name + ' ' + c.last_name
-            + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
-            + '\nCantidad pagada: ' + str(c. amount_payed)
-            + '\nCantidad a pagar: ' + str(0))
-        send_mail('AECC Recibo', full_payment_receipt, 'example@example.com',
-                  [c.email], fail_silently=False)
+    if c.amount_registered != c.amount_payed:
+        if c.amount_payed != 0 and c.amount_payed >= 15:
+            full_payment_receipt = (
+                'Nombre: ' + c.first_name.capitalize() + ' '
+                + c.last_name.capitalize()
+                + '\nFecha y hora: ' +
+                date_info.strftime("%Y-%m-%d %H:%M")
+                + '\nCantidad pagada: $' +
+                str(c. amount_payed)
+                + '\nCantidad a pagar: $' + str(0))
+            send_mail(
+                'AECC Recibo', full_payment_receipt, 'example@example.com',
+                [c.email], fail_silently=False)
 
-    elif c.amount_payed < 15 and c.amount_payed != 0:
-        amount_owed = 15 - c.amount_payed
-        partial_payment_receipt = ('Nombre: '
-            + c.first_name + ' ' + c.last_name
-            + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
-            + '\nCantidad pagada: ' + str(c. amount_payed)
-            + '\nCantidad a pagar: ' + str(amount_owed))
-        send_mail('AECC Recibo', partial_payment_receipt,
-                  'example@example.com', [c.email], fail_silently=False)
+        elif c.amount_payed < 15 and c.amount_payed != 0:
+            amount_owed = 15 - c.amount_payed
+            partial_payment_receipt = (
+                'Nombre: ' + c.first_name.capitalize()
+                + ' ' + c.last_name.capitalize()
+                + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
+                + '\nCantidad pagada: $' + str(c. amount_payed)
+                + '\nCantidad a pagar: $' + str(amount_owed))
+            send_mail('AECC Recibo', partial_payment_receipt,
+                      'example@example.com', [c.email], fail_silently=False)
+    c.amount_registered = c.amount_payed
 
 
 post_save.connect(check_payed_amount, sender=User)
