@@ -11,7 +11,7 @@ from .forms import SettingsForm
 
 class DirectiveView(ListView):
     model = User
-    paginate_by = '1'
+    paginate_by = '12'
     queryset = User.objects.filter(amount_payed=15.0)
     template_name = 'users/community.html'
 
