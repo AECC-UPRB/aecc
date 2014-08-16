@@ -22,7 +22,7 @@
 	<div class="twelve columns">
 		<div class="push_one">
 			{% if is_paginated %}
-				{% for people_information in directive %}
+				{% for people_information in community %}
 					{% if forloop.counter <= max_to_present and forloop.counter >= start_with %}
 						<div class="three columns wrapper people-tile">
 				      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
@@ -78,9 +78,9 @@
 			                	</div>
 			                {% endif %}
 			                <span>
-			                    {% for page in number_of_pages %}
+			                    {% for page in paginator.page_range %}
 			                    <span class="small btn default" id="{% if forloop.counter == current_page %}active{% endif %}">
-			                    	<a href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+			                    	<a href="?page={{page}}">{{page}}</a>
 			                    </span>
 			                    {% endfor %}
 			                </span>
@@ -94,7 +94,7 @@
 				</div>
 
 			{% else %}
-				{% for people_information in directive %}
+				{% for people_information in community %}
 					<div class="three columns wrapper people-tile">
 			      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
 			      		<div class="text-center">

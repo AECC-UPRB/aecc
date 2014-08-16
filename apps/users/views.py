@@ -1,5 +1,3 @@
-import math
-
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import UpdateView, ListView, DetailView
 from django.http import Http404
@@ -14,18 +12,11 @@ from .forms import SettingsForm
 class DirectiveView(ListView):
     model = User
     template_name = 'users/community.html'
-    paginate_by = 12
+    paginate_by = '2'
 
     def get_context_data(self, **kwargs):
         context = super(DirectiveView, self).get_context_data(**kwargs)
-        # no need for custom logic for pagination, since ListView already does
-        # the logics for you.
-        # http://ccbv.co.uk/projects/Django/1.6/django.views.generic.list/ListView/
-        active_members = User.objects.filter(amount_payed=15)
-        context['directive'] = active_members
-        number_of_pages = math.ceil(
-            float(active_members.count()) / float(self.paginate_by))
-        context['number_of_pages'] = range(int(number_of_pages))
+        context['community'] = User.objects.filter(amount_payed=15)
         page = self.request.GET.get('page')
         if page is None:
             context['max_to_present'] = int(self.paginate_by)
@@ -33,9 +24,8 @@ class DirectiveView(ListView):
             context['current_page'] = 1
         else:
             max_to_present = int(page) * int(self.paginate_by)
-            start_with = (max_to_present - int(self.paginate_by)) + 1
             context['max_to_present'] = max_to_present
-            context['start_with'] = start_with
+            context['start_with'] = (max_to_present - int(self.paginate_by)) + 1
             context['current_page'] = int(page)
         return context
 
