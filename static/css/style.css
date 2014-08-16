@@ -285,10 +285,17 @@ li{
 /* sideup */
 .wrapper {
 	position: relative;
+<<<<<<< HEAD
+	overflow: hidden;
+	margin-left: 5% !important;
+	width:100%;
+	height: 100%;
+=======
     overflow: hidden;
     width: 100%;
     height: 100%; 
     height: 100%;
+>>>>>>> origin/devbranch
 }
 .wrapper:hover #slide {
     transition: 1s;
@@ -423,6 +430,12 @@ li{
 .no_margin_left{
 	margin-left: 0;
 >>>>>>> origin/devbranch
+}
+#active{
+	background:#1D2124;
+}
+#active a{
+	color:white;
 }
 
 /* xs */
