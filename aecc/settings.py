@@ -45,6 +45,7 @@ class Common(Configuration):
         'tinymce',
         'disqus',
         'multiselectfield',
+        'south',
     )
 
     DISQUS_API_KEY = values.Value(environ_prefix=None)
