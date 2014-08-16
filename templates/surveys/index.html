@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block subheaderpic %}
+		<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
+		<div class = "row" id = "subheader-tittle">
+			<div class = "block">
+				<article class = "translucent_border">
+					<span id="page-header">
+						<h1>
+							{{survey.title}}
+						</h1>
+					</span>
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock subheaderpic %}
+{% block content %}
+<br>
+	<div class="row">
+		<div class="twelve columns">
+			<div class=" centered eight columns">
+				{% if messages %}
+				    {% for message in messages %}
+				    <li class="danger alert">{{message}}</li>
+				    {% endfor %}
+				{% endif %}
+				<form action="{% url 'surveys:survey' survey.slug %}" method="POST" role="form">
+				{% csrf_token %}
+					{% for questions in survey_questions %}
+						<h4 class="inline">{{questions.question}}</h4>
+						<hr>
+						{% for choices in survey_choices %}
+							{% if choices.poll.id == questions.id %}
+								<label for="choice{{choices.id}}">
+									<input class="input" type="radio" name="choice{{questions.id}}" id="choice{{choices.id}}" value="{{choices.id}}">
+									<span></span>{{choices.choice_text|capfirst}}
+								</label>
+							{% endif %}
+						{% endfor %}
+						<br>
+					{% endfor %}
+					<div class="medium success btn pull_right">
+						<input type="submit" value="Submit">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<br>
+{% endblock content %}

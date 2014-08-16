@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load disqus_tags %}
+{% load gravatar %}
 {% block title %}AECC | {{event.title}}{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
@@ -19,14 +20,71 @@
 {% block content %}
 	<div class = "row back-color">
 		<div class = "twelve columns">
-			<p>Location: {{event.location}}</p>
-			<p>Date & Hour: {{event.event_date}}</p>
-			<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
-			<br>
-			<img src="/media/{{event.promo_picture}}" id="single_event_promo">		
-			<h3>What will be covered?</h3>
-			<p>{{event.event_description}}</p>
-			{% disqus_show_comments %}
+			<div class="centered ten columns">
+				<section>
+					<!-- Event information -->
+					<p>Location: {{event.location}}</p>
+					<p>Date & Hour: {{event.event_date}}</p>
+					
+					<span>
+						<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
+						{% if is_current_date and not has_checked_in%}
+							<div class="medium success btn">
+								<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Check in</a>
+							</div>
+						{% endif %}
+						<span class="pull_right">
+							<div class="fb-share-button" data-href="aecc-uprb.herokuapp.com{{request.path}}" data-type="button"></div>
+						</span>
+					</span>
+
+					<img src="/media/{{event.promo_picture}}" id="single_event_promo">
+				</section>
+
+				<section>
+					<span class="pull_right">
+						<a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
+					</span>
+					<div class="twelve columns">
+						<h3>What will be covered?</h3>
+						<p>{{event.event_description}}</p>
+					</div>
+				</section>
+
+				<section>
+					<div class="twelve columns">
+						<h3>Who joined us?</h3>
+						<!-- Who joined us? -->
+						{% if event.checked_in %}
+							{% for people_present in event.checked_in.all %}
+								<div class="three columns assisted">
+									<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
+								</div>		
+							{% endfor %}
+						{% endif %}
+					</div>
+				</section>
+				
+				<section>
+					{% disqus_show_comments %}
+				</section>
+			</div>
 		</div>
 	</div>
 {% endblock %}
+{% block extra_js %}
+	<!-- Facebook Share -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<!-- Twitter Share -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	</script>
+{% endblock extra_js %}
