@@ -26,15 +26,15 @@
                 <li><a class="{% if request.path == '/events/' %}navactive{% endif %}" href="{% url 'events:index' %}">Events</a>
                     <div class="dropdown">
                         <ul>
-                            <li><a href="{% url 'events:month' 'january' %}">January</a>
+                            <li><a href="{% url 'events:month' 'august' %}">August</a>
                             </li>
-                            <li><a href="{% url 'events:month' 'february' %}">February</a>
+                            <li><a href="{% url 'events:month' 'september' %}">September</a>
                             </li>
-                            <li><a href="{% url 'events:month' 'march' %}">March</a>
+                            <li><a href="{% url 'events:month' 'october' %}">October</a>
                             </li>
-                            <li><a href="{% url 'events:month' 'april' %}">April</a>
+                            <li><a href="{% url 'events:month' 'november' %}">November</a>
                             </li>
-                            <li><a href="{% url 'events:month' 'may' %}">May</a>
+                            <li><a href="{% url 'events:month' 'december' %}">December</a>
                             </li>
                         </ul>
                     </div>

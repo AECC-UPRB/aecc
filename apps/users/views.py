@@ -1,5 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import UpdateView, TemplateView, DetailView
+from django.views.generic import UpdateView, ListView, DetailView
 from django.http import Http404
 from django.core.urlresolvers import reverse
 
@@ -9,13 +9,11 @@ from .models import User
 from .forms import SettingsForm
 
 
-class DirectiveView(TemplateView):
+class DirectiveView(ListView):
+    model = User
+    paginate_by = '12'
+    queryset = User.objects.filter(amount_payed=15.0)
     template_name = 'users/community.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(DirectiveView, self).get_context_data(**kwargs)
-        context['directive'] = User.objects.filter(amount_payed=15)
-        return context
 
 
 class SettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

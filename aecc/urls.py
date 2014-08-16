@@ -2,14 +2,15 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.views.generic import TemplateView
 
+from . import views
+
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
     # static pages
-    url(r'^$', TemplateView.as_view(
-        template_name='static/index.html'), name='index'),
+    url(r'^$', views.HomeView.as_view(), name='index'),
     url(r'^about/$', TemplateView.as_view(
         template_name='static/about.html'), name='about'),
 
@@ -21,8 +22,8 @@ urlpatterns = patterns(
     url(r'^blog/', include('apps.blog.urls', namespace='blog')),
     url(r'^members/', include('apps.users.urls', namespace='users')),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^surveys/', include('apps.surveys.urls', namespace='surveys')),
     url(
         r'^media/(?P<path>.*)$',
         'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    url(r'^surveys/', include('apps.surveys.urls', namespace='surveys')),
 )

@@ -47,8 +47,9 @@ class Common(Configuration):
         'multiselectfield',
     )
 
-    DISQUS_API_KEY = '4vCJNFX7DVc1nHb9sI1bxYOEtLjhnmC1Nmw2qBqEwMWMtOTe7gVlxOib9X0GwtA6'
-    DISQUS_WEBSITE_SHORTNAME = 'aeccuprb'
+    DISQUS_API_KEY = values.Value(environ_prefix=None)
+
+    DISQUS_WEBSITE_SHORTNAME = values.Value(environ_prefix=None)
 
     MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -94,6 +95,7 @@ class Common(Configuration):
         "django.contrib.auth.context_processors.auth",
         "allauth.account.context_processors.account",
         "allauth.socialaccount.context_processors.socialaccount",
+        "django.contrib.messages.context_processors.messages"
     )
 
     AUTHENTICATION_BACKENDS = (
