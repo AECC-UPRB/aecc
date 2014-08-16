@@ -276,9 +276,13 @@ li{
 
 /* sideup */
 .wrapper {
+	position: relative;
+	overflow: hidden;
 	margin-left: 5% !important;
+	width:100%;
+	height: 100%;
 }
-/*.wrapper:hover #slide {
+.wrapper:hover #slide {
     transition: 1s;
     bottom: 0;
     background-color: #d04526; 
@@ -300,7 +304,7 @@ li{
 }
 #slide span{
 	font-weight: bolder;
-}*/
+}
 .label.default {
 	background: #d04526;
 	border: 1px solid #d04526;
@@ -398,6 +402,12 @@ li{
 }
 .no_margin_left{
 	margin-left: 0;
+}
+#active{
+	background:#1D2124;
+}
+#active a{
+	color:white;
 }
 
 /* xs */

@@ -19,55 +19,128 @@
 {% block content %}
 <br>
 <div class = "row">
-	<div class="twelve columns">	
-	<div class="push_one">
-	{% for people_information in directive %}
-		<div class="three columns wrapper people-tile">
-      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
-      		<div class="text-center">
-		        <h6>{{people_information.first_name}} {{people_information.last_name}}</h6>
-      		</div>
-      		<p id="slide">
-        		<span class="ten columns">
-        			<span class="push_three">
-	        			<a href="{% url 'users:profile' user.slug %}">
-		        			<i class="footer-social icon-user"></i>
-		        		</a>
-        			</span>
-        		</span>
-        		<span class="push_two three columns">
-	        		{% if people_information.facebook %}
-	        			<a href="{{people_information.facebook}}">
-	        				<i class="footer-social icon-facebook"></i>
-	        			</a>
-	        		{% endif %}
-        		</span>
-        		<span class="push_two three columns">
-	        		{% if people_information.twitter %}
-	        			<a href="{{people_information.twitter}}">
-	        				<i class="footer-social icon-twitter"></i>
-	         			</a>
-	        		{% endif %}
-        		</span>
-        		<span class="push_two three columns">
-	        		{% if people_information.github %}
-	        			<a href="{{people_information.github}}">
-	        				<i class="footer-social icon-github"></i>
-	        			</a>
-	        		{% endif %}
-        		</span>
-        		<span class="push_two three columns">
-	        		{% if people_information.linkedin %}
-	        			<a href="{{people_information.linkedin}}">
-	        				<i class="footer-social icon-linkedin"></i>
-	        			</a>
-	        		{% endif %}
-        		</span>
-        	</p>
-	    </div>
-		<div class="one columns"></div>
-	{% endfor %}
-	</div>
+	<div class="twelve columns">
+		<div class="push_one">
+			{% if is_paginated %}
+				{% for people_information in directive %}
+					{% if forloop.counter <= max_to_present and forloop.counter >= start_with %}
+						<div class="three columns wrapper people-tile">
+				      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
+				      		<div class="text-center">
+						        <h6>{{people_information.first_name}} {{people_information.last_name}}</h6>
+				      		</div>
+				      		<p id="slide">
+				        		<span class="ten columns">
+				        			<span class="push_three">
+					        			<a href="{% url 'users:profile' people_information.slug %}">
+						        			<i class="footer-social icon-user"></i>
+						        		</a>
+				        			</span>
+				        		</span>
+				        		<span class="push_two three columns">
+					        		{% if people_information.facebook %}
+					        			<a href="{{people_information.facebook}}">
+					        				<i class="footer-social icon-facebook"></i>
+					        			</a>
+					        		{% endif %}
+				        		</span>
+				        		<span class="push_two three columns">
+					        		{% if people_information.twitter %}
+					        			<a href="{{people_information.twitter}}">
+					        				<i class="footer-social icon-twitter"></i>
+					         			</a>
+					        		{% endif %}
+				        		</span>
+				        		<span class="push_two three columns">
+					        		{% if people_information.github %}
+					        			<a href="{{people_information.github}}">
+					        				<i class="footer-social icon-github"></i>
+					        			</a>
+					        		{% endif %}
+				        		</span>
+				        		<span class="push_two three columns">
+					        		{% if people_information.linkedin %}
+					        			<a href="{{people_information.linkedin}}">
+					        				<i class="footer-social icon-linkedin"></i>
+					        			</a>
+					        		{% endif %}
+				        		</span>
+				        	</p>
+					    </div>
+					{% endif %}	
+				{% endfor %}
+				<div class="twelve columns">
+					<div class="pull_right">
+			            <span>
+			                {% if page_obj.has_previous %}
+			                	<div class="small btn default">
+			                    	<a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+			                	</div>
+			                {% endif %}
+			                <span>
+			                    {% for page in number_of_pages %}
+			                    <span class="small btn default" id="{% if forloop.counter == current_page %}active{% endif %}">
+			                    	<a href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+			                    </span>
+			                    {% endfor %}
+			                </span>
+			                {% if page_obj.has_next %}
+			                	<div class="small btn default">
+			                    	<a href="?page={{ page_obj.next_page_number }}">Next</a>
+			                	</div>
+			                {% endif %}
+			            </span>
+			        </div>
+				</div>
+
+			{% else %}
+				{% for people_information in directive %}
+					<div class="three columns wrapper people-tile">
+			      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
+			      		<div class="text-center">
+					        <h6>{{people_information.first_name}} {{people_information.last_name}}</h6>
+			      		</div>
+			      		<p id="slide">
+			        		<span class="ten columns">
+			        			<span class="push_three">
+				        			<a href="{% url 'users:profile' people_information.slug %}">
+					        			<i class="footer-social icon-user"></i>
+					        		</a>
+			        			</span>
+			        		</span>
+			        		<span class="push_two three columns">
+				        		{% if people_information.facebook %}
+				        			<a href="{{people_information.facebook}}">
+				        				<i class="footer-social icon-facebook"></i>
+				        			</a>
+				        		{% endif %}
+			        		</span>
+			        		<span class="push_two three columns">
+				        		{% if people_information.twitter %}
+				        			<a href="{{people_information.twitter}}">
+				        				<i class="footer-social icon-twitter"></i>
+				         			</a>
+				        		{% endif %}
+			        		</span>
+			        		<span class="push_two three columns">
+				        		{% if people_information.github %}
+				        			<a href="{{people_information.github}}">
+				        				<i class="footer-social icon-github"></i>
+				        			</a>
+				        		{% endif %}
+			        		</span>
+			        		<span class="push_two three columns">
+				        		{% if people_information.linkedin %}
+				        			<a href="{{people_information.linkedin}}">
+				        				<i class="footer-social icon-linkedin"></i>
+				        			</a>
+				        		{% endif %}
+			        		</span>
+			        	</p>
+				    </div>
+				{% endfor %}
+			{% endif %}
+		</div>	
 	</div>
 </div>
 <br>
