@@ -1,6 +1,6 @@
 # UPRB-AECC
 
-Sitio web para la Asociación Estudiantes de Ciencias de Computas de la UPRB
+Pagina web para la Asociación de Ciencias de Computos de la UPRB
 
 ## Reportar errores, sugerencias y otros comentarios
 
@@ -15,6 +15,8 @@ Aquí un [vídeo](http://www.youtube.com/watch?v=TJlYiMp8FuY) que explica como c
 ## Developers
 
 Este proyecto no sería posible sin la colaboración de otros developers que han donado su tiempo para crear esta aplicación. Si  encuentras un error por favor crea un [issue](https://github.com/eluciano11/aecc/issues) y si puedes arreglarlo te invitamos a hacer y someter un pull request.
+
+Para informacion de como se maneja este proyecto. Puede visitar este [documento](https://github.com/AECC-UPRB/aecc/blob/management-docs/docs/management/index.md) que explica el manejamiento de los branches, releases, etc.
 
 ### Para correr el proyecto
 
