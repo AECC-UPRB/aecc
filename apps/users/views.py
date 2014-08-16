@@ -18,6 +18,9 @@ class DirectiveView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(DirectiveView, self).get_context_data(**kwargs)
+        # no need for custom logic for pagination, since ListView already does
+        # the logics for you.
+        # http://ccbv.co.uk/projects/Django/1.6/django.views.generic.list/ListView/
         active_members = User.objects.filter(amount_payed=15)
         context['directive'] = active_members
         number_of_pages = math.ceil(
