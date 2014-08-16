@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from django.contrib import messages
-from django.shortcuts import redirect
 
 from braces.views import LoginRequiredMixin
 
