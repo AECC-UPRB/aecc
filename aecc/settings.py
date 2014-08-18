@@ -6,7 +6,7 @@ import os
 class Common(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-    ENVIRONMENT = values.Value(environ_prefix=None, default='development')
+    ENVIRONMENT = values.Value(environ_prefix=None, default='DEVELOPMENT')
 
     SECRET_KEY = values.SecretValue(environ_prefix=None)
 
@@ -27,13 +27,6 @@ class Common(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
 
-        # Apps
-        'apps.events',
-        'apps.contact',
-        'apps.users',
-        'apps.blog',
-        'apps.surveys',
-
         # Third party
         'allauth',
         'allauth.account',
@@ -46,6 +39,14 @@ class Common(Configuration):
         'disqus',
         'multiselectfield',
         'south',
+
+        # Apps
+        'apps.users',
+        'apps.events',
+        'apps.contact',
+        'apps.blog',
+        'apps.surveys',
+
     )
 
     DISQUS_API_KEY = values.Value(environ_prefix=None)
@@ -88,7 +89,7 @@ class Common(Configuration):
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
 
-    MEDIA_ROOT = 'media'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     MEDIA_URL = '/media/'
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -156,9 +157,7 @@ class Common(Configuration):
         'custom_undo_redo_levels': 10,
     }
     TINYMCE_SPELLCHECKER = True
-    TINYMCE_COMPRESSOR = True
 
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = values.Value()
     EMAIL_HOST_USER = values.Value()
     EMAIL_HOST_PASSWORD = values.Value()
@@ -184,5 +183,7 @@ class Development(Common):
 
 
 class Production(Common):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    PROTOCOL = 'http'
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

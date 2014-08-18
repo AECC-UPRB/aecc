@@ -9,9 +9,8 @@ register = template.Library()
 
 @register.filter(name='gravatar_url')
 def gravatar_url(instance, email):
-    size = 40
+    size = 145
     hash = hashlib.md5(email.lower()).hexdigest()
-    params = urllib.urlencode({'d': "identicon", 's': str(size)})
-
-    return "{}://www.gravatar.com/avatar/{}?".format(
+    params = urllib.urlencode({'d': 'identicon', 's': str(size)})
+    return "{}://www.gravatar.com/avatar/{}?{}".format(
         settings.PROTOCOL, hash, params)

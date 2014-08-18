@@ -2,9 +2,12 @@ from datetime import date
 
 from django.views.generic import ListView, DetailView, TemplateView
 from django.shortcuts import redirect, get_object_or_404
+from django.http import Http404
 
 from .models import Event, Hackathon
 from .mixins import MonthMixin
+
+from .constants import MONTHS
 
 
 class IndexView(MonthMixin, ListView):
@@ -51,6 +54,8 @@ class EventByMonth(ListView):
         return Event.objects.filter(month=self.kwargs['month'])
 
     def get_context_data(self, **kwargs):
+        if self.kwargs['month'] not in MONTHS:
+            raise Http404
         context = super(EventByMonth, self).get_context_data(**kwargs)
         context['month'] = self.kwargs['month']
         return context
