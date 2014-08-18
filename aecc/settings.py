@@ -157,7 +157,6 @@ class Common(Configuration):
         'custom_undo_redo_levels': 10,
     }
     TINYMCE_SPELLCHECKER = True
-    TINYMCE_COMPRESSOR = True
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = values.Value()
