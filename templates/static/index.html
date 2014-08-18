@@ -1,40 +1,47 @@
 {% extends "base.html" %}
 {% block title %}AECC{% endblock %}
 {% block subheaderpic %}
-	<div class="parallax home_picture" gumby-parallax="0.5" gumby-offset="60">
-		<div class="row" id="subheader-tittle">
+	<div class = "parallax home_picture" gumby-parallax="0.5" gumby-offset="60">
+		<div class = "row" id = "subheader-tittle">
 			<div>
 				<span id="initial-page-header">
 					<h1>
 						University of Puerto Rico in Bayamon
 					</h1>
-					<h2 id = "page-header-subtittle">Computer Science Student Association</h2>
+					<h2 id="page-header-subtittle">Computer Science Student Association</h2>
 				</span>
 			</div>
 		</div>
 	</div>
 {% endblock %}
 {% block content %}
-	<div class="upcoming-events">
-		<div class="row">
-			<div class="twelve columns">
+<br>
+	<div class="row">
+		<div class="twelve columns">
+			<div class="centered ten columns">
 				<h2>Upcoming Events</h2>
+				<hr>
 				{% for event in upcoming_events %}
 					<div class="event-wrap">
 						<h3><a href="{% url 'events:event' event.month event.title_slug %}">{{event.title}}</a></h3>
 						<ul class="event-details">
-							<li><b>When?</b> {{event.event_date}} |</li>
-							<li> <b>Where?</b> {{event.location}} |</li>
-							<li> <b>Tags:</b> {% for tag in event.tags.all %}
-							  <a href="#" class="tag">#{{tag}}</a> 
-							{% endfor %}</li>							
+							<li><b>When?</b> {{event.event_date}} | 
+								<b>Where?</b> {{event.location}} |
+								<b>Tags:</b> 
+								{% for tag in event.tags.all %}
+							  		<a href="#" class="tag">#{{tag}}</a> 
+								{% endfor %}
+							</li>							
 						</ul>
-						<center>	
-							<a href="{% url 'events:event' event.month event.title_slug %}"><img src="/media/{{event.promo_picture}}" class="event-image"></a>
+						<center>
+							<a href="{% url 'events:event' event.month event.title_slug %}">
+								<img src="/media/{{event.promo_picture}}" class="event-image">
+							</a>
 						</center>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
 	</div>
+<br>
 {% endblock content %}
