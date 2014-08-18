@@ -401,7 +401,6 @@ li{
 .go_up{
 	margin-top: -10%;
 }
-<<<<<<< HEAD
 .assisted{
 	margin-left: 1% !important;
 }
@@ -412,7 +411,7 @@ li{
 	background-color: #df8989;
 	border:1px solid #ca3838;
 	color:#7b2121;
-=======
+}
 .upcoming-events {
 	margin-top: 20px;
 	margin-bottom: 30px;
@@ -433,7 +432,6 @@ li{
 }
 .no_margin_left{
 	margin-left: 0;
->>>>>>> origin/devbranch
 }
 #active{
 	background:#1D2124;
