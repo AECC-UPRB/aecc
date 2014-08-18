@@ -27,13 +27,6 @@ class Common(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
 
-        # Apps
-        'apps.events',
-        'apps.contact',
-        'apps.users',
-        'apps.blog',
-        'apps.surveys',
-
         # Third party
         'allauth',
         'allauth.account',
@@ -46,6 +39,14 @@ class Common(Configuration):
         'disqus',
         'multiselectfield',
         'south',
+
+        # Apps
+        'apps.users',
+        'apps.events',
+        'apps.contact',
+        'apps.blog',
+        'apps.surveys',
+
     )
 
     DISQUS_API_KEY = values.Value(environ_prefix=None)
@@ -156,7 +157,6 @@ class Common(Configuration):
         'custom_undo_redo_levels': 10,
     }
     TINYMCE_SPELLCHECKER = True
-    TINYMCE_COMPRESSOR = True
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = values.Value()
