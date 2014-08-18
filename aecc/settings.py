@@ -157,7 +157,7 @@ class Common(Configuration):
         'custom_undo_redo_levels': 10,
     }
     TINYMCE_SPELLCHECKER = True
-    
+
     EMAIL_HOST = values.Value()
     EMAIL_HOST_USER = values.Value()
     EMAIL_HOST_PASSWORD = values.Value()
