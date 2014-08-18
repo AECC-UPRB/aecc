@@ -23,8 +23,16 @@
 			<div class="centered ten columns">
 				<section>
 					<!-- Event information -->
-					<p>Location: {{event.location}}</p>
-					<p>Date & Hour: {{event.event_date}}</p>
+					<ul>
+						<li>
+							<b>When? </b> {{event.event_date}} |
+							<b>Where? </b> {{event.location}} |
+							<b>Tags: </b> 
+							{% for tag in event.tags.all %}
+								<a href="#" class="tag">#{{tag}}</a> 
+							{% endfor %}
+						</li>
+					</ul>
 					
 					<span>
 						<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
@@ -45,23 +53,25 @@
 					<span class="pull_right">
 						<a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
 					</span>
-					<div class="twelve columns">
-						<h3>What will be covered?</h3>
-						<p>{{event.event_description}}</p>
-					</div>
 				</section>
 
 				<section>
 					<div class="twelve columns">
-						<h3>Who joined us?</h3>
-						<!-- Who joined us? -->
-						{% if event.checked_in %}
-							{% for people_present in event.checked_in.all %}
-								<div class="three columns assisted">
-									<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
-								</div>		
-							{% endfor %}
-						{% endif %}
+						<div>
+							<h3>What will be covered?</h3>
+							<p>{{event.event_description}}</p>
+						</div>
+						<div>
+							<h3>Who joined us?</h3>
+							<!-- Who joined us? -->
+							{% if event.checked_in %}
+								{% for people_present in event.checked_in.all %}
+									<div class="three columns assisted">
+										<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
+									</div>		
+								{% endfor %}
+							{% endif %}
+						</div>
 					</div>
 				</section>
 				

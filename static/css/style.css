@@ -81,7 +81,7 @@ b {
 	background-size: cover; /* para que llene todo el background*/
 }
 .home_picture{
-	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg) no-repeat;
+	background: url(../img/unsplash_by_Aleks_Dorohovich.jpg);
 	background-size: cover; /* para que llene todo el background*/
 	width: 100%;
 	height: 100%;
@@ -171,10 +171,7 @@ b {
 /* events */
 #single_event_promo{
 	width: 100%;
-<<<<<<< HEAD
-	height: 450px;
-=======
->>>>>>> origin/devbranch
+	max-height: 400px;
 }
 #promo_picture{
 	height:250px;
@@ -285,17 +282,15 @@ li{
 /* sideup */
 .wrapper {
 	position: relative;
-<<<<<<< HEAD
 	overflow: hidden;
 	margin-left: 5% !important;
 	width:100%;
 	height: 100%;
-=======
     overflow: hidden;
     width: 100%;
     height: 100%; 
     height: 100%;
->>>>>>> origin/devbranch
+
 }
 .wrapper:hover #slide {
     transition: 1s;
@@ -397,7 +392,6 @@ li{
 .go_up{
 	margin-top: -10%;
 }
-<<<<<<< HEAD
 .assisted{
 	margin-left: 1% !important;
 }
@@ -408,7 +402,7 @@ li{
 	background-color: #df8989;
 	border:1px solid #ca3838;
 	color:#7b2121;
-=======
+}
 .upcoming-events {
 	margin-top: 20px;
 	margin-bottom: 30px;
@@ -429,7 +423,6 @@ li{
 }
 .no_margin_left{
 	margin-left: 0;
->>>>>>> origin/devbranch
 }
 #active{
 	background:#1D2124;
@@ -473,7 +466,10 @@ li{
 		margin-left: 2%;
 	}
 	#initial-page-header h1{
-		margin-top: 50%;
+		margin-top: 35%;
+	}
+	.event-image{
+		margin: 0;
 	}
 }
 
