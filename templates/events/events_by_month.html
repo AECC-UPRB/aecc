@@ -21,10 +21,6 @@
 		<div class="twelve columns">
 		<div class="push_two"></div>	
 		{% for events_for_month in events %}		
-			<div class="five columns event-tile">
-				<a href="{% url 'events:event'  events_for_month.month_slug events_for_month.title_slug %}">
-					<img src="/media/{{events_for_month.promo_picture}}" class="promo-pic">
-				</a>
 			<div class="six columns event-tile">
 				<img src="/media/{{events_for_month.promo_picture}}" class="promo-pic">
 				<div class="event-information">	
