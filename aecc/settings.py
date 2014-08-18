@@ -184,5 +184,6 @@ class Development(Common):
 
 
 class Production(Common):
+    PROTOCOL = 'http'
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
