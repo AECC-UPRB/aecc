@@ -27,13 +27,6 @@ class Common(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
 
-        # Apps
-        'apps.events',
-        'apps.contact',
-        'apps.users',
-        'apps.blog',
-        'apps.surveys',
-
         # Third party
         'allauth',
         'allauth.account',
@@ -46,6 +39,14 @@ class Common(Configuration):
         'disqus',
         'multiselectfield',
         'south',
+
+        # Apps
+        'apps.users',
+        'apps.events',
+        'apps.contact',
+        'apps.blog',
+        'apps.surveys',
+
     )
 
     DISQUS_API_KEY = values.Value(environ_prefix=None)
