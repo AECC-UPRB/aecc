@@ -23,8 +23,16 @@
 			<div class="centered ten columns">
 				<section>
 					<!-- Event information -->
-					<p>Location: {{event.location}}</p>
-					<p>Date & Hour: {{event.event_date}}</p>
+					<ul>
+						<li>
+							<b>When? </b> {{event.event_date}} |
+							<b>Where? </b> {{event.location}} |
+							<b>Tags: </b> 
+							{% for tag in event.tags.all %}
+								<a href="#" class="tag">#{{tag}}</a> 
+							{% endfor %}
+						</li>
+					</ul>
 					
 					<span>
 						<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
@@ -52,6 +60,7 @@
 						<div>
 							<h3>What will be covered?</h3>
 							<p>{{event.description}}</p>
+
 						</div>
 						<div>
 							<h3>Who joined us?</h3>
