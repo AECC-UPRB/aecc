@@ -417,6 +417,7 @@ li{
 	margin: 15px;
 	border-radius: 3px;
 	max-height: 400px;
+	width:100%;
 }
 .tag:hover {
 	text-decoration: underline;
