@@ -23,7 +23,7 @@
 		<div class="push_one">
 			{% for people_information in object_list %}
 				<div class="three columns wrapper people-tile">
-		      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}s=145"  width="145" />
+		      		<img class="image circle" src="{{people_information|gravatar_url:people_information.email}}"  width="145" />
 		      		<div class="text-center">
 				        <h6>{{people_information.first_name}} {{people_information.last_name}}</h6>
 		      		</div>

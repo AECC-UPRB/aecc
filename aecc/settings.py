@@ -6,7 +6,7 @@ import os
 class Common(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-    ENVIRONMENT = values.Value(environ_prefix=None, default='development')
+    ENVIRONMENT = values.Value(environ_prefix=None, default='DEVELOPMENT')
 
     SECRET_KEY = values.SecretValue(environ_prefix=None)
 
@@ -157,8 +157,7 @@ class Common(Configuration):
         'custom_undo_redo_levels': 10,
     }
     TINYMCE_SPELLCHECKER = True
-
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    
     EMAIL_HOST = values.Value()
     EMAIL_HOST_USER = values.Value()
     EMAIL_HOST_PASSWORD = values.Value()
@@ -184,6 +183,7 @@ class Development(Common):
 
 
 class Production(Common):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     PROTOCOL = 'http'
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
