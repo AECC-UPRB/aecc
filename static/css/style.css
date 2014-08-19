@@ -266,13 +266,16 @@ li{
 	border: 1px solid #e6e6e6;
 	border-radius: 2px;
 	-webkit-border-radius:4px;
-}
-.people-tile img{
-	margin-top: 10%;
-	margin-left: 14%;
-}
-.people-tile p{
 	text-align: center;
+}
+.center-image{
+	margin:0 auto;
+	margin-top:10%;
+	margin-bottom:10%;
+}
+.people-tile p > .wrapper{
+	text-align: center;
+	color:#1D2124;
 }
 .person-information{
 	color:#444444;
@@ -302,9 +305,6 @@ li{
     transition: 1s;
     bottom: 0;
     background-color: #d04526; 
-}
-.wrapper p{
-	color:white;
 }
 #slide {
     position: absolute;
