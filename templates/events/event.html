@@ -4,6 +4,7 @@
 
 {% block open_graph_meta_tags %}
     <meta property="og:title" content="AECC-UPRB | {{event.title}}"/>
+    <meta property="og:url" content="http://aecc-uprb.herokuapp.com{{request.path}}">
 {% endblock open_graph_meta_tags %}
 
 {% block title %}AECC | {{event.title}}{% endblock %}
