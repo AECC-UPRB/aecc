@@ -9,7 +9,7 @@
 				<article class = "translucent_border">
 					<span id="page-header">
 						<h1>
-							{{event.title}}
+							{{event.title|title}}
 						</h1>
 					</span>
 				</article>
@@ -26,7 +26,7 @@
 					<ul>
 						<li>
 							<b>When? </b> {{event.event_date}} |
-							<b>Where? </b> {{event.location}} |
+							<b>Where? </b> {{event.location|title}} |
 							<b>Tags: </b> 
 							{% for tag in event.tags.all %}
 								<a href="#" class="tag">#{{tag}}</a> 
@@ -34,17 +34,12 @@
 						</li>
 					</ul>
 					
-					<span>
+					<div>
 						<div class="medium success btn"><a href="/events/ical">Add to Calendar</a></div>
-						{% if is_current_date and not has_checked_in%}
-							<div class="medium success btn">
-								<a href="{% url 'events:check_in' event.title_slug event.month_slug %}">Check in</a>
-							</div>
-						{% endif %}
 						<span class="pull_right">
 							<div class="fb-share-button" data-href="aecc-uprb.herokuapp.com{{request.path}}" data-type="button"></div>
 						</span>
-					</span>
+					</div>
 
 					<img src="/media/{{event.promo_picture}}" id="single_event_promo">
 				</section>
@@ -68,9 +63,28 @@
 							{% if event.checked_in %}
 								{% for people_present in event.checked_in.all %}
 									<div class="three columns assisted">
-										<img class="image circle" src="{{people_information|gravatar_url:people_present.email}}s=145"  width="145" />
+										<center>
+											<img class="image circle center-image" src="{{people_present|gravatar_url:people_present.email}}"  width="145" />
+										</center>
+										<p class="center-text">
+											{{people_present.first_name|title}} {{people_present.last_name|title}}
+										</p>
 									</div>		
 								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+					<div class="twelve columns">
+						<div class="pull_right">
+							{% if user.is_authenticated and is_current_date and not has_checked_in %}
+								<span>
+									<form action="{% url 'events:check_in' event.title_slug event.month_slug %}" method="POST">
+										{% csrf_token %}
+										<div class="medium success btn">
+											<input type="submit" value="Check in">
+										</div>
+									</form>
+								</span>
 							{% endif %}
 						</div>
 					</div>

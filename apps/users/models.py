@@ -131,7 +131,8 @@ def check_payed_amount(sender, **kwargs):
                 date_info.strftime("%Y-%m-%d %H:%M")
                 + '\nCantidad pagada: $' +
                 str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(0))
+                + '\nCantidad a pagar: $' + str(0)
+                + '\n\nSite: aecc-uprb.herokuapp.com')
             send_mail(
                 'AECC Recibo', full_payment_receipt, 'example@example.com',
                 [c.email], fail_silently=False)
@@ -143,7 +144,8 @@ def check_payed_amount(sender, **kwargs):
                 + ' ' + c.last_name.capitalize()
                 + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
                 + '\nCantidad pagada: $' + str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(amount_owed))
+                + '\nCantidad a pagar: $' + str(amount_owed)
+                + '\n\nSite: aecc-uprb.herokuapp.com')
             send_mail('AECC Recibo', partial_payment_receipt,
                       'example@example.com', [c.email], fail_silently=False)
     c.amount_registered = c.amount_payed
