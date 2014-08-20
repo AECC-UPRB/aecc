@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load disqus_tags %}
 {% load gravatar %}
+
+{% block open_graph_meta_tags %}
+    <meta property="og:title" content="AECC-UPRB | {{event.title}}"/>
+{% endblock open_graph_meta_tags %}
+
 {% block title %}AECC | {{event.title}}{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
