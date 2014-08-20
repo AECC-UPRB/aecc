@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="{% static 'fonts/icons-font-mfizz-1.2/font-mfizz.css' %}">
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+
+    <meta property="og:site_name" content="University of Puerto Rico Bayamón Campus Computer Science Student Association"/>   
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="{% static "img/AECC-flyer.png" %}"/>
+
+    {% block open_meta_graph_tags %}
+        <meta property="og:title" content="AECC-UPRB"/>
+        <meta property="og:url" content="http://aecc-uprb.herokuapp.com/">
+    {% endblock open_meta_graph_tags %}
 </head>
 
 <body>

@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, RedirectView
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404
 
@@ -27,7 +27,7 @@ class EventView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(EventView, self).get_context_data(**kwargs)
         event = Event.objects.get(title_slug=self.kwargs['title_slug'])
-        context['is_current_date'] = event.event_date == date.today()
+        context['is_current_date'] = event.event_date.date() == date.today()
         context[
             'has_checked_in'] = self.request.user in event.checked_in.all()
         return context
@@ -60,9 +60,17 @@ class EventByMonth(ListView):
         context['month'] = self.kwargs['month']
         return context
 
-# TODO - create a form. This causes a leak
-def participating(request, **kwargs):
-    event = get_object_or_404(Event, title_slug=kwargs['month'])
-    event.checked_in.add(request.user.id)
-    event.save()
-    return redirect("/events/%s/%s" % (kwargs['title_slug'], kwargs['month'],))
+
+class ParticipatingView(RedirectView):
+
+    def get_redirect_url(self, *args, **kwargs):
+        url = "/events/%s/%s" % (kwargs['title_slug'], kwargs['month'],)
+        return url
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            event = get_object_or_404(Event, title_slug=kwargs['month'])
+            if request.user.id not in event.checked_in.all():
+                event.checked_in.add(request.user.id)
+                event.save()
+        return redirect(self.get_redirect_url(self, *args, **kwargs))

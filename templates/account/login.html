@@ -1,7 +1,5 @@
-{% extends "account/base.html" %}
-{% block title %}AECC | Login{% endblock title %}
-{% block subheaderpic %}
-  <div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="sign_up_picture">
+{% extends "account/base.html" %} {% block title %}AECC | Login{% endblock title %} {% block subheaderpic %}
+<div class="parallax" gumby-parallax="0.5" gumby-offset="60" id="sign_up_picture">
     <div class="row" id="subheader-tittle">
         <div class="block">
             <article>
@@ -14,45 +12,43 @@
         </div>
     </div>
 </div>
-{% endblock subheaderpic %}
-{% block content %}
+{% endblock subheaderpic %} {% block content %}
 <br>
 <div class="row">
-  <div class="twelve columns">
-    <div class="eight columns push_two">
-      <p>If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.</p>
-      <form class="login" method="POST" action="{% url 'account_login' %}">
-        {% csrf_token %}
-        <fieldset>
-          <legend>Login</legend>
-          <ul>
-            <li class="field">
-              <p id = "error">
-                {{form.login.errors}}
-              </p>
-              <label for="id_login_name">E-mail:</label>
-              <input class="input" id="id_login" name="login" type="text" placeholder="Enter your email addess..." />
-            </li>
-            <li class="field">
-              <p id = "error">
-                {{form.password.errors}}
-              </p>
-              <label for="id_password_name">Password:</label>
-              <input class="input" id="id_password" name="password" type="password" placeholder="Enter your password..." />
-            </li>
-            <li class="pull_right">
-              <div class="medium success btn">
-                <input type="submit" value="Login"/>
-              </div>
-            </li>
-          </ul>
-        </fieldset>
-      </form>
+    <div class="twelve columns">
+        <div class="eight columns push_two">
+            <p>If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.</p>
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Login</legend>
+                    <ul>
+                        <li class="field">
+                            <p id="error">
+                                {{form.login.errors}}
+                            </p>
+                            <label for="id_login_name">E-mail:</label>
+                            <input class="input" id="id_login" name="login" type="text" placeholder="Enter your email addess..." />
+                        </li>
+                        <li class="field">
+                            <p id="error">
+                                {{form.password.errors}}
+                            </p>
+                            <label for="id_password_name">Password:</label>
+                            <input class="input" id="id_password" name="password" type="password" placeholder="Enter your password..." />
+                        </li>
+                        <li class="pull_left">
+                          <a href="/accounts/password/reset">Reset your password</a>
+                        </li>
+                        <li class="pull_right">
+                            <div class="medium success btn">
+                                <input type="submit" value="Login" />
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
-<br>
-
-{% endblock %}
-
-
+<br>{% endblock %}
