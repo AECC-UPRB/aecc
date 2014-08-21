@@ -2,10 +2,11 @@
 {% load disqus_tags %}
 {% load gravatar %}
 
-{% block open_graph_meta_tags %}
+{% block open_meta_graph_tags %}
     <meta property="og:title" content="AECC-UPRB | {{event.title}}"/>
     <meta property="og:url" content="http://aecc-uprb.herokuapp.com{{request.path}}">
-{% endblock open_graph_meta_tags %}
+    <meta property="og:site_name" content="{{event.description}}"/>
+{% endblock open_meta_graph_tags %}
 
 {% block title %}AECC | {{event.title}}{% endblock %}
 {% block subheaderpic %}
@@ -61,7 +62,6 @@
 						<div>
 							<h3>What will be covered?</h3>
 							<p>{{event.description}}</p>
-
 						</div>
 						<div>
 							<h3>Who joined us?</h3>
