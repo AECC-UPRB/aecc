@@ -11,7 +11,7 @@ from .constants import MONTH_CHOICES
 
 
 def get_upload_file_name(instance, filename):
-    return "uploaded_files/%s_%s" % \
+    return "static/uploaded_files/%s_%s" % \
         (str(time()).replace('.', '_'), filename)
 
 
