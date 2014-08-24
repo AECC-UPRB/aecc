@@ -22,7 +22,7 @@
 		<div class="push_two"></div>	
 		{% for events_for_month in events %}		
 			<div class="six columns event-tile">
-				<img src="/media/{{events_for_month.promo_picture}}" class="promo-pic">
+				<img src="{{events_for_month.promo_picture.url}}" class="promo-pic">
 				<div class="event-information">	
 					<h4>
 						<a href="{% url 'events:event' events_for_month.month_slug events_for_month.title_slug %}">
