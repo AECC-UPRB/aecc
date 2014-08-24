@@ -12,13 +12,13 @@
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 
-    <meta property="og:site_name" content="University of Puerto Rico Bayamón Campus Computer Science Student Association"/>   
     <meta property="og:type" content="article"/>
-    <meta property="og:image" content="{% static "img/AECC-flyer.png" %}"/>
+    <meta property="og:image" content="{% static "img/aecc-uprb.jpg" %}"/>
+    <meta property="og:url" content="{{request.path}}">
 
     {% block open_meta_graph_tags %}
         <meta property="og:title" content="AECC-UPRB"/>
-        <meta property="og:url" content="http://aecc-uprb.herokuapp.com{{request.path}}">
+        <meta property="og:site_name" content="University of Puerto Rico Bayamón Campus Computer Science Student Association"/>
     {% endblock open_meta_graph_tags %}
 </head>
 
