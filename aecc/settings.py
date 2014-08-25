@@ -193,6 +193,7 @@ class Production(Common):
     MEDIA_URL = STATIC_URL
 
     AWS_PRELOAD_METADATA = True
+    AWS_QUERYSTRING_AUTH = False
     AWS_ACCESS_KEY_ID = values.Value(environ_prefix=None)
     AWS_SECRET_ACCESS_KEY = values.Value(environ_prefix=None)
     AWS_STORAGE_BUCKET_NAME = values.Value(environ_prefix=None)
