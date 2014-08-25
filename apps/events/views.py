@@ -31,7 +31,7 @@ class EventView(DetailView):
         context['is_current_date'] = event.event_date.date() == date.today()
         context[
             'has_checked_in'] = self.request.user in event.checked_in.all()
-        context['dictionary_test'] = self.listing(self.kwargs['title_slug'])
+        context['pagination_dictionary'] = self.listing(self.kwargs['title_slug'])
         return context
 
     def listing(self, title_slug):
