@@ -80,6 +80,23 @@
 						</div>
 					</div>
 					<div class="twelve columns">
+						<div class="pull_left">
+							<div class="pagination">
+							    <span class="step-links">
+							        {% if people_checked_in.has_previous %}
+							            <a href="?page={{ people_checked_in.previous_page_number }}">previous</a>
+							        {% endif %}
+
+							        <span class="current">
+							            Page {{ people_checked_in.number }} of {{ people_checked_in.paginator.num_pages }}.
+							        </span>
+
+							        {% if people_checked_in.has_next %}
+							            <a href="?page={{ people_checked_in.next_page_number }}">next</a>
+							        {% endif %}
+							    </span>
+							</div>
+						</div>
 						<div class="pull_right">
 							{% if user.is_authenticated and is_current_date and not has_checked_in %}
 								<span>
