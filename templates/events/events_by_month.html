@@ -25,7 +25,7 @@
 				<img src="{{events_for_month.promo_picture.url}}" class="promo-pic">
 				<div class="event-information">	
 					<h4>
-						<a href="{% url 'events:event' events_for_month.month_slug events_for_month.title_slug %}">
+						<a href="{% url 'events:event' events_for_month.month events_for_month.title_slug %}">
 							{{events_for_month.title| truncatechars:'30'}}
 						</a>
 					</h4>

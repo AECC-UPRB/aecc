@@ -83,7 +83,7 @@
 						<div class="pull_right">
 							{% if user.is_authenticated and is_current_date and not has_checked_in %}
 								<span>
-									<form action="{% url 'events:check_in' event.title_slug event.month_slug %}" method="POST">
+									<form action="{% url 'events:check_in' event.title_slug event.month %}" method="POST">
 										{% csrf_token %}
 										<div class="medium success btn">
 											<input type="submit" value="Check in">
