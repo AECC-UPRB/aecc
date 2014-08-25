@@ -57,14 +57,12 @@ class MyUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=40)
     student_number = models.CharField(max_length=9, unique=True)
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     amount_payed = models.FloatField(default=0)
-    year_payed = models.CharField(max_length=6, choices=YEARS_PAYED, blank=True)
     position = models.CharField(max_length=2, choices=POSITION_OPTIONS,
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
