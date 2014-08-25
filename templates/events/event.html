@@ -66,7 +66,7 @@
 							<h3>Who joined us?</h3>
 							<!-- Who joined us? -->
 							{% if event.checked_in %}
-								{% for people_present in event.checked_in.all %}
+								{% for people_present in dictionary_test.people_checked_in %}
 								{{people_checked_in}}
 									<div class="three columns assisted">
 										<center>
@@ -111,7 +111,7 @@
 						<div class="pull_right">
 							{% if user.is_authenticated and is_current_date and not has_checked_in %}
 								<span>
-									<form action="{% url 'events:check_in' event.title_slug event.month_slug %}" method="POST">
+									<form action="{% url 'events:check_in' event.title_slug event.month %}" method="POST">
 										{% csrf_token %}
 										<div class="medium success btn">
 											<input type="submit" value="Check in">

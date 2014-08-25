@@ -38,18 +38,26 @@ class EventView(DetailView):
         event = Event.objects.get(title_slug=title_slug)
         people = event.checked_in.all()
 
-        paginator = Paginator(people, 1)
+        paginator = Paginator(people, 4)
+
+        page = self.request.GET.get('page')
 
         try:
-            section = int(self.request.GET.get('page'))
+            section = page
+            people_checked_in = paginator.page(page).object_list
+            
         except:
             section = 1
+            people_checked_in = paginator.page(1).object_list
 
         try:
             page_obj = paginator.page(section)
-        except(EmptyPage, InvalidPage):
+        except EmptyPage:
             page_obj = paginator.page(paginator.num_pages)
-        return{'pagination': paginator, 'people_checked_in': paginator, 'page_obj': page_obj}
+        except InvalidPage:
+            page_obj = paginator.page(paginator.num_pages)
+
+        return{'pagination': paginator, 'page_obj': page_obj, 'people_checked_in': people_checked_in}
 
 
 class HackathonView(TemplateView):
