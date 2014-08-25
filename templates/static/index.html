@@ -35,7 +35,7 @@
 						</ul>
 						<center>
 							<a href="{% url 'events:event' event.month event.title_slug %}">
-								<img src="/media/{{event.promo_picture}}" class="event-image">
+								<img src="{{event.promo_picture.url}}" class="event-image">
 							</a>
 						</center>
 					</div>
