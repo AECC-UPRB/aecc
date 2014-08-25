@@ -10,7 +10,7 @@ from multiselectfield import MultiSelectField
 from autoslug import AutoSlugField
 
 from .constants import POSITION_OPTIONS, GENDER_CHOICES, COURSES_CHOICES
-from .constants import PROG_LANGUAGES_AND_FRAMEWORKS
+from .constants import PROG_LANGUAGES_AND_FRAMEWORKS, YEARS_PAYED
 
 
 def get_upload_file_name(instance, filename):
@@ -64,6 +64,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     amount_payed = models.FloatField(default=0)
+    year_payed = models.CharField(max_length=6, choices=YEARS_PAYED, blank=True)
     position = models.CharField(max_length=2, choices=POSITION_OPTIONS,
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
