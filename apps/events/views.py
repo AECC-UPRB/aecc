@@ -1,9 +1,9 @@
 from datetime import date
 
 from django.views.generic import ListView, DetailView, TemplateView, RedirectView
-from django.shortcuts import redirect, get_object_or_404, render_to_response
+from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 from .models import Event, Hackathon
 from .mixins import MonthMixin
@@ -31,22 +31,25 @@ class EventView(DetailView):
         context['is_current_date'] = event.event_date.date() == date.today()
         context[
             'has_checked_in'] = self.request.user in event.checked_in.all()
-        self.listing(self.kwargs['title_slug'])
+        context['dictionary_test'] = self.listing(self.kwargs['title_slug'])
         return context
 
     def listing(self, title_slug):
-        event = Event.objects.filter(title_slug=title_slug)
-        print event
-        paginator = Paginator(event, 1)
+        event = Event.objects.get(title_slug=title_slug)
+        people = event.checked_in.all()
 
-        page = self.request.GET.get('page')
+        paginator = Paginator(people, 1)
+
         try:
-            people_checked_in = paginator.page(page)
-        except PageNotAnInteger:
-            people_checked_in = paginator.page(1)
-        except EmptyPage:
-            people_checked_in = paginator.page(paginator.num_pages)
-        return render_to_response('events/event.html', {"people_checked_in": people_checked_in})
+            section = int(self.request.GET.get('page'))
+        except:
+            section = 1
+
+        try:
+            page_obj = paginator.page(section)
+        except(EmptyPage, InvalidPage):
+            page_obj = paginator.page(paginator.num_pages)
+        return{'pagination': paginator, 'people_checked_in': paginator, 'page_obj': page_obj}
 
 
 class HackathonView(TemplateView):

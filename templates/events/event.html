@@ -67,6 +67,7 @@
 							<!-- Who joined us? -->
 							{% if event.checked_in %}
 								{% for people_present in event.checked_in.all %}
+								{{people_checked_in}}
 									<div class="three columns assisted">
 										<center>
 											<img class="image circle center-image" src="{{people_present|gravatar_url:people_present.email}}"  width="145" />
@@ -81,21 +82,31 @@
 					</div>
 					<div class="twelve columns">
 						<div class="pull_left">
-							<div class="pagination">
+							<span>
 							    <span class="step-links">
-							        {% if people_checked_in.has_previous %}
-							            <a href="?page={{ people_checked_in.previous_page_number }}">previous</a>
+							        {% if dictionary_test.page_obj.has_previous %}
+							        	<div class="small btn default">
+							            	<a href="?page={{ dictionary_test.page_obj.previous_page_number }}">
+							            		Previous
+							            	</a>
+							        	</div>
 							        {% endif %}
 
-							        <span class="current">
-							            Page {{ people_checked_in.number }} of {{ people_checked_in.paginator.num_pages }}.
-							        </span>
+									<span>
+										{% for page in dictionary_test.pagination.page_range %}
+					                    	<span class="small btn default" id="{% if page == dictionary_test.page_obj.number %}active{% endif %}">
+					                    		<a href="?page={{page}}">{{page}}</a>
+					                    	</span>
+					                    {% endfor %}
+									</span>
 
-							        {% if people_checked_in.has_next %}
-							            <a href="?page={{ people_checked_in.next_page_number }}">next</a>
+							        {% if dictionary_test.page_obj.has_next %}
+							            <div class="small btn default">
+		                    				<a href="?page={{ dictionary_test.page_obj.next_page_number }}">Next</a>
+		                				</div>
 							        {% endif %}
 							    </span>
-							</div>
+							</span>
 						</div>
 						<div class="pull_right">
 							{% if user.is_authenticated and is_current_date and not has_checked_in %}
