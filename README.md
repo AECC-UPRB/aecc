@@ -27,6 +27,7 @@ $ git clone https://github.com/eluciano11/aecc.git
 $ cp .env.example .env
 $ pip install -r requirements.txt
 $ python manage.py syncdb
+$ python manage.py migrate
 $ python manage.py runserver
 ```
 

@@ -39,6 +39,7 @@ class Common(Configuration):
         'disqus',
         'multiselectfield',
         'south',
+        'storages',
 
         # Apps
         'apps.users',
@@ -88,9 +89,6 @@ class Common(Configuration):
 
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
-
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         "django.core.context_processors.request",
@@ -184,6 +182,18 @@ class Development(Common):
 
 class Production(Common):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    PROTOCOL = 'http'
+    PROTOCOL = 'https'
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+    STATIC_URL = 'https://com-aeccuprb.s3.amazonaws.com/'
+    MEDIA_URL = STATIC_URL
+
+    AWS_PRELOAD_METADATA = True
+    AWS_QUERYSTRING_AUTH = False
+    AWS_ACCESS_KEY_ID = values.Value(environ_prefix=None)
+    AWS_SECRET_ACCESS_KEY = values.Value(environ_prefix=None)
+    AWS_STORAGE_BUCKET_NAME = values.Value(environ_prefix=None)

@@ -25,7 +25,7 @@
 					{% if e_information.month|upper == months_for_display|upper %}
 						<div class="five columns event-tile">
 							<center>	
-								<img src="/media/{{e_information.promo_picture}}" class="promo-pic">
+								<img src="{{e_information.promo_picture.url}}" class="promo-pic">
 							</center>
 							<div class="event-information">	
 								<h4><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title| truncatechars:'30'}}</a></h4>
