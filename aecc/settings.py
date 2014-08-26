@@ -162,7 +162,7 @@ class Common(Configuration):
     EMAIL_PORT = values.IntegerValue()
     EMAIL_USE_TLS = values.BooleanValue(False)
 
-    AECC_UPRB_MEMBER_FEE = 15
+    AECC_UPRB_MEMBER_FEE = values.IntegerValue(environ_prefix=None)
 
 
 class Development(Common):
