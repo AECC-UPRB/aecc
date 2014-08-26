@@ -20,7 +20,7 @@ class MyUserAdmin(ImportExportModelAdmin, UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name',
                                       'student_number', 'gender',
-                                      'amount_payed', 'phone_number')}),
+                                      'phone_number')}),
         ('Profile info', {'fields': ('programming_languages', 'courses', )}),
         ('Social', {'fields': ('facebook', 'twitter', 'github', 'linkedin',)}),
         ('Permissions', {'fields': ('is_admin', 'is_active', )}),
