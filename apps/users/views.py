@@ -1,18 +1,24 @@
+from datetime import datetime
+
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import UpdateView, ListView, DetailView
 from django.http import Http404
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 from braces.views import LoginRequiredMixin
 
-from .models import User
+from .models import User, Payment
 from .forms import SettingsForm
 
 
 class DirectiveView(ListView):
     paginate_by = 12
-    queryset = User.objects.filter(amount_payed=15.0)
     template_name = 'users/community.html'
+
+    def get_queryset(self):
+        return User.objects.filter(email__in=Payment.objects.filter(
+            amount_payed=settings.AECC_UPRB_MEMBER_FEE, year_payed=datetime.now().year).values_list('payed_by__email'))
 
 
 class SettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
