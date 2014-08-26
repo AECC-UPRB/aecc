@@ -62,7 +62,6 @@ class User(AbstractBaseUser):
     student_number = models.CharField(max_length=9, unique=True)
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    amount_payed = models.FloatField(default=0)
     position = models.CharField(max_length=2, choices=POSITION_OPTIONS,
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
@@ -115,6 +114,18 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Payment(models.Model):
+    class Meta:
+        unique_together = ('amount_payed', 'year_payed')
+
+    payed_by = models.ForeignKey(User)
+    amount_payed = models.FloatField(default=0)
+    year_payed = models.CharField(choices=YEARS_PAYED, max_length=6, blank=True)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.payed_by, self.year_payed)
 
 
 def check_payed_amount(sender, **kwargs):

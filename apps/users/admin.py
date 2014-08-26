@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from import_export.admin import ImportExportModelAdmin
 
-from .models import User
+from .models import User, Payment
 from .forms import UserChangeForm, UserCreationForm
 from .resources import UserResource
 
@@ -37,3 +37,4 @@ class MyUserAdmin(ImportExportModelAdmin, UserAdmin):
     filter_horizontal = ()
 
 admin.site.register(User, MyUserAdmin)
+admin.site.register(Payment)
