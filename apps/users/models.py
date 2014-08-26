@@ -117,6 +117,7 @@ class Payment(models.Model):
     payed_by = models.ForeignKey(User)
     amount_payed = models.FloatField(default=0)
     year_payed = models.CharField(choices=YEARS_PAYED, max_length=6, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.payed_by, self.year_payed)
