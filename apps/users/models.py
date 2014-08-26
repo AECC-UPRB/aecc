@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.db import models
 from django.conf import settings
+from django.db.models import Q
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -87,6 +88,18 @@ class User(AbstractBaseUser):
 
     def __unicode__(self):
         return self.email
+
+    def has_valid_membership(self):
+        date_info = datetime.now()
+        payments = self.payment_set.filter(Q(year_payed=date_info.year) | Q(year_payed=date_info.year-1))
+        if payments.count() >= 1:
+            for p in payments:
+                if p.amount_payed == settings.AECC_UPRB_MEMBER_FEE \
+                        and (datetime.strptime("6/1/"+p.year_payed, "%m/%d/%Y") \
+                             <= p.created_at.replace(tzinfo=None) \
+                             <= datetime.strptime("6/1/"+str(int(p.year_payed)+1), "%m/%d/%Y")):
+                    return True
+        return False
 
     def get_full_name(self):
         fullname = '%s %s' % (self.first_name, self.last_name)
