@@ -27,6 +27,13 @@ class Common(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
 
+        # Apps
+        'apps.users',
+        'apps.events',
+        'apps.contact',
+        'apps.blog',
+        'apps.surveys',
+
         # Third party
         'allauth',
         'allauth.account',
@@ -40,13 +47,6 @@ class Common(Configuration):
         'multiselectfield',
         'south',
         'storages',
-
-        # Apps
-        'apps.users',
-        'apps.events',
-        'apps.contact',
-        'apps.blog',
-        'apps.surveys',
 
     )
 
