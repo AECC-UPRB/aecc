@@ -77,17 +77,11 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
-    amount_registered = None
-
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
                        'gender', 'student_number', 'phone_number']
-
-    def __init__(self, *args, **kwargs):
-        super(User, self).__init__(*args, **kwargs)
-        self.amount_registered = self.amount_payed
 
     def __unicode__(self):
         return self.email
@@ -161,4 +155,4 @@ def check_payed_amount(sender, **kwargs):
     c.amount_registered = c.amount_payed
 
 
-post_save.connect(check_payed_amount, sender=User)
+post_save.connect(check_payed_amount, sender=Payment)
