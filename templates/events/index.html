@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}AECC | Events{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
@@ -17,25 +18,37 @@
 {% endblock %}
 {% block content %}
 <br>
-	<div class = "row">
-		{% for months_for_display in months %}
-		<div class="twelve columns" id="month-display">	
-			<h1>{{months_for_display|lower|capfirst}}</h1>
-				{% for e_information in events_information %}
-					{% if e_information.month|upper == months_for_display|upper %}
-						<div class="five columns event-tile">
-							<center>	
-								<img src="{{e_information.promo_picture.url}}" class="promo-pic">
-							</center>
-							<div class="event-information">	
-								<h4><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title| truncatechars:'30'}}</a></h4>
-								<p class="text-muted">{{e_information.location}} | {{e_information.event_date}}</p>
-							</div>
-						</div>
-					{% endif %}
-				{% endfor %}
+	<div class="row">
+		<div class="twelve columns">
+			<div class="eight columns">
+				<div class="big_banner">
+					<img src="{% static "img/unsplash_join.jpg" %}" class="big_image_display">
+					<h1 class="big_month_display">{% now "F" %}</h1>
+				</div>
+			</div>
+			<div class="four columns pull_right">
+				<div class="twelve columns no_margin_left">
+					<div class="smaller_banner">
+						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
+						<p class="small_month_display">September</p>
+					</div>
+				</div>
+				<br>
+				<div class="twelve columns no_margin_left">
+					<div class="smaller_banner">
+						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
+						<p class="small_month_display">October</p>
+					</div>
+				</div>
+				<br>
+				<div class="twelve columns no_margin_left">
+					<div class="smaller_banner">
+						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
+						<p class="small_month_display">November</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		{% endfor %}
 	</div>
-<br>
+	<br>
 {% endblock %}

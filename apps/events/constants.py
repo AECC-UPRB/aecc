@@ -27,3 +27,7 @@ MONTH_CHOICES = (
     ('november', 'november'),
     ('december', 'december'),
 )
+
+FIRST_SEMESTER = ['august', 'september', 'october', 'november', 'december']
+
+SECOND_SEMESTER = ['january', 'february', 'march', 'april', 'may']

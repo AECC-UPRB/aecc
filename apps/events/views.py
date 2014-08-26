@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 from django.views.generic import ListView, DetailView, TemplateView, RedirectView
@@ -13,9 +14,13 @@ from .constants import MONTHS
 
 class IndexView(MonthMixin, ListView):
     model = Event
-    paginate_by = 5
     template_name = 'events/index.html'
     context_object_name = 'events_information'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['current_month'] = datetime.date.today().strftime('%B')
+        return context
 
 
 class EventView(DetailView):
