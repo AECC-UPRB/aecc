@@ -2,6 +2,7 @@ from time import time
 from datetime import datetime
 
 from django.db import models
+from django.conf import settings
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.core.mail import send_mail
@@ -124,36 +125,19 @@ class Payment(models.Model):
 
 
 def check_payed_amount(sender, **kwargs):
-    c = kwargs['instance']
+    payment = kwargs['instance']
     date_info = datetime.now()
 
-    if c.amount_registered != c.amount_payed:
-        if c.amount_payed != 0 and c.amount_payed >= 15:
-            full_payment_receipt = (
-                'Nombre: ' + c.first_name.capitalize() + ' '
-                + c.last_name.capitalize()
-                + '\nFecha y hora: ' +
-                date_info.strftime("%Y-%m-%d %H:%M")
-                + '\nCantidad pagada: $' +
-                str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(0)
-                + '\n\nSite: aecc-uprb.herokuapp.com')
-            send_mail(
-                'AECC Recibo', full_payment_receipt, 'example@example.com',
-                [c.email], fail_silently=False)
-
-        elif c.amount_payed < 15 and c.amount_payed != 0:
-            amount_owed = 15 - c.amount_payed
-            partial_payment_receipt = (
-                'Nombre: ' + c.first_name.capitalize()
-                + ' ' + c.last_name.capitalize()
-                + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
-                + '\nCantidad pagada: $' + str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(amount_owed)
-                + '\n\nSite: aecc-uprb.herokuapp.com')
-            send_mail('AECC Recibo', partial_payment_receipt,
-                      'example@example.com', [c.email], fail_silently=False)
-    c.amount_registered = c.amount_payed
-
+    if payment.amount_payed and payment.amount_payed > 0:
+        receipt = (
+            'Nombre: ' + payment.payed_by.first_name.capitalize() + ' '
+            + payment.payed_by.last_name.capitalize()
+            + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
+            + '\nCantidad pagada: $' + str(payment.amount_payed)
+            + '\nCantidad a pagar: $' + settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed
+            + '\n\nSite: aecc-uprb.herokuapp.com')
+        send_mail(
+            'AECC Recibo', receipt, 'example@example.com',
+            [payment.payed_by.email], fail_silently=False)
 
 post_save.connect(check_payed_amount, sender=Payment)
