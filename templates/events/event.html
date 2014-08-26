@@ -66,7 +66,8 @@
 							<h3>Who joined us?</h3>
 							<!-- Who joined us? -->
 							{% if event.checked_in %}
-								{% for people_present in event.checked_in.all %}
+								{% for people_present in pagination_dictionary.people_checked_in %}
+								{{people_checked_in}}
 									<div class="three columns assisted">
 										<center>
 											<img class="image circle center-image" src="{{people_present|gravatar_url:people_present.email}}"  width="145" />
@@ -80,6 +81,33 @@
 						</div>
 					</div>
 					<div class="twelve columns">
+						<div class="pull_left">
+							<span>
+							    <span class="step-links">
+							        {% if pagination_dictionary.page_obj.has_previous %}
+							        	<div class="small btn default">
+							            	<a href="?page={{ pagination_dictionary.page_obj.previous_page_number }}">
+							            		Previous
+							            	</a>
+							        	</div>
+							        {% endif %}
+
+									<span>
+										{% for page in pagination_dictionary.pagination.page_range %}
+					                    	<span class="small btn default" id="{% if page == pagination_dictionary.page_obj.number %}active{% endif %}">
+					                    		<a href="?page={{page}}">{{page}}</a>
+					                    	</span>
+					                    {% endfor %}
+									</span>
+
+							        {% if pagination_dictionary.page_obj.has_next %}
+							            <div class="small btn default">
+		                    				<a href="?page={{ pagination_dictionary.page_obj.next_page_number }}">Next</a>
+		                				</div>
+							        {% endif %}
+							    </span>
+							</span>
+						</div>
 						<div class="pull_right">
 							{% if user.is_authenticated and is_current_date and not has_checked_in %}
 								<span>
