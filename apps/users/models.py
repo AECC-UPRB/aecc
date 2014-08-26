@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 from multiselectfield import MultiSelectField
@@ -112,8 +113,12 @@ class User(AbstractBaseUser):
 
 
 class Payment(models.Model):
+    class Meta:
+        unique_together = ('payed_by', 'year_payed')
+
     payed_by = models.ForeignKey(User)
-    amount_payed = models.FloatField(default=0)
+    amount_payed = models.FloatField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(settings.AECC_UPRB_MEMBER_FEE)])
     year_payed = models.CharField(choices=YEARS_PAYED, max_length=6)
     created_at = models.DateTimeField(auto_now=True)
 
@@ -124,19 +129,14 @@ class Payment(models.Model):
 def validate_user_payment(sender, **kwargs):
     payment = kwargs['instance']
     date_info = datetime.now()
-    payments = Payment.objects.filter(payed_by=payment.payed_by, year_payed=date_info.year)
 
-    payments_sum = 0
-    for p in payments:
-        payments_sum += p.amount_payed
-
-    if payments_sum < settings.AECC_UPRB_MEMBER_FEE and payment.amount_payed and payment.amount_payed > 0:
+    if payment.amount_payed <= settings.AECC_UPRB_MEMBER_FEE and payment.amount_payed:
         receipt = (
             'Nombre: ' + payment.payed_by.first_name.capitalize() + ' '
             + payment.payed_by.last_name.capitalize()
             + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
             + '\nCantidad pagada: $' + str(payment.amount_payed)
-            + '\nCantidad a pagar: $' + str(settings.AECC_UPRB_MEMBER_FEE - (payment.amount_payed + payments_sum))
+            + '\nCantidad a pagar: $' + str(settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed)
             + '\n\nSite: aecc-uprb.herokuapp.com')
         send_mail(
             'AECC Recibo', receipt, 'example@example.com',
