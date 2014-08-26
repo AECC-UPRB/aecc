@@ -3,9 +3,9 @@ from datetime import datetime
 
 from django.db import models
 from django.conf import settings
+from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
-from django.core.mail import send_mail
 
 from multiselectfield import MultiSelectField
 from autoslug import AutoSlugField
@@ -112,32 +112,34 @@ class User(AbstractBaseUser):
 
 
 class Payment(models.Model):
-    class Meta:
-        unique_together = ('amount_payed', 'year_payed')
-
     payed_by = models.ForeignKey(User)
     amount_payed = models.FloatField(default=0)
-    year_payed = models.CharField(choices=YEARS_PAYED, max_length=6, blank=True)
+    year_payed = models.CharField(choices=YEARS_PAYED, max_length=6)
     created_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.payed_by, self.year_payed)
 
 
-def check_payed_amount(sender, **kwargs):
+def validate_user_payment(sender, **kwargs):
     payment = kwargs['instance']
     date_info = datetime.now()
+    payments = Payment.objects.filter(payed_by=payment.payed_by, year_payed=date_info.year)
 
-    if payment.amount_payed and payment.amount_payed > 0:
+    payments_sum = 0
+    for p in payments:
+        payments_sum += p.amount_payed
+
+    if payments_sum < settings.AECC_UPRB_MEMBER_FEE and payment.amount_payed and payment.amount_payed > 0:
         receipt = (
             'Nombre: ' + payment.payed_by.first_name.capitalize() + ' '
             + payment.payed_by.last_name.capitalize()
             + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
             + '\nCantidad pagada: $' + str(payment.amount_payed)
-            + '\nCantidad a pagar: $' + settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed
+            + '\nCantidad a pagar: $' + str(settings.AECC_UPRB_MEMBER_FEE - (payment.amount_payed + payments_sum))
             + '\n\nSite: aecc-uprb.herokuapp.com')
         send_mail(
             'AECC Recibo', receipt, 'example@example.com',
             [payment.payed_by.email], fail_silently=False)
 
-post_save.connect(check_payed_amount, sender=Payment)
+post_save.connect(validate_user_payment, sender=Payment)
