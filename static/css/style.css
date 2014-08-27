@@ -441,12 +441,17 @@ li{
 /* event display */
 .big_banner{
 	position:relative;
+	width: 100%;
+	height: 450px !important;
+	background-color: #1D2124;
 }
 .smaller_banner{
 	position:relative;
 	width: 100%;
+	height: 102px !important;
 	margin-left: 0px !important;
 	margin-bottom: 5%;
+	background-color: #1D2124;
 }
 .no_margin_left{
 	margin-left: 0px !important;
@@ -465,14 +470,6 @@ li{
 	top: 0;
 	color: #d04526;
 	text-shadow:0px 0px 1px white;
-}
-.big_image_display{
-	width: 100%;
-	height: 472px !important;
-}
-.smaller_image_display{
-	width: 100%;
-	height: 102px !important;
 }
 
 /* xs */
