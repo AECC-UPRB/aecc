@@ -40,11 +40,11 @@
                     </div>
                 </li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% if user.amount_payed >= 15 %} {% url 'users:profile' user.slug %} {% endif %}">{{ user }}</a>
+                    <li><a href="{% if user.has_valid_membership %} {% url 'users:profile' user.slug %} {% endif %}">{{ user }}</a>
                         <div class="dropdown">
                             <ul>
                                 <li> 
-                                    {% if user.amount_payed >= 15 %}
+                                    {% if user.has_valid_membership %}
                                         <a href="{% url 'users:settings' user.slug %}">Settings</a>
                                     {% endif %} 
                                 </li>

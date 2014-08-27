@@ -2,15 +2,18 @@ from time import time
 from datetime import datetime
 
 from django.db import models
-from django.db.models.signals import post_save
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.conf import settings
+from django.db.models import Q
 from django.core.mail import send_mail
+from django.db.models.signals import post_save
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 from multiselectfield import MultiSelectField
 from autoslug import AutoSlugField
 
 from .constants import POSITION_OPTIONS, GENDER_CHOICES, COURSES_CHOICES
-from .constants import PROG_LANGUAGES_AND_FRAMEWORKS
+from .constants import PROG_LANGUAGES_AND_FRAMEWORKS, YEARS_PAYED
 
 
 def get_upload_file_name(instance, filename):
@@ -57,13 +60,11 @@ class MyUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=40)
     student_number = models.CharField(max_length=9, unique=True)
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    amount_payed = models.FloatField(default=0)
     position = models.CharField(max_length=2, choices=POSITION_OPTIONS,
                                 default='ME')
     phone_number = models.CharField(max_length=10, blank=True)
@@ -79,20 +80,26 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
-    amount_registered = None
-
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
                        'gender', 'student_number', 'phone_number']
 
-    def __init__(self, *args, **kwargs):
-        super(User, self).__init__(*args, **kwargs)
-        self.amount_registered = self.amount_payed
-
     def __unicode__(self):
         return self.email
+
+    def has_valid_membership(self):
+        date_info = datetime.now()
+        payments = self.payment_set.filter(Q(year_payed=date_info.year) | Q(year_payed=date_info.year-1))
+        if payments.count() >= 1:
+            for p in payments:
+                if p.amount_payed == settings.AECC_UPRB_MEMBER_FEE \
+                        and (datetime.strptime("6/1/"+p.year_payed, "%m/%d/%Y") \
+                             <= p.created_at.replace(tzinfo=None) \
+                             <= datetime.strptime("6/1/"+str(int(p.year_payed)+1), "%m/%d/%Y")):
+                    return True
+        return False
 
     def get_full_name(self):
         fullname = '%s %s' % (self.first_name, self.last_name)
@@ -118,37 +125,34 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 
-def check_payed_amount(sender, **kwargs):
-    c = kwargs['instance']
+class Payment(models.Model):
+    class Meta:
+        unique_together = ('payed_by', 'year_payed')
+
+    payed_by = models.ForeignKey(User)
+    amount_payed = models.FloatField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(settings.AECC_UPRB_MEMBER_FEE)])
+    year_payed = models.CharField(choices=YEARS_PAYED, max_length=6)
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.payed_by, self.year_payed)
+
+
+def validate_user_payment(sender, **kwargs):
+    payment = kwargs['instance']
     date_info = datetime.now()
 
-    if c.amount_registered != c.amount_payed:
-        if c.amount_payed != 0 and c.amount_payed >= 15:
-            full_payment_receipt = (
-                'Nombre: ' + c.first_name.capitalize() + ' '
-                + c.last_name.capitalize()
-                + '\nFecha y hora: ' +
-                date_info.strftime("%Y-%m-%d %H:%M")
-                + '\nCantidad pagada: $' +
-                str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(0)
-                + '\n\nSite: aecc-uprb.herokuapp.com')
-            send_mail(
-                'AECC Recibo', full_payment_receipt, 'example@example.com',
-                [c.email], fail_silently=False)
+    if payment.amount_payed <= settings.AECC_UPRB_MEMBER_FEE and payment.amount_payed:
+        receipt = (
+            'Nombre: ' + payment.payed_by.first_name.capitalize() + ' '
+            + payment.payed_by.last_name.capitalize()
+            + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
+            + '\nCantidad pagada: $' + str(payment.amount_payed)
+            + '\nCantidad a pagar: $' + str(settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed)
+            + '\n\nSite: aecc-uprb.herokuapp.com')
+        send_mail(
+            'AECC Recibo', receipt, 'example@example.com',
+            [payment.payed_by.email], fail_silently=False)
 
-        elif c.amount_payed < 15 and c.amount_payed != 0:
-            amount_owed = 15 - c.amount_payed
-            partial_payment_receipt = (
-                'Nombre: ' + c.first_name.capitalize()
-                + ' ' + c.last_name.capitalize()
-                + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
-                + '\nCantidad pagada: $' + str(c. amount_payed)
-                + '\nCantidad a pagar: $' + str(amount_owed)
-                + '\n\nSite: aecc-uprb.herokuapp.com')
-            send_mail('AECC Recibo', partial_payment_receipt,
-                      'example@example.com', [c.email], fail_silently=False)
-    c.amount_registered = c.amount_payed
-
-
-post_save.connect(check_payed_amount, sender=User)
+post_save.connect(validate_user_payment, sender=Payment)
