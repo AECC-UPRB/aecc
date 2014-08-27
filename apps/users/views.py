@@ -17,8 +17,11 @@ class DirectiveView(ListView):
     template_name = 'users/community.html'
 
     def get_queryset(self):
-        return User.objects.filter(email__in=Payment.objects.filter(
-            amount_payed=settings.AECC_UPRB_MEMBER_FEE, year_payed=datetime.now().year).values_list('payed_by__email'))
+        return User.objects.filter(
+            email__in=Payment.objects.filter(
+                amount_payed=settings.AECC_UPRB_MEMBER_FEE,
+                year_payed=datetime.now().year).
+            order_by('-created_at').values_list('payed_by__email'))
 
 
 class SettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
