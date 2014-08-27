@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 MONTHS = (
     'january',
     'february',
@@ -31,3 +33,5 @@ MONTH_CHOICES = (
 FIRST_SEMESTER = ['august', 'september', 'october', 'november', 'december']
 
 SECOND_SEMESTER = ['january', 'february', 'march', 'april', 'may']
+
+SEMESTER_DETERMINATOR = datetime(date.today().year, 8, 1)

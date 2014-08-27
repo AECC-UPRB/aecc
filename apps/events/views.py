@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from .models import Event, Hackathon
 from .mixins import MonthMixin
 
-from .constants import MONTHS
+from .constants import MONTHS, FIRST_SEMESTER, SECOND_SEMESTER, SEMESTER_DETERMINATOR
 
 
 class IndexView(MonthMixin, ListView):
@@ -19,7 +19,9 @@ class IndexView(MonthMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['current_month'] = datetime.date.today().strftime('%B')
+        context['current_month'] = date.today().strftime('%B')
+        context['semester'] = FIRST_SEMESTER if datetime.datetime.now(
+        ).date() > SEMESTER_DETERMINATOR.date() else SECOND_SEMESTER
         return context
 
 
@@ -36,7 +38,8 @@ class EventView(DetailView):
         context['is_current_date'] = event.event_date.date() == date.today()
         context[
             'has_checked_in'] = self.request.user in event.checked_in.all()
-        context['pagination_dictionary'] = self.listing(self.kwargs['title_slug'])
+        context['pagination_dictionary'] = self.listing(
+            self.kwargs['title_slug'])
         return context
 
     def listing(self, title_slug):
@@ -50,7 +53,7 @@ class EventView(DetailView):
         try:
             section = page
             people_checked_in = paginator.page(page).object_list
-            
+
         except:
             section = 1
             people_checked_in = paginator.page(1).object_list
@@ -62,7 +65,11 @@ class EventView(DetailView):
         except InvalidPage:
             page_obj = paginator.page(paginator.num_pages)
 
-        return{'pagination': paginator, 'page_obj': page_obj, 'people_checked_in': people_checked_in}
+        return {
+            'pagination': paginator,
+            'page_obj': page_obj,
+            'people_checked_in': people_checked_in
+        }
 
 
 class HackathonView(TemplateView):

@@ -22,31 +22,26 @@
 		<div class="twelve columns">
 			<div class="eight columns">
 				<div class="big_banner">
-					<img src="{% static "img/unsplash_join.jpg" %}" class="big_image_display">
-					<h1 class="big_month_display">{% now "F" %}</h1>
+					<a href="{% url 'events:month' current_month|lower %}">
+						<img src="{% static "img/black_pattern.jpg" %}" class="big_image_display">
+						<h1 class="big_month_display">{% now "F" %}</h1>
+					</a>
 				</div>
 			</div>
 			<div class="four columns pull_right">
-				<div class="twelve columns no_margin_left">
-					<div class="smaller_banner">
-						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
-						<p class="small_month_display">September</p>
+			{% for month in semester %}
+				{% if month|lower != current_month|lower %}
+					<div class="twelve columns no_margin_left">
+						<div class="smaller_banner">
+							<a href="{% url 'events:month' month %}">
+								<img src="{% static "img/black_pattern.jpg" %}" class="smaller_image_display">
+								<p class="small_month_display">{{month|title}}</p>
+							</a>
+						</div>
 					</div>
-				</div>
-				<br>
-				<div class="twelve columns no_margin_left">
-					<div class="smaller_banner">
-						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
-						<p class="small_month_display">October</p>
-					</div>
-				</div>
-				<br>
-				<div class="twelve columns no_margin_left">
-					<div class="smaller_banner">
-						<img src="{% static "img/unsplash_join.jpg" %}" class="smaller_image_display">
-						<p class="small_month_display">November</p>
-					</div>
-				</div>
+					<br>
+				{% endif %}
+			{% endfor %}
 			</div>
 		</div>
 	</div>
