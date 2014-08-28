@@ -32,9 +32,15 @@ class MyUserAdmin(ImportExportModelAdmin, UserAdmin):
                        'last_name', 'student_number', 'gender',
                        'password1', 'password2')}),
     )
-    search_fields = ('student_number', 'email')
+    search_fields = ('student_number', 'email', 'first_name', 'last_name')
     ordering = ('student_number', 'email')
     filter_horizontal = ()
 
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('payed_by', 'amount_payed', 'year_payed', 'created_at')
+    raw_id_fields = ('payed_by',)
+    search_fields = ('student_number', 'email', 'first_name', 'last_name')
+    
 admin.site.register(User, MyUserAdmin)
-admin.site.register(Payment)
+admin.site.register(Payment, PaymentAdmin)
