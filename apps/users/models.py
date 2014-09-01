@@ -155,4 +155,4 @@ def validate_user_payment(sender, **kwargs):
             'AECC Recibo', receipt, 'example@example.com',
             [payment.payed_by.email], fail_silently=False)
 
-post_save.connect(validate_user_payment, sender=Payment)
+# post_save.connect(validate_user_payment, sender=Payment)
