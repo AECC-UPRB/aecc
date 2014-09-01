@@ -40,6 +40,8 @@ class SettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         obj = super(SettingsView, self).get_object(*args, **kwargs)
         if not obj == self.request.user:
             raise Http404
+        elif not self.request.user.has_valid_membership():
+            raise Http404
         return obj
 
 
