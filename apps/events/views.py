@@ -1,20 +1,28 @@
+import datetime
 from datetime import date
 
 from django.views.generic import ListView, DetailView, TemplateView, RedirectView
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 from .models import Event, Hackathon
 from .mixins import MonthMixin
 
-from .constants import MONTHS
+from .constants import MONTHS, FIRST_SEMESTER, SECOND_SEMESTER, SEMESTER_DETERMINATOR
 
 
 class IndexView(MonthMixin, ListView):
     model = Event
-    paginate_by = 5
     template_name = 'events/index.html'
     context_object_name = 'events_information'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['current_month'] = date.today().strftime('%B')
+        context['semester'] = FIRST_SEMESTER if datetime.datetime.now(
+        ).date() > SEMESTER_DETERMINATOR.date() else SECOND_SEMESTER
+        return context
 
 
 class EventView(DetailView):
@@ -30,7 +38,38 @@ class EventView(DetailView):
         context['is_current_date'] = event.event_date.date() == date.today()
         context[
             'has_checked_in'] = self.request.user in event.checked_in.all()
+        context['pagination_dictionary'] = self.listing(
+            self.kwargs['title_slug'])
         return context
+
+    def listing(self, title_slug):
+        event = Event.objects.get(title_slug=title_slug)
+        people = event.checked_in.all()
+
+        paginator = Paginator(people, 4)
+
+        page = self.request.GET.get('page')
+
+        try:
+            section = page
+            people_checked_in = paginator.page(page).object_list
+
+        except:
+            section = 1
+            people_checked_in = paginator.page(1).object_list
+
+        try:
+            page_obj = paginator.page(section)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+        except InvalidPage:
+            page_obj = paginator.page(paginator.num_pages)
+
+        return {
+            'pagination': paginator,
+            'page_obj': page_obj,
+            'people_checked_in': people_checked_in
+        }
 
 
 class HackathonView(TemplateView):
@@ -51,7 +90,7 @@ class EventByMonth(ListView):
     template_name = 'events/events_by_month.html'
 
     def get_queryset(self):
-        return Event.objects.filter(month=self.kwargs['month'])
+        return Event.objects.filter(month=self.kwargs['month']).order_by('event_date')
 
     def get_context_data(self, **kwargs):
         if self.kwargs['month'] not in MONTHS:

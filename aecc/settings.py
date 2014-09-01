@@ -27,6 +27,13 @@ class Common(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
 
+        # Apps
+        'apps.users',
+        'apps.events',
+        'apps.contact',
+        'apps.blog',
+        'apps.surveys',
+
         # Third party
         'allauth',
         'allauth.account',
@@ -40,13 +47,6 @@ class Common(Configuration):
         'multiselectfield',
         'south',
         'storages',
-
-        # Apps
-        'apps.users',
-        'apps.events',
-        'apps.contact',
-        'apps.blog',
-        'apps.surveys',
 
     )
 
@@ -161,6 +161,8 @@ class Common(Configuration):
     EMAIL_HOST_PASSWORD = values.Value()
     EMAIL_PORT = values.IntegerValue()
     EMAIL_USE_TLS = values.BooleanValue(False)
+
+    AECC_UPRB_MEMBER_FEE = values.FloatValue(environ_prefix=None)
 
 
 class Development(Common):

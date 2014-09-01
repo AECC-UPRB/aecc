@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}AECC | Events{% endblock %}
 {% block subheaderpic %}
 	<div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "event_picture">
@@ -17,25 +18,30 @@
 {% endblock %}
 {% block content %}
 <br>
-	<div class = "row">
-		{% for months_for_display in months %}
-		<div class="twelve columns" id="month-display">	
-			<h1>{{months_for_display|lower|capfirst}}</h1>
-				{% for e_information in events_information %}
-					{% if e_information.month|upper == months_for_display|upper %}
-						<div class="five columns event-tile">
-							<center>	
-								<img src="{{e_information.promo_picture.url}}" class="promo-pic">
-							</center>
-							<div class="event-information">	
-								<h4><a href="/events/{{e_information.month}}/{{e_information.title_slug}}">{{e_information.title| truncatechars:'30'}}</a></h4>
-								<p class="text-muted">{{e_information.location}} | {{e_information.event_date}}</p>
+	<div class="row">
+		<div class="twelve columns">
+			<div class="eight columns">
+				<a href="{% url 'events:month' current_month|lower %}">
+					<div class="big_banner">
+						<h1 class="big_month_display">{% now "F" %}</h1>
+					</div>
+				</a>
+			</div>
+			<div class="four columns pull_right">
+			{% for month in semester %}
+				{% if month|lower != current_month|lower %}
+					<div class="twelve columns no_margin_left">
+						<a href="{% url 'events:month' month %}">
+							<div class="smaller_banner">
+								<p class="small_month_display">{{month|title}}</p>
 							</div>
-						</div>
-					{% endif %}
-				{% endfor %}
+						</a>
+					</div>
+					<br>
+				{% endif %}
+			{% endfor %}
+			</div>
 		</div>
-		{% endfor %}
 	</div>
-<br>
+	<br>
 {% endblock %}
