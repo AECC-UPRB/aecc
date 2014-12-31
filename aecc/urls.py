@@ -23,6 +23,7 @@ urlpatterns = patterns(
     url(r'^members/', include('apps.users.urls', namespace='users')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^surveys/', include('apps.surveys.urls', namespace='surveys')),
+    url(r'^djga/', include('google_analytics.urls')),
     url(
         r'^media/(?P<path>.*)$',
         'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
