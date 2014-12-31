@@ -47,6 +47,7 @@ class Common(Configuration):
         'multiselectfield',
         'south',
         'storages',
+
     )
 
     DISQUS_API_KEY = values.Value(environ_prefix=None)
@@ -192,15 +193,6 @@ class Production(Common):
 
     STATIC_URL = 'https://com-aeccuprb.s3.amazonaws.com/'
     MEDIA_URL = STATIC_URL
-
-    Common.INSTALLED_APPS += (
-        'google_analytics',
-    )
-
-    GOOGLE_ANALYTICS = {
-        'google_analytics_id':
-        values.Value(environ_prefix=None, environ_name='GOOGLE_ANALYTICS'),
-    }
 
     AWS_PRELOAD_METADATA = True
     AWS_QUERYSTRING_AUTH = False

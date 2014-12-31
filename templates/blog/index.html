@@ -2,12 +2,16 @@
 {% load staticfiles %}
 {% block title %}AECC | Blog{% endblock %}
 {% block subheaderpic %}
-    <div class = "parallax midscreen-img" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
+    <div class = "parallax" gumby-parallax="0.5" gumby-offset = "60" id = "people_picture">
         <div class = "row" id = "subheader-tittle">
-            <div class="page-header">
-                <h1 class="center-text">
-                    Stories
-                </h1>
+            <div class = "block">
+                <article>
+                    <span id="page-header">
+                        <h1>
+                            Stories
+                        </h1>
+                    </span>
+                </article>
             </div>
         </div>
     </div>
@@ -19,7 +23,7 @@
             <div class="twelve columns">
                 <div class="wrapper three columns center-text">
                     <a href="/blog/directive">
-                        <img class="section_banner image circle" src="{% static 'img/shattered-island.gif' %}"/>
+                        <img class="section_banner image circle" src="{% static 'img/shattered-island.gif' %}" width="100%"/>
                         <span class="section">
                             <h4>Directive</h4>
                             <hr>
