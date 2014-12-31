@@ -85,6 +85,7 @@ class HackathonView(TemplateView):
 
 class EventByMonth(ListView):
     model = Event
+    paginate_by = 5
     context_object_name = 'events'
     template_name = 'events/events_by_month.html'
 
