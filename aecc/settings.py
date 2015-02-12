@@ -1,6 +1,6 @@
-from configurations import Configuration, values
-
 import os
+
+from configurations import Configuration, values
 
 
 class Common(Configuration):
