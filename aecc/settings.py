@@ -43,7 +43,6 @@ class Common(Configuration):
         'import_export',
         'taggit',
         'tinymce',
-        'disqus',
         'multiselectfield',
         'storages',
 
