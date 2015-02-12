@@ -45,7 +45,6 @@ class Common(Configuration):
         'tinymce',
         'disqus',
         'multiselectfield',
-        'south',
         'storages',
 
     )
