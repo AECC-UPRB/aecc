@@ -1,68 +1,63 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import autoslug.fields
+import multiselectfield.db.fields
+import django.utils.timezone
+from django.conf import settings
+import django.core.validators
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'User'
-        db.create_table(u'users_user', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('password', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('last_login', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('first_name', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=40)),
-            ('student_number', self.gf('django.db.models.fields.CharField')(unique=True, max_length=9)),
-            ('email', self.gf('django.db.models.fields.EmailField')(unique=True, max_length=75)),
-            ('gender', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('amount_payed', self.gf('django.db.models.fields.FloatField')(default=0)),
-            ('position', self.gf('django.db.models.fields.CharField')(default='ME', max_length=2)),
-            ('phone_number', self.gf('django.db.models.fields.CharField')(max_length=10, blank=True)),
-            ('courses', self.gf('multiselectfield.db.fields.MultiSelectField')(max_length=169, blank=True)),
-            ('programming_languages', self.gf('multiselectfield.db.fields.MultiSelectField')(max_length=117, blank=True)),
-            ('facebook', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('twitter', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('github', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('linkedin', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('is_active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('is_admin', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('slug', self.gf('autoslug.fields.AutoSlugField')(unique=True, max_length=50, populate_from=None, unique_with=())),
-        ))
-        db.send_create_signal(u'users', ['User'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'User'
-        db.delete_table(u'users_user')
-
-
-    models = {
-        u'users.user': {
-            'Meta': {'object_name': 'User'},
-            'amount_payed': ('django.db.models.fields.FloatField', [], {'default': '0'}),
-            'courses': ('multiselectfield.db.fields.MultiSelectField', [], {'max_length': '169', 'blank': 'True'}),
-            'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '75'}),
-            'facebook': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'gender': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
-            'github': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_admin': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
-            'linkedin': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'phone_number': ('django.db.models.fields.CharField', [], {'max_length': '10', 'blank': 'True'}),
-            'position': ('django.db.models.fields.CharField', [], {'default': "'ME'", 'max_length': '2'}),
-            'programming_languages': ('multiselectfield.db.fields.MultiSelectField', [], {'max_length': '117', 'blank': 'True'}),
-            'slug': ('autoslug.fields.AutoSlugField', [], {'unique': 'True', 'max_length': '50', 'populate_from': 'None', 'unique_with': '()'}),
-            'student_number': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '9'}),
-            'twitter': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['users']
+    operations = [
+        migrations.CreateModel(
+            name='User',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(default=django.utils.timezone.now, verbose_name='last login')),
+                ('first_name', models.CharField(max_length=20)),
+                ('last_name', models.CharField(max_length=40)),
+                ('student_number', models.CharField(unique=True, max_length=9)),
+                ('email', models.EmailField(unique=True, max_length=75)),
+                ('gender', models.CharField(max_length=1, choices=[(b'M', b'Male'), (b'F', b'Female')])),
+                ('position', models.CharField(default=b'ME', max_length=2, choices=[(b'PR', b'President'), (b'VP', b'Vice-President'), (b'TR', b'Treasurer'), (b'SE', b'Secretary'), (b'VO', b'Vocal'), (b'ME', b'Member')])),
+                ('phone_number', models.CharField(max_length=10, blank=True)),
+                ('courses', multiselectfield.db.fields.MultiSelectField(blank=True, max_length=169, choices=[(b'COTI-3101', b'Programming Fundamentals I'), (b'COTI-3102', b'Programming Fundamentals II'), (b'SICI-4036', b'Data Structures'), (b'COTI-4210', b'Web Applications'), (b'SICI-4030', b'Database'), (b'MATE-3171', b'Pre-Calculus I'), (b'MATE-3172', b'Pre-Calculus II'), (b'MATE-3175', b'Discrete Mathematics'), (b'MATE-3031', b'Calculus I'), (b'MATE-3032', b'Calculus II'), (b'MATE-3026', b'Statistics Using Computers'), (b'ESPA-3101', b'Basic Spanish I'), (b'ESPA-3102', b'Basic Spanish II'), (b'ESCO-4005', b'Tech. Report Writing In Spanish'), (b'INGL-3101', b'Basic English I'), (b'INGL-3102', b'Basic English II'), (b'INCO-4025', b'Tech. Report Writing In English')])),
+                ('programming_languages', multiselectfield.db.fields.MultiSelectField(blank=True, max_length=117, choices=[(b'cplusplus', b'C++'), (b'objc', b'Objective-C'), (b'python', b'Python'), (b'java', b'Java'), (b'c', b'C'), (b'scala', b'Scala'), (b'perl', b'Perl'), (b'ruby', b'Ruby'), (b'csharp', b'C#'), (b'php', b'php'), (b'html', b'HTML'), (b'css', b'CSS'), (b'javascript', b'JavaScript'), (b'grails', b'Grails'), (b'ruby-on-rails', b'Ruby on Rails'), (b'playframework', b'Play Framework'), (b'nodejs', b'Node.js')])),
+                ('facebook', models.URLField(blank=True)),
+                ('twitter', models.URLField(blank=True)),
+                ('github', models.URLField(blank=True)),
+                ('linkedin', models.URLField(blank=True)),
+                ('is_active', models.BooleanField(default=True)),
+                ('is_admin', models.BooleanField(default=False)),
+                ('slug', autoslug.fields.AutoSlugField(unique=True, editable=False)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Payment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('amount_payed', models.FloatField(default=0, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(None)])),
+                ('year_payed', models.CharField(max_length=6, choices=[(b'2014', b'2014'), (b'2015', b'2015'), (b'2016', b'2016'), (b'2017', b'2017'), (b'2018', b'2018'), (b'2019', b'2019'), (b'2020', b'2020'), (b'2021', b'2021'), (b'2022', b'2022'), (b'2023', b'2023'), (b'2024', b'2024')])),
+                ('created_at', models.DateTimeField(auto_now=True)),
+                ('payed_by', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='payment',
+            unique_together=set([('payed_by', 'year_payed')]),
+        ),
+    ]
