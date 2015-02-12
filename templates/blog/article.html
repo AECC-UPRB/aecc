@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load disqus_tags %}
 {% load gravatar %}
 
 {% block title %}{{article.title}}{% endblock title %}
@@ -28,6 +27,5 @@
 		<div class="centered eight columns">
 			{{article.content|safe}}	
 		</div>
-		{% disqus_show_comments %}
 	</div>
 {% endblock %}
