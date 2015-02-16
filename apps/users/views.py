@@ -17,10 +17,15 @@ class DirectiveView(ListView):
     template_name = 'users/community.html'
 
     def get_queryset(self):
+        year = datetime.now().year
+        if datetime.now().month >= 1:
+            year -= 1
+
+        print year
         return User.objects.filter(
             email__in=Payment.objects.filter(
                 amount_payed=settings.AECC_UPRB_MEMBER_FEE,
-                year_payed=datetime.now().year).
+                year_payed=year).
             order_by('-created_at').values_list('payed_by__email'))
 
 
