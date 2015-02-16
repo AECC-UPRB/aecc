@@ -18,7 +18,7 @@ class DirectiveView(ListView):
 
     def get_queryset(self):
         year = datetime.now().year
-        if datetime.now().month >= 1:
+        if datetime.now().month >= 1 and datetime.now().month <= 7:
             year -= 1
 
         print year
