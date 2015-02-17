@@ -30,7 +30,6 @@ urlpatterns = patterns(
         EventView.as_view(),
         name='event'
     ),
-    # TODO - remove url, causes leak
     url(
         r'^(?P<month>[\w]+)/(?P<title_slug>[-\w]+)/check_in$',
         ParticipatingView.as_view(),

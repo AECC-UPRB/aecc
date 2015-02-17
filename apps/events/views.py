@@ -102,12 +102,13 @@ class EventByMonth(ListView):
 class ParticipatingView(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
-        url = "/events/%s/%s" % (kwargs['title_slug'], kwargs['month'],)
+        url = "/events/%s/%s" % (kwargs['month'], kwargs['title_slug'],)
         return url
 
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            event = get_object_or_404(Event, title_slug=kwargs['month'])
+            title = kwargs['title_slug']
+            event = get_object_or_404(Event, title_slug=title)
             if request.user.id not in event.checked_in.all():
                 event.checked_in.add(request.user.id)
                 event.save()
