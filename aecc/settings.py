@@ -93,7 +93,8 @@ class Common(Configuration):
         "django.contrib.auth.context_processors.auth",
         "allauth.account.context_processors.account",
         "allauth.socialaccount.context_processors.socialaccount",
-        "django.contrib.messages.context_processors.messages"
+        "django.contrib.messages.context_processors.messages",
+        "aecc.context_processor.months_dropdown_content"
     )
 
     AUTHENTICATION_BACKENDS = (
