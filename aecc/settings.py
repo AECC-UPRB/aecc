@@ -184,7 +184,6 @@ class Development(Common):
 
 
 class Production(Common):
-    DEBUG = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     PROTOCOL = 'https'
     DEBUG_TOOLBAR_PATCH_SETTINGS = False

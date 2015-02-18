@@ -127,9 +127,6 @@ class User(AbstractBaseUser):
 
 
 class Payment(models.Model):
-    class Meta:
-        unique_together = ('payed_by', 'year_payed')
-
     payed_by = models.ForeignKey(User)
     amount_payed = models.FloatField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(settings.AECC_UPRB_MEMBER_FEE)])
