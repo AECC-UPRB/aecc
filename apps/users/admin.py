@@ -44,7 +44,7 @@ class PaymentAdmin(admin.ModelAdmin):
 
 
 class TshirtAdmin(admin.ModelAdmin):
-    list_display = ('payed_by', 'amount_payed', 'year_payed', 'created_at',
+    list_display = ('payed_by', 'amount_payed', 'created_at',
                     'size', 'back_name')
     raw_id_fields = ('payed_by',)
     search_fields = ('student_number', 'email', 'first_name', 'last_name')

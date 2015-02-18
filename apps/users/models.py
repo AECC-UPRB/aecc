@@ -163,6 +163,7 @@ post_save.connect(validate_user_payment, sender=Payment)
 class Tshirt(Payment):
     size = models.CharField(choices=SIZE_OPTIONS, max_length=3)
     back_name = models.CharField(blank=True, max_length=40)
+    quantity = models.IntegerField(default=1)
 
 
 def validate_tshirt_payment(sender, **kwargs):
