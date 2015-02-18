@@ -13,7 +13,8 @@ from multiselectfield import MultiSelectField
 from autoslug import AutoSlugField
 
 from .constants import POSITION_OPTIONS, GENDER_CHOICES, COURSES_CHOICES
-from .constants import PROG_LANGUAGES_AND_FRAMEWORKS, YEARS_PAYED
+from .constants import (
+    PROG_LANGUAGES_AND_FRAMEWORKS, YEARS_PAYED, SIZE_OPTIONS)
 
 
 def get_upload_file_name(instance, filename):
@@ -149,10 +150,42 @@ def validate_user_payment(sender, **kwargs):
             + payment.payed_by.last_name.capitalize()
             + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
             + '\nCantidad pagada: $' + str(payment.amount_payed)
-            + '\nCantidad a pagar: $' + str(settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed)
+            + '\nCantidad a pagar: $' + str(
+                settings.AECC_UPRB_MEMBER_FEE - payment.amount_payed)
             + '\n\nSite: aecc-uprb.herokuapp.com')
         send_mail(
             'AECC Recibo', receipt, 'example@example.com',
             [payment.payed_by.email], fail_silently=False)
 
 post_save.connect(validate_user_payment, sender=Payment)
+
+
+class Tshirt(Payment):
+    size = models.CharField(choices=SIZE_OPTIONS, max_length=3)
+    back_name = models.CharField(blank=True, max_length=40)
+
+
+def validate_tshirt_payment(sender, **kwargs):
+    payment = kwargs['instance']
+    date_info = datetime.now()
+
+    if payment.amount_payed:
+        receipt = (
+            'Nombre: ' + payment.payed_by.first_name.capitalize() + ' '
+            + payment.payed_by.last_name.capitalize()
+            + '\nFecha y hora: ' + date_info.strftime("%Y-%m-%d %H:%M")
+            + '\nCantidad pagada: $' + str(payment.amount_payed)
+            + '\nSize: ' + str(payment.size))
+
+        if payment.amount_payed == settings.AECC_TSHIRT_CUSTOM:
+            receipt += ('\nCustomzacion: ' + payment.back_name +
+                        '\n\nSite: aecc-uprb.herokuapp.com' +
+                        '\n\n\nGracias!')
+        else:
+            receipt += ('\n\nSite: aecc-uprb.herokuapp.com' +
+                        '\n\n\nGracias!')
+        send_mail(
+            'AECC Recibo', receipt, 'example@example.com',
+            [payment.payed_by.email], fail_silently=False)
+
+post_save.connect(validate_tshirt_payment, sender=Tshirt)

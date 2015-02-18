@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from import_export.admin import ImportExportModelAdmin
 
-from .models import User, Payment
+from .models import User, Payment, Tshirt
 from .forms import UserChangeForm, UserCreationForm
 from .resources import UserResource
 
@@ -43,5 +43,12 @@ class PaymentAdmin(admin.ModelAdmin):
     search_fields = ('student_number', 'email', 'first_name', 'last_name')
 
 
+class TshirtAdmin(admin.ModelAdmin):
+    list_display = ('payed_by', 'amount_payed', 'year_payed', 'created_at',
+                    'size', 'back_name')
+    raw_id_fields = ('payed_by',)
+    search_fields = ('student_number', 'email', 'first_name', 'last_name')
+
 admin.site.register(User, MyUserAdmin)
 admin.site.register(Payment, PaymentAdmin)
+admin.site.register(Tshirt, TshirtAdmin)

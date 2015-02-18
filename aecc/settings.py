@@ -162,6 +162,8 @@ class Common(Configuration):
     EMAIL_USE_TLS = values.BooleanValue(False)
 
     AECC_UPRB_MEMBER_FEE = values.FloatValue(environ_prefix=None)
+    AECC_TSHIRT = values.FloatValue(environ_prefix=None)
+    AECC_TSHIRT_CUSTOM = values.FloatValue(environ_prefix=None)
 
 
 class Development(Common):
@@ -176,7 +178,7 @@ class Development(Common):
     # Dummy cache for development
     CACHES = {
         'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         }
     }
 

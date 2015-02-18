@@ -104,3 +104,14 @@ YEARS_PAYED = (
     ('2023', '2023'),
     ('2024', '2024'),
 )
+
+SIZE_OPTIONS = (
+    ('S', 'Small'),
+    ('M', 'Medium'),
+    ('L', 'Large'),
+    ('XL', 'X-Large'),
+    ('2XL', 'XX-Large'),
+    ('3XL', 'XXX-Large'),
+    ('S', 'Small'),
+    ('S', 'Small'),
+)
